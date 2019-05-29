@@ -22,6 +22,28 @@ defined('ABSPATH') OR exit;
 #  return "";
 #}
 
+add_action(
+    'wp_enqueue_scripts',
+    'wpshout_enqueue_styles'
+);
+
+
+function wpshout_enqueue_styles() {
+    // Location of our stylesheet
+    //   For me, this shared a plugin
+    //   with this code
+    $file_url = plugins_url(
+        'css/tiv-list.css', // File name
+        __FILE__ // Magic PHP constant that means
+    // the "current file"
+    );
+    // Actually load up the stylesheet
+    wp_enqueue_style(
+        'tivents_sytlesheet', // A "name" for our file
+        $file_url // Location variable
+    );
+}
+
 class jciGutenberg {
 	private $gutenbergIsActive = FALSE;
 	private $gutenbergPluginIsActive = FALSE;
@@ -105,10 +127,9 @@ if (!function_exists('jci_addlinks')) {
 			}
 			$link2pro = array(
 				$gbmsg,
-				'<a style="color:#3db634; font-weight: bold;" href="https://json-content-importer.com/welcome-to-the-home-of-the-json-content-importer-plugin/" target="_blank">Upgrade to PRO-Version</a>',
-				'<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=APWXWK3DF2E22" title="Support the development" target="_blank">Donate</a>'
+				'<a style="color:#3db634; font-weight: bold;" href="https://json-content-importer.com/welcome-to-the-home-of-the-json-content-importer-plugin/" target="_blank">Upgrade to PRO-Version</a>'
 			);
-			return array_merge( $links, $link2pro);
+			return array_merge( $links);
 		}
 		return $links;
 	}
