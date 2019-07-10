@@ -68,6 +68,7 @@ function tivents_products_feed_init(){
 				<tr valign="top">
 					<th scope="row"><label for="tivents_partner_id">Ihre Partner ID</label></th>
 					<td><input type="text" id="tivents_partner_id" name="tivents_partner_id" value="<?php echo get_option('tivents_partner_id'); ?>" /></td>
+                    <p>Ihre Partner ID finden Sie wenn, Sie dort eingeloggt sind, in Ihrem tivents-Partnerbereich unter folgendem Link: <a href="https://tivents.de/veranstalter/konto/uebersicht" target="_blank">https://tivents.de/veranstalter/konto/uebersicht</a></p>
 				</tr>
                 <tr valign="top">
                     <th scope="row"><label for="tivents_primary_color">Primäre Farbe</label></th>
