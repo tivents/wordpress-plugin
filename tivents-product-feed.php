@@ -12,7 +12,7 @@
 
 /**
  * Plugin Name: tivents Products Feed
-description: Crawl products form tivents - dev version
+description: Crawl products form tivents
 Version: 0.8
 Author: Willi Helwig
 License: GPLv2 or later
@@ -50,9 +50,11 @@ function tivents_products_feed_register_settings() {
 	add_option( 'tivents_partner_id', 'This is my option value.');
 	add_option( 'tivents_primary_color', '#6eafdc');
 	add_option( 'tivents_secondary_color', '#000000');
+	add_option( 'tivents_base_url', null);
 	register_setting( 'tivents_products_feed_options_group', 'tivents_partner_id', 'tivents_products_feed_callback' );
 	register_setting( 'tivents_products_feed_options_group', 'tivents_primary_color', 'tivents_products_feed_callback' );
 	register_setting( 'tivents_products_feed_options_group', 'tivents_secondary_color', 'tivents_products_feed_callback' );
+	register_setting( 'tivents_products_feed_options_group', 'tivents_base_url', 'tivents_products_feed_callback' );
 }
 
 
@@ -69,6 +71,12 @@ function tivents_products_feed_init(){
 					<th scope="row"><label for="tivents_partner_id">Ihre Partner ID</label></th>
 					<td><input type="text" id="tivents_partner_id" name="tivents_partner_id" value="<?php echo get_option('tivents_partner_id'); ?>" /></td>
                     <p>Ihre Partner ID finden Sie wenn, Sie dort eingeloggt sind, in Ihrem tivents-Partnerbereich unter folgendem Link: <a href="https://tivents.de/veranstalter/konto/uebersicht" target="_blank">https://tivents.de/veranstalter/konto/uebersicht</a></p>
+				</tr>
+
+                <tr valign="top">
+					<th scope="row"><label for="tivents_base_url">Ihre Basis URL</label></th>
+					<td><input type="text" id="tivents_base_url" name="tivents_base_url" value="<?php echo get_option('tivents_base_url'); ?>"  placeholder="https://custom-shop.tivents.de"/></td>
+                    <p>Sollten Sie einen angepassten Shop gebucht haben, muss hier die Basis URL des Shopes eingegeben werden. Z.B.: https://mayamare.tivents.de</p>
 				</tr>
                 <tr valign="top">
                     <th scope="row"><label for="tivents_primary_color">Primäre Farbe</label></th>
@@ -129,48 +137,82 @@ function tivents_products_feed_show($atts)
 	if ($style == 'grid')
 	{
 
-
-		foreach ($results as $challenge) {
-			if ($challenge['type'] == 2) {
+		foreach ($results as $result) {
+			if ($result['type'] == 2) {
 				continue;
 			}
+			if (get_option('tivents_base_url') != null) {
+				$product_url = '<a href="'.get_option('tivents_base_url').'/'.$result['magento_url_key'].'">';
+            }
+			else {
+				if ($result['magento_instance'] == 10) {
+					$product_url = '<a href="https://tivents.pro/'.$result['magento_url_key'].'">';
+				}
+				else {
+					$product_url = '<a href="https://tivents.de/'.$result['magento_url_key'].'">';
+				}
+            }
+
+			if ($result['date'] == null) {
+				$date = date('d.m.Y H:i', strtotime($result['start']).' - '.date('d.m.Y H:i', strtotime($result['end'])));
+			}
+			else {
+				$date = $result['date'];
+			}
+
 			$div .=  '<div class="tiv-grid-l tiv-grid-m tiv-grid-s">';
 			$div .=  '<div class="tiv-sheet-grid">';
-			$div .= '<a href="https://tivents.de/'.$challenge['magento_url_key'].'">';
-			$div .=  '<img class="tiv-grid-img" src="'.$challenge['image_url'].'" />';
+			$div .=  $product_url;
+			$div .=  '<img class="tiv-grid-img" src="'.$result['image_url'].'" />';
 			$div .=  '<div class="tiv-grid-hover">';
-			$div .=  '<div class="tiv-grid-info tiv-product-name">'.$challenge['name'].'</div>';
-			$div .=  '<div class="tiv-grid-info tiv-product-date">'.$challenge['date'].'</div>';
-			$div .=  '<div class="tiv-grid-info tiv-product-veneu">'.$challenge['place'].'</div>';
+			$div .=  '<div class="tiv-grid-info tiv-product-name">'.$result['name'].'</div>';
+			$div .=  '<div class="tiv-grid-info tiv-product-date">'.$date.'</div>';
+			$div .=  '<div class="tiv-grid-info tiv-product-veneu">'.$result['place'].'</div>';
 			$div .=  '</div>';
 			$div .= '</a>';
 			$div .=  '</div>';
 			$div .=  '</div>';
 		}
-
-
 	}
 	else {
-
-		foreach ($results as $challenge) {
-		    if ($challenge['type'] == 2) {
+		foreach ($results as $result) {
+		    if ($result['type'] == 2) {
 		        continue;
             }
+
+			if (get_option('tivents_base_url') != null) {
+				$product_url = '<a href="'.get_option('tivents_base_url').'/'.$result['magento_url_key'].'">';
+			}
+			else {
+				if ($result['magento_instance'] == 10) {
+					$product_url = '<a href="https://tivents.pro/'.$result['magento_url_key'].'">';
+				}
+				else {
+					$product_url = '<a href="https://tivents.de/'.$result['magento_url_key'].'">';
+				}
+			}
+
+			if ($result['date'] == null) {
+				$date = date('d.m.Y H:i', strtotime($result['start']).' - '.date('d.m.Y H:i', strtotime($result['end'])));
+            }
+			else {
+			    $date = $result['date'];
+            }
+
 			$div .=  '<div class="tiv-product-l tiv-product-m tiv-product-s">';
             $div .= '<div class="tiv-sheet tiv-border">';
-            $div .= '<a href="https://tivents.de/'.$challenge['magento_url_key'].'">';
+            $div .= $product_url;
 			$div .= '<div class="tiv-sheet-left">';
-			$div .= '<div class="tiv-product-name">'.$challenge['name'].'</div>';
-			$div .= '<div class="tiv-product-date">'.$challenge['date'].'</div>';
-			$div .= '<div class="tiv-product-veneu">'.$challenge['place'].'</div>';
+			$div .= '<div class="tiv-product-name">'.$result['name'].'</div>';
+			$div .= '<div class="tiv-product-date">'.$date.'</div>';
+			$div .= '<div class="tiv-product-veneu">'.$result['place'].'</div>';
 			$div .= '</div>';
 			$div .=  '<div class="tiv-sheet-right">';
-			$div .=  '<img class="tiv-product-img" src="'.$challenge['image_url'].'" />';
+			$div .=  '<img class="tiv-product-img" src="'.$result['image_url'].'" />';
 			$div .=  '</div>';
 			$div .= '</a>';
 			$div .=  '</div>';
 			$div .=  '</div>';
-
 		}
 	}
 
