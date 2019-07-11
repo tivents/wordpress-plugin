@@ -110,23 +110,13 @@ function tivents_products_feed_show($atts)
 		"style" => 'list'
 	), $atts));
 
-	$apiURL = 'https://event-api.intern.tivents.de/v1/products';
-
-	if ($type == 'events') {
-		$apiURL .= '?_filters={"status":"400", "hosts_globalid":"'.get_option('tivents_partner_id').'","product_type":"1"}&_sortField=start&_sortDir=ASC';
-	}
-	else if ($type == 'coupons'){
-		$apiURL .= '?_filters={"status":"400", "hosts_globalid":"'.get_option('tivents_partner_id').'","product_type":"2"}&_sortField=start&_sortDir=ASC';
-	}
-
-	else {
-		$apiURL .= '?_filters={"status":"400", "hosts_globalid":"'.get_option('tivents_partner_id').'"}&_sortField=start&_sortDir=ASC';
-    }
+	$apiURL = getApiUrl($atts);
 
 	$results = wp_remote_retrieve_body(wp_remote_get( $apiURL ,
 		array(
-			'headers' => array( 'X-Token' => '123',
-	                         ))));
+			'headers' => array(
+			        'X-Token' => '123',
+            ))));
 
 	$results = json_decode($results, TRUE);
 
@@ -136,29 +126,13 @@ function tivents_products_feed_show($atts)
 
 	if ($style == 'grid')
 	{
-
 		foreach ($results as $result) {
 			if ($result['type'] == 2) {
 				continue;
 			}
-			if (get_option('tivents_base_url') != null) {
-				$product_url = '<a href="'.get_option('tivents_base_url').'/'.$result['magento_url_key'].'">';
-            }
-			else {
-				if ($result['magento_instance'] == 10) {
-					$product_url = '<a href="https://tivents.pro/'.$result['magento_url_key'].'">';
-				}
-				else {
-					$product_url = '<a href="https://tivents.de/'.$result['magento_url_key'].'">';
-				}
-            }
 
-			if ($result['date'] == null) {
-				$date = date('d.m.Y H:i', strtotime($result['start']).' - '.date('d.m.Y H:i', strtotime($result['end'])));
-			}
-			else {
-				$date = $result['date'];
-			}
+			$product_url = getProductUrl($result['magento_instance'], $result['magento_url_key']);
+			$date = setProductTime($result);
 
 			$div .=  '<div class="tiv-grid-l tiv-grid-m tiv-grid-s">';
 			$div .=  '<div class="tiv-sheet-grid">';
@@ -180,17 +154,7 @@ function tivents_products_feed_show($atts)
 		        continue;
             }
 
-			if (get_option('tivents_base_url') != null) {
-				$product_url = '<a href="'.get_option('tivents_base_url').'/'.$result['magento_url_key'].'">';
-			}
-			else {
-				if ($result['magento_instance'] == 10) {
-					$product_url = '<a href="https://tivents.pro/'.$result['magento_url_key'].'">';
-				}
-				else {
-					$product_url = '<a href="https://tivents.de/'.$result['magento_url_key'].'">';
-				}
-			}
+		    $product_url = getProductUrl($result['magento_instance'], $result['magento_url_key']);
 
 			if ($result['date'] == null) {
 				$date = date('d.m.Y H:i', strtotime($result['start']).' - '.date('d.m.Y H:i', strtotime($result['end'])));
@@ -221,6 +185,60 @@ function tivents_products_feed_show($atts)
 
 	return $div;
 
+}
+
+function getApiUrl($atts) {
+
+	extract(shortcode_atts(array(
+		"type" => 'all',
+		"style" => 'list'
+	), $atts));
+
+
+	$apiURL = 'https://event-api.intern.tivents.de/v1/products';
+
+	if ($type == 'events') {
+		$apiURL .= '?_filters={"status":"400", "hosts_globalid":"'.get_option('tivents_partner_id').'","product_type":"1"}&_sortField=start&_sortDir=ASC';
+	}
+	else if ($type == 'coupons'){
+		$apiURL .= '?_filters={"status":"400", "hosts_globalid":"'.get_option('tivents_partner_id').'","product_type":"2"}&_sortField=start&_sortDir=ASC';
+	}
+
+	else {
+		$apiURL .= '?_filters={"status":"400", "hosts_globalid":"'.get_option('tivents_partner_id').'"}&_sortField=start&_sortDir=ASC';
+	}
+
+
+
+    return $apiURL;
+}
+
+function getProductUrl($instance, $url) {
+
+	if (get_option('tivents_base_url') != null) {
+		$product_url = '<a href="'.get_option('tivents_base_url').'/'.$url.'">';
+	}
+	else {
+		if ($instance == 10) {
+			$product_url = '<a href="https://tivents.pro/'.$url.'">';
+		}
+		else {
+			$product_url = '<a href="https://tivents.de/'.$url.'">';
+		}
+	}
+
+	return $product_url;
+}
+
+function setProductTime($result) {
+	if ($result['date'] == null) {
+		$date = date('d.m.Y H:i', strtotime($result['start']).' - '.date('d.m.Y H:i', strtotime($result['end'])));
+	}
+	else {
+		$date = $result['date'];
+	}
+
+	return $date;
 }
 
 
