@@ -13,8 +13,8 @@
 /**
  * Plugin Name: tivents Products Feed
 description: Crawl products form tivents
-Version: 0.8
-Author: Willi Helwig
+Version: 1.0.8
+Author: tivents
 License: GPLv2 or later
 Text Domain: github-api
  *
@@ -22,6 +22,7 @@ Text Domain: github-api
 
 wp_register_style('tivents_products_style', plugins_url('css/tiv.css', __FILE__));
 wp_enqueue_style( 'tivents_products_style');
+
 
 register_activation_hook( __FILE__, 'tivents_products_feed_activation' );
 register_deactivation_hook( __FILE__, 'tivents_products_feed_deactivation' );
@@ -34,27 +35,39 @@ add_shortcode('tivents_products', 'tivents_products_feed_show');
 
 function tivents_products_feed_activation()
 {
-
+	$apiURL = 'https://statistics-api.intern.tivents.de/wordpress/v1?status=1&sreferer='.site_url();
+	wp_remote_retrieve_body(wp_remote_get( $apiURL ,
+		array(
+			'headers' => array(
+				'X-Token' => '123',
+			))));
 }
 
 function tivents_products_feed_deactivation()
 {
-
+	$apiURL = 'https://statistics-api.intern.tivents.de/wordpress/v1?status=0&sreferer='.site_url();
+	wp_remote_retrieve_body(wp_remote_get( $apiURL ,
+		array(
+			'headers' => array(
+				'X-Token' => '123',
+			))));
 }
 
 function tivents_products_feed_setup_menu(){
-	add_menu_page( 'tivents Products Feed', 'tivents Products Feed', 'manage_options', 'tivents_products_feed-settings', 'tivents_products_feed_init' );
+	add_menu_page( 'tivents Products Feed', 'tivents Products Feed', 'manage_options', 'tivents_products_feed-settings', 'tivents_products_feed_init', 'dashicons-tickets-alt');
 }
 
 function tivents_products_feed_register_settings() {
-	add_option( 'tivents_partner_id', 'This is my option value.');
+	add_option( 'tivents_partner_id', null);
 	add_option( 'tivents_primary_color', '#6eafdc');
 	add_option( 'tivents_secondary_color', '#000000');
 	add_option( 'tivents_base_url', null);
+	add_option( 'tivents_per_page', null);
 	register_setting( 'tivents_products_feed_options_group', 'tivents_partner_id', 'tivents_products_feed_callback' );
 	register_setting( 'tivents_products_feed_options_group', 'tivents_primary_color', 'tivents_products_feed_callback' );
 	register_setting( 'tivents_products_feed_options_group', 'tivents_secondary_color', 'tivents_products_feed_callback' );
 	register_setting( 'tivents_products_feed_options_group', 'tivents_base_url', 'tivents_products_feed_callback' );
+	register_setting( 'tivents_products_feed_options_group', 'tivents_per_page', 'tivents_products_feed_callback' );
 }
 
 
@@ -65,18 +78,23 @@ function tivents_products_feed_init(){
 		<h2>tivents Produkt Liste</h2>
 		<form method="post" action="options.php">
 			<?php settings_fields( 'tivents_products_feed_options_group' ); ?>
-			<h3>Generelle Einstellungen</h3>
+			<h3>General Settings</h3>
 			<table>
 				<tr valign="top">
 					<th scope="row"><label for="tivents_partner_id">Ihre Partner ID</label></th>
-					<td><input type="text" id="tivents_partner_id" name="tivents_partner_id" value="<?php echo get_option('tivents_partner_id'); ?>" /></td>
-                    <p>Ihre Partner ID finden Sie wenn, Sie dort eingeloggt sind, in Ihrem tivents-Partnerbereich unter folgendem Link: <a href="https://tivents.de/veranstalter/konto/uebersicht" target="_blank">https://tivents.de/veranstalter/konto/uebersicht</a></p>
+					<td><input type="text" id="tivents_partner_id" name="tivents_partner_id" value="<?php echo get_option('tivents_partner_id'); ?>"    /></td>
+                    <td>Ihre Partner ID finden Sie, wenn Sie dort eingeloggt sind, in Ihrem tivents-Partnerbereich unter folgendem Link: <a href="https://tivents.de/veranstalter/konto/uebersicht" target="_blank">https://tivents.de/veranstalter/konto/uebersicht</a></td>
 				</tr>
 
                 <tr valign="top">
 					<th scope="row"><label for="tivents_base_url">Ihre Basis URL</label></th>
 					<td><input type="text" id="tivents_base_url" name="tivents_base_url" value="<?php echo get_option('tivents_base_url'); ?>"  placeholder="https://custom-shop.tivents.de"/></td>
-                    <p>Sollten Sie einen angepassten Shop gebucht haben, muss hier die Basis URL des Shopes eingegeben werden. Z.B.: https://mayamare.tivents.de</p>
+                    <td>Sollten Sie einen angepassten Shop gebucht haben, muss hier die Basis URL des Shopes eingegeben werden. Z.B.: https://mayamare.tivents.de</td>
+				</tr>
+                <tr valign="top">
+					<th scope="row"><label for="tivents_per_page">Anzahl der anzuzeigenden Produkte</label></th>
+					<td><input type="text" id="tivents_per_page" name="tivents_per_page" value="<?php echo get_option('tivents_per_page'); ?>"  placeholder="z.B. 5"/></td>
+                    <td>Wie viele Produkte sollen angezeigt werden?</td>
 				</tr>
                 <tr valign="top">
                     <th scope="row"><label for="tivents_primary_color">Primäre Farbe</label></th>
@@ -90,7 +108,8 @@ function tivents_products_feed_init(){
 			<?php  submit_button(); ?>
 		</form>
         <h2>Nutzung</h2>
-        <p>Kopieren Sie einfach einen der folgenden Shortcodes in die Seite auf der die Produkte angezeigt werden sollen.</p>
+        <p>Kopieren Sie einfach einen der folgenden Shortcodes in die Seite auf der die Produkte angezeigt werden sollen.)</p>
+        <p>Als optionaler Parameter kann dabei: "qty" genutzt werden. Z.B: [tivents_products qty=6][/tivents_products] Hier werden dann 6 Produkte angezeigt.</p>
         <h3>für alle Produkte</h3>
         <p><b>[tivents_products][/tivents_products]</b></p>
         <h3>nur für Gutscheine</h3>
@@ -110,6 +129,17 @@ function tivents_products_feed_show($atts)
 		"style" => 'list'
 	), $atts));
 
+	if (get_option( 'tivents_partner_id' ) == null) {
+		$div = '<div class="tiv-main">';
+		$div .= '<div class="tiv-container">';
+		$div .= '<h4>Hier ist was nicht richtig eingestellt.</h4>';
+		$div .= '<small>Die Partner ID fehlt.</small>';
+		$div .= '</div>';
+		$div .= '</div>';
+
+		return $div;
+    }
+
 	$apiURL = getApiUrl($atts);
 
 	$results = wp_remote_retrieve_body(wp_remote_get( $apiURL ,
@@ -119,6 +149,17 @@ function tivents_products_feed_show($atts)
             ))));
 
 	$results = json_decode($results, TRUE);
+
+	if (count($results) == 0) {
+		$div = '<div class="tiv-main">';
+		$div .= '<div class="tiv-container">';
+		$div .= '<h4>Zur Zeit gibt es keine Produkte. Vielleicht später?</h4>';
+		$div .= '</div>';
+		$div .= '</div>';
+
+		return $div;
+
+    }
 
 	$div = '<div class="tiv-main">';
 	$div .= '<div class="tiv-container">';
@@ -191,30 +232,49 @@ function getApiUrl($atts) {
 
 	extract(shortcode_atts(array(
 		"type" => 'all',
-		"style" => 'list'
+		"style" => 'list',
+        "qty" => "qty"
 	), $atts));
 
 
 	$apiURL = 'https://event-api.intern.tivents.de/v1/products';
 
-	if ($type == 'events') {
-		$apiURL .= '?_filters={"status":"400", "hosts_globalid":"'.get_option('tivents_partner_id').'","product_type":"1"}&_sortField=start&_sortDir=ASC';
-	}
-	else if ($type == 'coupons'){
-		$apiURL .= '?_filters={"status":"400", "hosts_globalid":"'.get_option('tivents_partner_id').'","product_type":"2"}&_sortField=start&_sortDir=ASC';
-	}
+	if (get_option( 'tivents_partner_id' ) == null || get_option( 'tivents_partner_id' ) == 'all-area') {
 
+        if ( $type == 'events' ) {
+            $apiURL .= '?_filters={"status":"400","product_type":"1"}&_sortField=start&_sortDir=ASC';
+        } else if ( $type == 'coupons' ) {
+            $apiURL .= '?_filters={"status":"400","product_type":"2"}&_sortField=start&_sortDir=ASC';
+        } else {
+            $apiURL .= '?_filters={"status":"400"}&_sortField=start&_sortDir=ASC';
+        }
+	}
 	else {
-		$apiURL .= '?_filters={"status":"400", "hosts_globalid":"'.get_option('tivents_partner_id').'"}&_sortField=start&_sortDir=ASC';
-	}
 
+        if ( $type == 'events' ) {
+            $apiURL .= '?_filters={"status":"400", "hosts_globalid":"' . get_option( 'tivents_partner_id' ) . '","product_type":"1"}&_sortField=start&_sortDir=ASC';
+        } else if ( $type == 'coupons' ) {
+            $apiURL .= '?_filters={"status":"400", "hosts_globalid":"' . get_option( 'tivents_partner_id' ) . '","product_type":"2"}&_sortField=start&_sortDir=ASC';
+        } else {
+            $apiURL .= '?_filters={"status":"400", "hosts_globalid":"' . get_option( 'tivents_partner_id' ) . '"}&_sortField=start&_sortDir=ASC';
+        }
+    }
 
+	if ($qty != null) {
+		$apiURL .= '&_perPage='.$qty;
+    }
+
+	if ($qty == null && get_option( 'tivents_per_page' ) != null) {
+		$apiURL .= '&_perPage='.get_option( 'tivents_per_page' );
+    }
 
     return $apiURL;
 }
 
 function getProductUrl($instance, $url) {
 
+
+	$url .= '?utm_source=wp&utm_medium=link&utm_campaign=base';
 	if (get_option('tivents_base_url') != null) {
 		$product_url = '<a href="'.get_option('tivents_base_url').'/'.$url.'">';
 	}
