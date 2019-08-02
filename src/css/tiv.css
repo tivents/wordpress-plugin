@@ -19,16 +19,18 @@ a {
   margin-left: auto;
   width: 1280px;
   max-width: 100%;
-  font-size: 1em;
-  line-height: 1em;
-  background: #ffffff;
-  font-family: 'Raleway', sans-serif;
+  font-size: 17px;
+  line-height: 17px;
   color: var(--tiv-scnd-color);
 }
 .tiv-container {
   margin-left: -1px;
   margin-right: -1px;
   max-width: 100%;
+}
+.tiv-font {
+  font-family: 'Raleway', sans-serif;
+  font-weight: normal;
 }
 
 /*tivents-list */
@@ -48,6 +50,7 @@ a {
   box-shadow: 0px 5px 16px -3px rgba(0,0,0,0.1);
   display: inline-block;
   border-left: 6px solid var(--tiv-prime-color);
+  background-color: #fff;
 }
 .tiv-sheet:hover {
   -webkit-box-shadow: 0px 5px 16px -3px var(--tiv-prime-color);
@@ -107,6 +110,7 @@ a {
 }
 .tiv-sheet-grid {
   width: 25%;
+  padding-top: 18.9%;
   float: left;
   position: relative;
 }
@@ -115,22 +119,26 @@ a {
   display: block;
   width: 100%;
   height: auto;
+  height: 100%;
   padding: 1px;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 .tiv-grid-text {
   text-align: center;
-  height: 3em;
-}
-.tiv-grid-hover-text {
-  text-align: center;
-  height: 3em;
-  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%);
+  color: #ffffff;
+  margin: 0 1px 0 1px;
+  padding: 5px;
 }
 a:hover .tiv-grid-text {
-  display: none;
-}
-a:hover .tiv-grid-hover-text {
-  display: block;
+  background: none;
+  color: var(--tiv-prime-color);
 }
 a:hover .tiv-grid-img {
   opacity: 0.1;
@@ -138,7 +146,7 @@ a:hover .tiv-grid-img {
 .tiv-grid-hover {
   opacity: 0;
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
@@ -158,14 +166,15 @@ a:hover .tiv-grid-hover {
 /*Media Definitions */
 @media only screen and (max-width: 1080px) {
   .tiv-main {
-    font-size: 1.2em;
-    line-height: 1.2em;
+    font-size: 20px;
+    line-height: 20px;
   }
   .tiv-product-m {
     width: 100%;
   }
   .tiv-grid-m .tiv-sheet-grid {
     width: 33%;
+    padding-top: 24.8%;
   }
   .tiv-grid-m .tiv-product-name {
     font-size: 100%;
@@ -179,20 +188,30 @@ a:hover .tiv-grid-hover {
 }
 @media only screen and (max-width: 650px) {
   .tiv-main {
-    font-size: 1.2em;
-    line-height: 1.2em;
+    font-size: 18px;
+    line-height: 18px;
   }
   .tiv-product-s {
     width: 100%;
   }
   .tiv-grid-s .tiv-sheet-grid {
     width: 100%;
+    padding-top: 75%;
   }
   .tiv-sheet-left {
     width: 100%;
   }
   .tiv-sheet-right {
     display: none;
+  }
+  .tiv-grid-m .tiv-product-name {
+    font-size: 120%;
+  }
+  .tiv-grid-m .tiv-product-date {
+    font-size: 85%;
+  }
+  .tiv-grid-m .tiv-product-veneu {
+    font-size: 85%;
   }
 }
 /*Media Definitions End */
