@@ -12,8 +12,8 @@ Präsentieren Sie Ihre Produkte von tivents innerhalb Ihrer Website mit einem Sh
 
 ## Description
 
-Mit diesem Plugin betten Sie ganz einfach die tivents-Gutscheine und Events auf Ihrer Website ein. Sie entscheiden, ob Sie nur Gutscheine und Events, oder nur Gutscheine bzw. nur Events präsentieren möchten.
-Wenn Sie nur Ihre eigenen Gutscheine und/ oder Events anzeigen lassen möchten, benötigen Sie Ihre Partner-ID. Diese finden Sie in Ihrem Partnerkonto (https://tivents.de/veranstalter).
+Mit diesem Plugin betten Sie ganz einfach die tivents-Gutscheine und Events auf Ihrer Website ein. Sie entscheiden, ob Sie Gutscheine und Events, oder nur Gutscheine bzw. nur Events präsentieren möchten.
+Sie benötigen Ihre Partner-ID. Diese finden Sie in Ihrem Partnerkonto (https://tivents.de/veranstalter).
 
 ## Related Links
 
