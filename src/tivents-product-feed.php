@@ -13,15 +13,51 @@
 /**
  * Plugin Name: tivents Products Feed
 description: Crawl products form tivents
-Version: 1.1.0
+Version: 1.2.0
 Author: tivents
 License: GPLv2 or later
 Text Domain: tivents_products_feed
  *
  */
 
+
+/**
+ * Add Views
+ */
+require_once 'views/Footer.php';
+require_once 'views/Calendar.php';
+require_once 'views/Lists.php';
+require_once 'views/Grid.php';
+
+/**
+ * Add controllers
+ */
+require_once 'controllers/Products.php';
+
 wp_register_style('tivents_products_style', plugins_url('css/tiv.css', __FILE__));
 wp_enqueue_style( 'tivents_products_style');
+
+wp_register_style('fullcalendar_core_style', plugins_url('plugins/fullcalendar/packages/core/main.css', __FILE__));
+wp_enqueue_style( 'fullcalendar_core_style');
+wp_register_style('fullcalendar_bootstrap_style', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
+wp_enqueue_style( 'fullcalendar_bootstrap_style');
+wp_register_style('fullcalendar_daygrid_style', plugins_url('plugins/fullcalendar/packages/daygrid/main.css', __FILE__));
+wp_enqueue_style( 'fullcalendar_daygrid_style');
+
+wp_register_script('fullcalendar_bootstrap_script', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js', array('jquery'),'1.1', true);
+wp_enqueue_script('fullcalendar_bootstrap_script');
+wp_register_script('fullcalendar_popper_script', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js', array('jquery'),'1.1', true);
+wp_enqueue_script('fullcalendar_popper_script');
+
+
+wp_register_script('fullcalendar_core_script', plugins_url('plugins/fullcalendar/packages/core/main.js', __FILE__), array('jquery'),'1.1', true);
+wp_enqueue_script('fullcalendar_core_script');
+wp_register_script('fullcalendar_daygrid_script', plugins_url('plugins/fullcalendar/packages/daygrid/main.js', __FILE__), array('jquery'),'1.1', true);
+wp_enqueue_script('fullcalendar_daygrid_script');
+wp_register_script('fullcalendar_interaction_script', plugins_url('plugins/fullcalendar/packages/interaction/main.js', __FILE__), array('jquery'),'1.1', true);
+wp_enqueue_script('fullcalendar_interaction_script');
+wp_register_script('fullcalendar_languages_script', plugins_url('plugins/fullcalendar/packages/core/locales-all.min.js', __FILE__), array('jquery'),'1.1', true);
+wp_enqueue_script('fullcalendar_languages_script');
 
 
 register_activation_hook( __FILE__, 'tivents_products_feed_activation' );
@@ -113,8 +149,8 @@ function tivents_products_feed_init(){
         <p>Als optionaler Parameter kann dabei: "qty" genutzt werden. Z.B: [tivents_products qty=6][/tivents_products] Hier werden dann 6 Produkte angezeigt.</p>
         <table>
             <thead>
-                <td><h2>Listenansicht</h2></td>
-                <td><h2>Kachelansicht</h2></td>
+            <td><h2>Listenansicht</h2></td>
+            <td><h2>Kachelansicht</h2></td>
             </thead>
             <tr>
                 <td>
@@ -128,23 +164,23 @@ function tivents_products_feed_init(){
             </tr>
             <tr>
                 <td>
-                <h3>nur für Gutscheine</h3>
-                <p><b>[tivents_products style="list" type=coupons][/tivents_products]</b></p>
+                    <h3>nur für Gutscheine</h3>
+                    <p><b>[tivents_products style="list" type=coupons][/tivents_products]</b></p>
                 </td>
                 <td>
-                <h3>nur für Gutscheine</h3>
-                <p><b>[tivents_products style="grid" type=coupons][/tivents_products]</b></p>
+                    <h3>nur für Gutscheine</h3>
+                    <p><b>[tivents_products style="grid" type=coupons][/tivents_products]</b></p>
                 </td>
 
             </tr>
             <tr>
                 <td>
-                <h3>nur für Events</h3>
-                <p><b>[tivents_products style="list" type=events][/tivents_products]</b></p>
+                    <h3>nur für Events</h3>
+                    <p><b>[tivents_products style="list" type=events][/tivents_products]</b></p>
                 </td>
                 <td>
-                <h3>nur für Events</h3>
-                <p><b>[tivents_products style="grid" type=events][/tivents_products]</b></p>
+                    <h3>nur für Events</h3>
+                    <p><b>[tivents_products style="grid" type=events][/tivents_products]</b></p>
                 </td>
             </tr>
             <tfoot>
@@ -203,141 +239,80 @@ function tivents_products_feed_show($atts)
 	$div .= '<div class="tiv-container">';
 	$div .= '<style>:root {--tiv-prime-color: '.get_option('tivents_primary_color').';--tiv-scnd-color: '.get_option('tivents_secondary_color').';</style>';
 
-	if ($style == 'grid')
-	{
-		foreach ($results as $result) {
-			if ($result['type'] == 2) {
-				continue;
-			}
 
-			$product_url = getProductUrl($result['magento_instance'], $result['magento_url_key']);
-			$date = setProductTime($result);
-
-			$div .=  '<div class="tiv-grid-l tiv-grid-m tiv-grid-s">';
-			$div .=  $product_url;
-			$div .=  '<div class="tiv-sheet-grid">';
-			$div .=  '<img class="tiv-grid-img tiv-sizer" src="'.$result['image_url'].'" />';
-			$div .=  '<div class="tiv-grid-text tiv-product-name tiv-font">'.$result['name'].'</div>';
-			$div .=  '<div class="tiv-grid-hover">';
-			$div .=     '<div class="tiv-grid-info tiv-product-date tiv-font">'.$date.'</div>';
-			$div .=     '<div class="tiv-grid-info tiv-product-veneu tiv-font">'.$result['place'].'</div>';
-			$div .=  '</div>';
-			$div .=  '</div>';
-			$div .= '</a>';
-			$div .=  '</div>';
-		}
-	}
-	else {
-		foreach ($results as $result) {
-			if ($result['type'] == 2) {
-				continue;
-			}
-
-			$product_url = getProductUrl($result['magento_instance'], $result['magento_url_key']);
-
-			if ($result['date'] == null) {
-				$date = date('d.m.Y H:i', strtotime($result['start']).' - '.date('d.m.Y H:i', strtotime($result['end'])));
-			}
-			else {
-				$date = $result['date'];
-			}
-
-			$div .= '<div class="tiv-product-l tiv-product-m tiv-product-s">';
-			$div .= '<div class="tiv-sheet tiv-border">';
-			$div .= $product_url;
-			$div .= '<div class="tiv-sheet-inner">';
-			$div .= '<div class="tiv-sheet-left">';
-			$div .= '<div class="tiv-product-name tiv-font">'.$result['name'].'</div>';
-			$div .= '<div class="tiv-product-date tiv-font">'.$date.'</div>';
-			$div .= '<div class="tiv-product-veneu tiv-font">'.$result['place'].'</div>';
+	switch ($style) {
+		case 'grid':
+			$div .= Grid::setGridView($results);
+			break;
+		case 'calendar':
+			$div .= '<div id="tiv-calendar">';
+			$div .= '<style>body: {background: #000000 !important;}</style>';
+			$div .= Calendar::setCalendarView($results);
 			$div .= '</div>';
-			$div .=  '<div class="tiv-sheet-right">';
-			$div .=  '<img class="tiv-product-img" src="'.$result['image_url'].'" />';
-			$div .=  '</div>';
-			$div .=  '</div>';
-			$div .= '</a>';
-			$div .=  '</div>';
-			$div .=  '</div>';
-		}
+			break;
+		case 'list-no-image':
+		case'list':
+		default:
+			$div .= Lists::setListWithImages($results);
+			break;
+
 	}
-
 	$div .=  '</div>';
+	//$div .= Footer::setFooter();
 	$div .=  '</div>';
-
 	return $div;
-
 }
+
+
 
 function getApiUrl($atts) {
 
 	extract(shortcode_atts(array(
 		"type" => 'all',
 		"style" => 'list',
-		"qty" => "qty"
+		"qty" => "qty",
+		'group' => 'group'
 	), $atts));
 
 
 	$apiURL = 'https://public.tivents.systems/products/v1';
 
-	if (get_option( 'tivents_partner_id' ) == null || get_option( 'tivents_partner_id' ) == 'all-area') {
-		if ( $type == 'events' ) {
-			$apiURL .= '?_filters={"status":"400","product_type":"1"}&_sortField=start&_sortDir=ASC';
-		} else if ( $type == 'coupons' ) {
-			$apiURL .= '?_filters={"status":"400","product_type":"2"}&_sortField=start&_sortDir=ASC';
-		} else {
-			$apiURL .= '?_filters={"status":"400"}&_sortField=start&_sortDir=ASC';
-		}
+	if ($group != 'group') {
+		$apiURL .= '?id='.$group;
 	}
 	else {
-		if ( $type == 'events' ) {
-			$apiURL .= '?_filters={"status":"400", "hosts_globalid":"' . get_option( 'tivents_partner_id' ) . '","product_type":"1"}&_sortField=start&_sortDir=ASC';
-		} else if ( $type == 'coupons' ) {
-			$apiURL .= '?_filters={"status":"400", "hosts_globalid":"' . get_option( 'tivents_partner_id' ) . '","product_type":"2"}&_sortField=start&_sortDir=ASC';
-		} else {
-			$apiURL .= '?_filters={"status":"400", "hosts_globalid":"' . get_option( 'tivents_partner_id' ) . '"}&_sortField=start&_sortDir=ASC';
+
+		if (get_option( 'tivents_partner_id' ) == null || get_option( 'tivents_partner_id' ) == 'all-area') {
+			if ( $type == 'events' ) {
+				$apiURL .= '?_filters={"status":"400","product_type":"1"}&_sortField=start&_sortDir=ASC';
+			} else if ( $type == 'coupons' ) {
+				$apiURL .= '?_filters={"status":"400","product_type":"2"}&_sortField=start&_sortDir=ASC';
+			} else {
+				$apiURL .= '?_filters={"status":"400"}&_sortField=start&_sortDir=ASC';
+			}
+		}
+		else {
+			if ( $type == 'events' ) {
+				$apiURL .= '?_filters={"status":"400", "hosts_globalid":"' . get_option( 'tivents_partner_id' ) . '","product_type":"1"}&_sortField=start&_sortDir=ASC';
+			} else if ( $type == 'coupons' ) {
+				$apiURL .= '?_filters={"status":"400", "hosts_globalid":"' . get_option( 'tivents_partner_id' ) . '","product_type":"2"}&_sortField=start&_sortDir=ASC';
+			} else {
+				$apiURL .= '?_filters={"status":"400", "hosts_globalid":"' . get_option( 'tivents_partner_id' ) . '"}&_sortField=start&_sortDir=ASC';
+			}
+		}
+		if (is_int($qty)) {
+			$apiURL .= '&_perPage='.$qty;
+		}
+
+		if ($qty == 'qty' && get_option( 'tivents_per_page' ) != null) {
+			$apiURL .= '&_perPage='.get_option( 'tivents_per_page' );
 		}
 	}
 
-	if (is_int($qty)) {
-		$apiURL .= '&_perPage='.$qty;
-	}
-
-	if ($qty == null && get_option( 'tivents_per_page' ) != null) {
-		$apiURL .= '&_perPage='.get_option( 'tivents_per_page' );
-	}
 
 	return $apiURL;
 }
 
-function getProductUrl($instance, $url) {
-
-
-	$url .= '?utm_source=wp&utm_medium=link&utm_campaign=base';
-	if (get_option('tivents_base_url') != null) {
-		$product_url = '<a href="'.get_option('tivents_base_url').'/'.$url.'">';
-	}
-	else {
-		if ($instance == 10) {
-			$product_url = '<a href="https://tivents.pro/'.$url.'">';
-		}
-		else {
-			$product_url = '<a href="https://tivents.de/'.$url.'">';
-		}
-	}
-
-	return $product_url;
-}
-
-function setProductTime($result) {
-	if ($result['date'] == null) {
-		$date = date('d.m.Y H:i', strtotime($result['start']).' - '.date('d.m.Y H:i', strtotime($result['end'])));
-	}
-	else {
-		$date = $result['date'];
-	}
-
-	return $date;
-}
 
 
 

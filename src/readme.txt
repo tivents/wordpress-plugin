@@ -3,8 +3,8 @@ Contributors: aldrahastur, tivents
 Tags: events, tickets
 Requires at least: 3.0.1
 Tested up to: 5.2.2
-Stable tag: 1.1.0
-Requires PHP: 5.2.4
+Stable tag: 1.2.0
+Requires PHP: 5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,10 @@ Sie benötigen ein Partnerkonto auf tivents und Ihre Partner-ID. Weitere Informa
 Sie können entscheiden, ob Sie alle Produkte, Gutscheine oder Events anzeigen möchten und die Primär- und Sekundärfarbe anpassen.
 
 == Changelog ==
+
+= 1.2.0 =
+ * update to new version.
+ * preparation for calendar view
 
 = 1.1.0 =
 

@@ -32,7 +32,16 @@ a {
   font-family: 'Raleway', sans-serif;
   font-weight: normal;
 }
-
+.tiv-plugin-info {
+  width: 100%;
+  text-align: right;
+  float: left;
+  font-size: 80%;
+  line-height: 120%;
+  padding: 2px 6px;
+  color: var(--tiv-scnd-color);
+  background-color: #ffffff;
+}
 /*tivents-list */
 .tiv-product-l {
   width: 50%;
@@ -163,6 +172,26 @@ a:hover .tiv-grid-hover {
 }
 /*tivents-grid end */
 
+/*tivents-no-image */
+.tiv-product-less {
+  width: 100%;
+  padding: 5px;
+}
+.tiv-product-less:hover .tiv-font {
+  opacity: 0.8;
+}
+.tiv-product-less .tiv-product-name {
+  min-height: 0px;
+  line-height: 120%;
+}
+.tiv-product-less .tiv-product-date {
+  margin-top: 0%;
+}
+.tiv-product-less .tiv-product-veneu {
+  margin-top: 0%;
+}
+/*tivents-no-image end */
+
 /*Media Definitions */
 @media only screen and (max-width: 1080px) {
   .tiv-main {
@@ -214,4 +243,9 @@ a:hover .tiv-grid-hover {
     font-size: 85%;
   }
 }
+
+.fc table {
+  margin: 0 0 0;
+}
+
 /*Media Definitions End */
