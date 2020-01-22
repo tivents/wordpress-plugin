@@ -3,7 +3,7 @@ Contributors: aldrahastur, tivents
 Tags: events, tickets
 Requires at least: 3.0.1
 Tested up to: 5.2.2
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 Requires PHP: 5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -43,6 +43,16 @@ Sie benötigen ein Partnerkonto auf tivents und Ihre Partner-ID. Weitere Informa
 Sie können entscheiden, ob Sie alle Produkte, Gutscheine oder Events anzeigen möchten und die Primär- und Sekundärfarbe anpassen.
 
 == Changelog ==
+
+= 1.2.2 =
+ * move fullcalendar styles and scripts loading to calendar case in style selector
+
+= 1.2.1 =
+ * add bootstrap selector
+ * fix some issues for calendar view
+ * add default date for calendar view
+ * add tiv-status class for styling
+ * add startdate input for the calendar
 
 = 1.2.0 =
  * update to new version.
