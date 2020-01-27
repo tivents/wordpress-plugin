@@ -12,7 +12,7 @@
 
 use PHPUnit\Framework\TestCase;
 
-class productsTest extends TestCase {
+class productFeedTest extends TestCase {
 
 	public function testSetProductTime() {
 		$this->assertTrue(true);
