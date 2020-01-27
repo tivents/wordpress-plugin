@@ -10,8 +10,9 @@
  *
  */
 
+use PHPUnit\Framework\TestCase;
 
-class productsTest extends PHPUnit_Framework_TestCase {
+class productsTest extends TestCase {
 
 	public function testSetProductTime() {
 		$this->assertTrue(true);
