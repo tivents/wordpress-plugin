@@ -12,12 +12,11 @@
 
 /**
  * Plugin Name: tivents Products Feed
-description: Crawl products form tivents
-Version: 1.2.2
-Author: tivents
-License: GPLv2 or later
-Text Domain: tivents_products_feed
- *
+ * description: Crawl products form tivents
+ * Version: 1.2.2
+ * Author: tivents
+ * License: GPLv2 or later
+ * Text Domain: tivents_products_feed
  */
 
 
@@ -38,63 +37,34 @@ require_once 'controllers/Settings.php';
 wp_register_style('tivents_products_style', plugins_url('css/tiv.css', __FILE__));
 wp_enqueue_style( 'tivents_products_style');
 
-
-
 /**
  * Register all full calendar styles
  *
  */
-
 wp_register_style('fullcalendar_core_style', plugins_url('plugins/fullcalendar/packages/core/main.css', __FILE__));
 
 
 if (get_option('tivents_bootstrap_version') != null) {
-	wp_register_script( 'fullcalendar_bootstrap_script', 'https://stackpath.bootstrapcdn.com/bootstrap/'.get_option('tivents_bootstrap_version').'/js/bootstrap.min.js', array( 'jquery' ), '1.1', true );
+	wp_register_script( 'fullcalendar_bootstrap_script', 'https://stackpath.bootstrapcdn.com/bootstrap/'.get_option('tivents_bootstrap_version').'/js/bootstrap.min.js');
 	wp_register_style('fullcalendar_bootstrap_style', 'https://stackpath.bootstrapcdn.com/bootstrap/'.get_option('tivents_bootstrap_version').'/css/bootstrap.min.css');
 }
 else {
-	wp_register_script( 'fullcalendar_bootstrap_script', 'https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', array( 'jquery' ), '1.1', true );
+	wp_register_script( 'fullcalendar_bootstrap_script', 'https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js');
 	wp_register_style('fullcalendar_bootstrap_style', 'https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
 }
 
 wp_register_style('fullcalendar_daygrid_style', plugins_url('plugins/fullcalendar/packages/daygrid/main.css', __FILE__));
-wp_register_script('fullcalendar_popper_script', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js', array('jquery'),'1.1', true);
-wp_register_script('fullcalendar_core_script', plugins_url('plugins/fullcalendar/packages/core/main.js', __FILE__), array('jquery'),'1.1', true);
-wp_register_script('fullcalendar_daygrid_script', plugins_url('plugins/fullcalendar/packages/daygrid/main.js', __FILE__), array('jquery'),'1.1', true);
-wp_register_script('fullcalendar_interaction_script', plugins_url('plugins/fullcalendar/packages/interaction/main.js', __FILE__), array('jquery'),'1.1', true);
-wp_register_script('fullcalendar_languages_script', plugins_url('plugins/fullcalendar/packages/core/locales-all.min.js', __FILE__), array('jquery'),'1.1', true);
-
-/**
- * set
- */
-register_activation_hook( __FILE__, 'tivents_products_feed_activation' );
-register_deactivation_hook( __FILE__, 'tivents_products_feed_deactivation' );
+wp_register_script('fullcalendar_popper_script', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js');
+wp_register_script('fullcalendar_core_script', plugins_url('plugins/fullcalendar/packages/core/main.js', __FILE__));
+wp_register_script('fullcalendar_daygrid_script', plugins_url('plugins/fullcalendar/packages/daygrid/main.js', __FILE__));
+wp_register_script('fullcalendar_interaction_script', plugins_url('plugins/fullcalendar/packages/interaction/main.js', __FILE__));
+wp_register_script('fullcalendar_languages_script', plugins_url('plugins/fullcalendar/packages/core/locales-all.min.js', __FILE__));
 
 add_action('admin_menu', 'tivents_products_feed_setup_menu');
 add_action( 'admin_init', 'tivents_products_feed_register_settings' );
 
 add_shortcode('tivents_products', 'tivents_products_feed_show');
 
-
-function tivents_products_feed_activation()
-{
-	$apiURL = 'https://public.tivents.systems/plugins/v1?status=1&plugin=1&type=wp&referer='.site_url();
-	wp_remote_retrieve_body(wp_remote_get( $apiURL ,
-		array(
-			'headers' => array(
-				'X-Token' => '123',
-			))));
-}
-
-function tivents_products_feed_deactivation()
-{
-	$apiURL = 'https://public.tivents.systems/plugins/v1?status=0&plugin=1&type=wp&referer='.site_url();
-	wp_remote_retrieve_body(wp_remote_get( $apiURL ,
-		array(
-			'headers' => array(
-				'X-Token' => '123',
-			))));
-}
 
 function tivents_products_feed_setup_menu(){
 
@@ -206,12 +176,10 @@ function tivents_products_feed_show($atts)
 		$div .= '<small>Die Partner ID fehlt.</small>';
 		$div .= '</div>';
 		$div .= '</div>';
-
 		return $div;
 	}
 
 	$apiURL = getApiUrl($atts);
-
 	$results = wp_remote_retrieve_body(wp_remote_get( $apiURL ,
 		array(
 			'headers' => array(
@@ -327,7 +295,6 @@ function getApiUrl($atts) {
 			$apiURL .= '&_perPage='.get_option( 'tivents_per_page' );
 		}
 	}
-
 	return $apiURL;
 }
 

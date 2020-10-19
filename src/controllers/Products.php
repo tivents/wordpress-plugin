@@ -13,9 +13,6 @@
 class Products {
 
 	static function getProductUrl($instance, $url) {
-
-
-		$url .= '?utm_source=wp&utm_medium=link&utm_campaign=base';
 		if (get_option('tivents_base_url') != null) {
 			$product_url = '<a href="'.get_option('tivents_base_url').'/'.$url.'">';
 		}
@@ -27,18 +24,16 @@ class Products {
 				$product_url = '<a href="https://tivents.de/'.$url.'">';
 			}
 		}
-
 		return $product_url;
 	}
 
 	static function setProductTime($result) {
 		if ($result['date'] == null) {
-			$date = date('d.m.Y H:i', strtotime($result['start']).' - '.date('d.m.Y H:i', strtotime($result['end'])));
+			$date = date('d.m.Y H:i', strtotime($result['start'])).' - '.date('d.m.Y H:i', strtotime($result['end']));
 		}
 		else {
 			$date = $result['date'];
 		}
-
 		return $date;
 	}
 
