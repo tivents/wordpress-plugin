@@ -3,7 +3,7 @@ Contributors: willihelwig, tivents
 Tags: events, tickets
 Requires at least: 3.0.1
 Tested up to: 5.5.1
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 Requires PHP: 5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -43,6 +43,12 @@ Sie benötigen ein Partnerkonto auf tivents und Ihre Partner-ID. Weitere Informa
 Sie können entscheiden, ob Sie alle Produkte, Gutscheine oder Events anzeigen möchten und die Primär- und Sekundärfarbe anpassen.
 
 == Changelog ==
+
+= 1.3.0 =
+ * remove footer function
+
+= 1.3.0 =
+ * fix up date format problems, fix several small issues
 
 = 1.2.2 =
  * move fullcalendar styles and scripts loading to calendar case in style selector

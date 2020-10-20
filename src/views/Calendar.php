@@ -13,6 +13,14 @@
 class Calendar {
 
 	static function setCalendarView($results, $divId = null, $shopUrl = null){
+		if (get_option('tivents_bootstrap_version') != null) {
+			echo '<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/'.get_option('tivents_bootstrap_version').'/js/bootstrap.min.js"></script>';
+			echo '<link rel="stylesheet" type="text/javascript" href="https://stackpath.bootstrapcdn.com/bootstrap/'.get_option('tivents_bootstrap_version').'/css/bootstrap.min.css'.'">';
+		}
+		else {
+			wp_register_script( 'fullcalendar_bootstrap_script', 'https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', array( 'jquery' ), '1.1', true );
+			wp_register_style('fullcalendar_bootstrap_style', 'https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+		}
 		ob_start(); ?>
         <button type="button" id="button<?php if ($divId != 'no-id') {echo $divId;};?>" class="btn btn-primary" data-toggle="modal" data-target="#eventModal<?php if ($divId != 'no-id') {echo $divId;};?>" style="display: none">
         </button>

@@ -13,7 +13,7 @@
 /**
  * Plugin Name: tivents Products Feed
  * description: Crawl products form tivents
- * Version: 1.2.2
+ * Version: 1.3.1
  * Author: tivents
  * License: GPLv2 or later
  * Text Domain: tivents_products_feed
@@ -23,7 +23,6 @@
 /**
  * Add Views
  */
-require_once 'views/Footer.php';
 require_once 'views/Calendar.php';
 require_once 'views/Lists.php';
 require_once 'views/Grid.php';
@@ -245,7 +244,6 @@ function tivents_products_feed_show($atts)
 
 	}
 	$div .=  '</div>';
-	//$div .= Footer::setFooter();
 	$div .=  '</div>';
 	return $div;
 }
