@@ -16,7 +16,7 @@
  */
 require_once(dirname(plugin_dir_path(__FILE__)) . '/controllers/Products.php');
 
-class Lists {
+class TiventsLists {
 
 
 	static function setListWithImages($results) {
@@ -28,8 +28,8 @@ class Lists {
 			if ($result['type'] == 2) {
 				continue;
 			}
-			$product_url = Products::getProductUrl($result['magento_instance'], $result['magento_url_key']);
-			$date = Products::setProductTime($result);
+			$product_url = TiventsProducts::getProductUrl($result['magento_instance'], $result['magento_url_key']);
+			$date = TiventsProducts::setProductTime($result);
 			$div .= '<div class="tiv-product-l tiv-product-m tiv-product-s">';
 			$div .= '<div class="tiv-sheet tiv-border">';
 			$div .= $product_url;

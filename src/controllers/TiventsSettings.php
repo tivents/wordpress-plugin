@@ -10,7 +10,7 @@
  *
  */
 
-class Settings {
+class TiventsSettings {
 
 	static function set_design_settings(){ ?>
         <div>

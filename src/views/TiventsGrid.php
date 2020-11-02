@@ -13,7 +13,7 @@
 
 require_once(dirname(plugin_dir_path(__FILE__)) . '/controllers/Products.php');
 
-class Grid {
+class TiventsGrid {
 
 	static function setGridView ($results)
 	{
@@ -22,8 +22,8 @@ class Grid {
 			if ($result['type'] == 2) {
 				continue;
 			}
-			$product_url = Products::getProductUrl($result['magento_instance'], $result['magento_url_key']);
-			$date = Products::setProductTime($result);
+			$product_url = TiventsProducts::getProductUrl($result['magento_instance'], $result['magento_url_key']);
+			$date = TiventsProducts::setProductTime($result);
 			$div .=  '<div class="tiv-grid-l tiv-grid-m tiv-grid-s">';
 			$div .=  $product_url;
 			$div .=  '<div class="tiv-sheet-grid">';

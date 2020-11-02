@@ -10,7 +10,7 @@
  *
  */
 
-class Products {
+class TiventsProducts {
 
 	static function getProductUrl($instance, $url) {
 		if (get_option('tivents_base_url') != null) {
