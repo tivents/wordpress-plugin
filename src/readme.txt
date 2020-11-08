@@ -2,8 +2,8 @@
 Contributors: willihelwig, tivents
 Tags: events, tickets
 Requires at least: 3.0.1
-Tested up to: 5.5.1
-Stable tag: 1.3.1
+Tested up to: 5.5.3
+Stable tag: 1.3.2
 Requires PHP: 5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -44,7 +44,10 @@ Sie können entscheiden, ob Sie alle Produkte, Gutscheine oder Events anzeigen m
 
 == Changelog ==
 
-= 1.3.0 =
+= 1.3.2 =
+ * include all files in plugin, set unique class names
+
+= 1.3.1 =
  * remove footer function
 
 = 1.3.0 =

@@ -11,9 +11,7 @@
  */
 
 
-require_once(dirname(plugin_dir_path(__FILE__)) . '/controllers/Products.php');
-
-class TiventsGrid {
+class TivProFeed_View_Grid {
 
 	static function setGridView ($results)
 	{
@@ -22,8 +20,8 @@ class TiventsGrid {
 			if ($result['type'] == 2) {
 				continue;
 			}
-			$product_url = TiventsProducts::getProductUrl($result['magento_instance'], $result['magento_url_key']);
-			$date = TiventsProducts::setProductTime($result);
+			$product_url = TivProFeed_Controller_Products::getProductUrl($result['magento_instance'], $result['magento_url_key']);
+			$date = TivProFeed_Controller_Products::setProductTime($result);
 			$div .=  '<div class="tiv-grid-l tiv-grid-m tiv-grid-s">';
 			$div .=  $product_url;
 			$div .=  '<div class="tiv-sheet-grid">';

@@ -10,10 +10,53 @@
  *
  */
 
-class TiventsSettings {
 
-	static function set_design_settings(){ ?>
+class TivProFeed_Controller_Settings {
+
+    static function set_general_settings(){
+        ?>
         <div>
+            <?php screen_icon(); ?>
+            <h2><?php echo __( 'tivents Product List', 'text-tivents_products_feed' );?></h2>
+            <form method="post" action="options.php">
+                <?php settings_fields( 'tivents_products_feed_options_group' ); ?>
+                <h3>General Settings</h3>
+                <table>
+                    <tr valign="top">
+                        <th scope="row"><label for="tivents_partner_id">Ihre Partner ID</label></th>
+                        <td><input type="text" id="tivents_partner_id" name="tivents_partner_id" value="<?php echo get_option('tivents_partner_id'); ?>" required/></td>
+                        <td>Ihre Partner ID finden Sie, wenn Sie dort eingeloggt sind, in Ihrem tivents-Partnerbereich unter folgendem Link: <a href="https://tivents.de/veranstalter/konto/uebersicht" target="_blank">https://tivents.de/veranstalter/konto/uebersicht</a></td>
+                    </tr>
+
+                    <tr valign="top">
+                        <th scope="row"><label for="tivents_base_url">Ihre Basis URL</label></th>
+                        <td><input type="text" id="tivents_base_url" name="tivents_base_url" value="<?php echo get_option('tivents_base_url'); ?>"  placeholder="https://custom-shop.tivents.de"/></td>
+                        <td>Sollten Sie einen angepassten Shop gebucht haben, muss hier die Basis URL des Shopes eingegeben werden. Z.B.: https://mayamare.tivents.de</td>
+                    </tr>
+                    <tr valign="top">
+                        <th scope="row"><label for="tivents_per_page">Anzahl der anzuzeigenden Produkte</label></th>
+                        <td><input type="text" id="tivents_per_page" name="tivents_per_page" value="<?php echo get_option('tivents_per_page'); ?>"  placeholder="z.B. 5"/></td>
+                        <td>Wie viele Produkte sollen angezeigt werden?</td>
+                    </tr>
+                    <hr>
+                    <h3>Optional bei Veranstaltung in Kalendaransicht, wir nicht automatisch geändert.</h3>
+                    <tr valign="top">
+                        <th scope="row"><label for="tivents_default_date">Anfangsdatum</label></th>
+                        <td><input type="text" id="tivents_default_date" name="tivents_default_date" value="<?php echo get_option('tivents_default_date'); ?>" /></td>
+                        <td>Bitte im Format YYYY-MM-DD eingeben. Z.B. 2020-01-28</td>
+                    </tr>
+                </table>
+                <?php  submit_button(); ?>
+            </form>
+        </div>
+        <?php
+    }
+
+
+    static function set_design_settings(){ ?>
+        <div>
+            <?php screen_icon(); ?>
+            <h2><?php echo __( 'Design Settings', 'text-tivents_products_feed' );?></h2>
             <form method="post" action="options.php">
 				<?php settings_fields( 'tivents_products_feed_options_group' ); ?>
                 <table>
@@ -38,6 +81,7 @@ class TiventsSettings {
                     </tr>
                 </table>
             </form>
+            <?php  submit_button(); ?>
         </div>
 		<?php
 	}

@@ -11,12 +11,7 @@
  */
 
 
-/**
- * Add controllers
- */
-require_once(dirname(plugin_dir_path(__FILE__)) . '/controllers/Products.php');
-
-class TiventsLists {
+class TivProFeed_View_Lists {
 
 
 	static function setListWithImages($results) {
@@ -28,8 +23,8 @@ class TiventsLists {
 			if ($result['type'] == 2) {
 				continue;
 			}
-			$product_url = TiventsProducts::getProductUrl($result['magento_instance'], $result['magento_url_key']);
-			$date = TiventsProducts::setProductTime($result);
+			$product_url = TivProFeed_Controller_Products::getProductUrl($result['magento_instance'], $result['magento_url_key']);
+			$date = TivProFeed_Controller_Products::setProductTime($result);
 			$div .= '<div class="tiv-product-l tiv-product-m tiv-product-s">';
 			$div .= '<div class="tiv-sheet tiv-border">';
 			$div .= $product_url;

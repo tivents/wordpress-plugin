@@ -1,20 +1,12 @@
 <?php
 /**
- * wp-faq-api.php Class Doc Comment
- *
- * @category Class
- * @package  wp-faq-api
- * @author   whelwig
- * @license  Restricted
- * @link     https://cocase.eu/
- *
- */
-
-/**
  * Plugin Name: tivents Products Feed
  * description: Crawl products form tivents
- * Version: 1.3.1
+ * Version: 1.3.2
  * Author: tivents
+ * Author URI:        https://tivents.info/
+ * License:           GPL-2.0+
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * License: GPLv2 or later
  * Text Domain: tivents_products_feed
  */
@@ -23,15 +15,15 @@
 /**
  * Add Views
  */
-require_once 'views/TiventsCalendar.php';
-require_once 'views/TiventsLists.php';
-require_once 'views/TiventsGrid.php';
+require_once 'views/class-calendar.php';
+require_once 'views/class-lists.php';
+require_once 'views/class-grid.php';
 
 /**
  * Add controllers
  */
-require_once 'controllers/TiventsProducts.php';
-require_once 'controllers/TiventsSettings.php';
+require_once 'controllers/class-products.php';
+require_once 'controllers/class-settings.php';
 
 wp_register_style('tivents_products_style', plugins_url('assets/css/tiv.css', __FILE__));
 wp_enqueue_style( 'tivents_products_style');
@@ -69,7 +61,10 @@ add_shortcode('tivents_products', 'tivents_products_feed_show');
 
 function tivents_products_feed_setup_menu(){
 
-    add_menu_page( 'tivents Products Feed', 'tivents Products Feed', 'manage_options', 'tivents_products_feed-settings', 'tivents_products_feed_init', 'dashicons-tickets-alt');
+    add_menu_page( 'tivents Products Feed',
+        'tivents Products Feed',
+        'manage_options',
+        'tivents_products_feed-settings', 'tivents_products_feed_init', 'dashicons-tickets-alt');
     add_submenu_page( 'tivents_products_feed-settings',       // parent slug
         'Kalendereinstellungen',    // page title
         'Kalender',             // menu title
@@ -114,50 +109,15 @@ function tivents_products_feed_register_settings() {
 
 
 function tivents_products_feed_init(){
-    ?>
-    <div>
-        <?php screen_icon(); ?>
-        <h2><?php echo __( 'tivents Product List', 'text-tivents_products_feed' );?></h2>
-        <form method="post" action="options.php">
-            <?php settings_fields( 'tivents_products_feed_options_group' ); ?>
-            <h3>General Settings</h3>
-            <table>
-                <tr valign="top">
-                    <th scope="row"><label for="tivents_partner_id">Ihre Partner ID</label></th>
-                    <td><input type="text" id="tivents_partner_id" name="tivents_partner_id" value="<?php echo get_option('tivents_partner_id'); ?>" required/></td>
-                    <td>Ihre Partner ID finden Sie, wenn Sie dort eingeloggt sind, in Ihrem tivents-Partnerbereich unter folgendem Link: <a href="https://tivents.de/veranstalter/konto/uebersicht" target="_blank">https://tivents.de/veranstalter/konto/uebersicht</a></td>
-                </tr>
-
-                <tr valign="top">
-                    <th scope="row"><label for="tivents_base_url">Ihre Basis URL</label></th>
-                    <td><input type="text" id="tivents_base_url" name="tivents_base_url" value="<?php echo get_option('tivents_base_url'); ?>"  placeholder="https://custom-shop.tivents.de"/></td>
-                    <td>Sollten Sie einen angepassten Shop gebucht haben, muss hier die Basis URL des Shopes eingegeben werden. Z.B.: https://mayamare.tivents.de</td>
-                </tr>
-                <tr valign="top">
-                    <th scope="row"><label for="tivents_per_page">Anzahl der anzuzeigenden Produkte</label></th>
-                    <td><input type="text" id="tivents_per_page" name="tivents_per_page" value="<?php echo get_option('tivents_per_page'); ?>"  placeholder="z.B. 5"/></td>
-                    <td>Wie viele Produkte sollen angezeigt werden?</td>
-                </tr>
-                <hr>
-                <h3>Optional bei Veranstaltung in Kalendaransicht, wir nicht automatisch geändert.</h3>
-                <tr valign="top">
-                    <th scope="row"><label for="tivents_default_date">Anfangsdatum</label></th>
-                    <td><input type="text" id="tivents_default_date" name="tivents_default_date" value="<?php echo get_option('tivents_default_date'); ?>" /></td>
-                    <td>Bitte im Format YYYY-MM-DD eingeben. Z.B. 2020-01-28</td>
-                </tr>
-            </table>
-            <?php  submit_button(); ?>
-        </form>
-    </div>
-    <?php
+    TivProFeed_Controller_Settings::set_general_settings();
 }
 
 function show_plugin_infos() {
-    TiventsSettings::show_plugin_infos();
+    TivProFeed_Controller_Settings::show_plugin_infos();
 }
 
 function set_design_settings() {
-    TiventsSettings::set_design_settings();
+    TivProFeed_Controller_Settings::set_design_settings();
 }
 
 
@@ -207,7 +167,7 @@ function tivents_products_feed_show($atts)
     switch ($style) {
 
         case 'grid':
-            $div .= TiventsGrid::setGridView($results);
+            $div .= TivProFeed_View_Grid::setGridView($results);
             break;
         case 'calendar':
             /**
@@ -231,17 +191,17 @@ function tivents_products_feed_show($atts)
             }
             $div .= '<style>body: {background: #000000 !important;}</style>';
             if (get_option('tivents_base_url') != null) {
-                $div .= TiventsCalendar::setCalendarView($results, $divid, get_option('tivents_base_url'));
+                $div .= TivProFeed_View_Calendar::setCalendarView($results, $divid, get_option('tivents_base_url'));
             }
             else {
-                $div .= TiventsCalendar::setCalendarView($results, $divid, 'https://tivents.de');
+                $div .= TivProFeed_View_Calendar::setCalendarView($results, $divid, 'https://tivents.de');
             }
             $div .= '</div>';
             break;
         case 'list-no-image':
         case'list':
         default:
-            $div .= TiventsLists::setListWithImages($results);
+            $div .= TivProFeed_View_Lists::setListWithImages($results);
             break;
 
     }

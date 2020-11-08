@@ -10,7 +10,7 @@
  *
  */
 
-class TiventsCalendar {
+class TivProFeed_View_Calendar {
 
 	static function setCalendarView($results, $divId = null, $shopUrl = null){
         wp_enqueue_style( 'bootstrap_style');

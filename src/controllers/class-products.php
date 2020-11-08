@@ -10,7 +10,7 @@
  *
  */
 
-class TiventsProducts {
+class TivProFeed_Controller_Products {
 
 	static function getProductUrl($instance, $url) {
 		if (get_option('tivents_base_url') != null) {
