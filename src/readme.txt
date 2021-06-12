@@ -2,8 +2,8 @@
 Contributors: willihelwig, tivents
 Tags: events, tickets
 Requires at least: 3.0.1
-Tested up to: 5.5.3
-Stable tag: 1.3.2
+Tested up to: 5.7
+Stable tag: 1.3.3
 Requires PHP: 5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -13,11 +13,11 @@ Präsentieren Sie Ihre Produkte von tivents innerhalb Ihrer Website mit einem Sh
 == Description ==
 
 Mit diesem Plugin betten Sie ganz einfach die tivents-Gutscheine und Events auf Ihrer Website ein. Sie entscheiden, ob Sie nur Gutscheine und Events, oder nur Gutscheine bzw. nur Events präsentieren möchten.
-Wenn Sie nur Ihre eigenen Gutscheine und/ oder Events anzeigen lassen möchten, benötigen Sie Ihre Partner-ID. Diese finden Sie in Ihrem Partnerkonto (https://tivents.de/veranstalter).
+Wenn Sie nur Ihre eigenen Gutscheine und/ oder Events anzeigen lassen möchten, benötigen Sie Ihre Partner-ID. Diese finden Sie in Ihrem Partnerkonto (https://manage.tivents.app).
 
 = Related Links =
 
-* [Website](https://tivents.systems/de/wordpress-plugin/)
+* [Website](https://docs.tivents.systems/books/wordpress-plugin)
 * [Support](https://wordpress.org/support/plugin/tivents-products-feed/)
 
 == Screenshots ==
@@ -43,6 +43,11 @@ Sie benötigen ein Partnerkonto auf tivents und Ihre Partner-ID. Weitere Informa
 Sie können entscheiden, ob Sie alle Produkte, Gutscheine oder Events anzeigen möchten und die Primär- und Sekundärfarbe anpassen.
 
 == Changelog ==
+
+
+
+= 1.3.3 =
+ * small changes in typo & wording, preparation for sponsorship presentation, update wordpress version
 
 = 1.3.2 =
  * include all files in plugin, set unique class names

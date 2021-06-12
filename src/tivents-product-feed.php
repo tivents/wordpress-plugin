@@ -18,6 +18,7 @@
 require_once 'views/class-calendar.php';
 require_once 'views/class-lists.php';
 require_once 'views/class-grid.php';
+require_once 'views/class-sponsorships.php';
 
 /**
  * Add controllers
@@ -58,6 +59,7 @@ add_action('admin_menu', 'tivents_products_feed_setup_menu');
 add_action( 'admin_init', 'tivents_products_feed_register_settings' );
 
 add_shortcode('tivents_products', 'tivents_products_feed_show');
+add_shortcode('tivents_sponsorships', 'tivents_sponsorships_feed_show');
 
 function tivents_products_feed_setup_menu(){
 
@@ -98,6 +100,7 @@ function tivents_products_feed_register_settings() {
     add_option( 'tivents_per_page', null);
     add_option( 'tivents_bootstrap_version', '4.3.1');
     add_option( 'tivents_default_date', null);
+    add_option( 'tivents_partner_api_key', null);
     register_setting( 'tivents_products_feed_options_group', 'tivents_partner_id', 'tivents_products_feed_callback' );
     register_setting( 'tivents_products_feed_options_group', 'tivents_primary_color', 'tivents_products_feed_callback' );
     register_setting( 'tivents_products_feed_options_group', 'tivents_secondary_color', 'tivents_products_feed_callback' );
@@ -105,6 +108,7 @@ function tivents_products_feed_register_settings() {
     register_setting( 'tivents_products_feed_options_group', 'tivents_per_page', 'tivents_products_feed_callback' );
     register_setting( 'tivents_products_feed_options_group', 'tivents_bootstrap_version', 'tivents_products_feed_callback' );
     register_setting( 'tivents_products_feed_options_group', 'tivents_default_date', 'tivents_products_feed_callback' );
+    register_setting( 'tivents_products_feed_options_group', 'tivents_partner_api_key', 'tivents_products_feed_callback' );
 }
 
 
@@ -211,6 +215,55 @@ function tivents_products_feed_show($atts)
 }
 
 
+function tivents_sponsorships_feed_show($atts)
+{
+    if (get_option( 'tivents_partner_id' ) == null) {
+        $div = '<div class="tiv-main">';
+        $div .= '<div class="tiv-container">';
+        $div .= '<h4>Hier ist was nicht richtig eingestellt.</h4>';
+        $div .= '<small>Die Partner ID fehlt.</small>';
+        $div .= '</div>';
+        $div .= '</div>';
+        return $div;
+    }
+    if (get_option( 'tivents_partner_api_key' ) == null) {
+        $div = '<div class="tiv-main">';
+        $div .= '<div class="tiv-container">';
+        $div .= '<h4>Hier ist was nicht richtig eingestellt.</h4>';
+        $div .= '<small>Api Key fehlt. <a href="https://docs.tivents.info/wordpress-plugin/api-key">Weitere Informationen</a> </small>';
+        $div .= '</div>';
+        $div .= '</div>';
+        return $div;
+    }
+
+    $apiURL = getSponsorshipApiUrl($atts);
+    $results = wp_remote_retrieve_body(wp_remote_get( $apiURL ,
+        array(
+            'headers' => array(
+                'X-Token' => '6b70cb75-1726-41a4-a569-081759992780',
+                'Vendor-Api-Key' => get_option( 'tivents_partner_api_key' ),
+            ))));
+    $results = json_decode($results, TRUE);
+
+    if (count($results) == 0) {
+        $div = '<div class="tiv-main">';
+        $div .= '<div class="tiv-container">';
+        $div .= '<h4>Zur Zeit gibt es keine Sponsoren. Vielleicht sind Sie der erste? Zur Buchung: <a href="https://zoo-goerlitz.tivents.app/" target="_blank">Shop</a></h4>';
+        $div .= '</div>';
+        $div .= '</div>';
+
+        return $div;
+
+    }
+    $div = '<div class="tiv-main-sponorships">';
+    $div .= '<div class="tiv-container">';
+    $div .= '<style>:root {--tiv-prime-color: '.get_option('tivents_primary_color').';--tiv-scnd-color: '.get_option('tivents_secondary_color').';</style>';
+    $div .= TivProFeed_View_Sponsorships::setList($results);
+    $div .=  '</div>';
+    $div .=  '</div>';
+    return $div;
+}
+
 
 function getApiUrl($atts) {
 
@@ -256,6 +309,10 @@ function getApiUrl($atts) {
         }
     }
     return $apiURL;
+}
+
+function getSponsorshipApiUrl() {
+    return 'https://participants-api.intern.tivents.de/sponsorships/v1?source=wordpress';
 }
 
 

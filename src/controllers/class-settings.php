@@ -25,7 +25,7 @@ class TivProFeed_Controller_Settings {
                     <tr valign="top">
                         <th scope="row"><label for="tivents_partner_id">Ihre Partner ID</label></th>
                         <td><input type="text" id="tivents_partner_id" name="tivents_partner_id" value="<?php echo get_option('tivents_partner_id'); ?>" required/></td>
-                        <td>Ihre Partner ID finden Sie, wenn Sie dort eingeloggt sind, in Ihrem tivents-Partnerbereich unter folgendem Link: <a href="https://tivents.de/veranstalter/konto/uebersicht" target="_blank">https://tivents.de/veranstalter/konto/uebersicht</a></td>
+                        <td>Ihre Partner ID finden Sie, wenn Sie dort eingeloggt sind, in Ihrem tivents-Partnerbereich unter folgendem Link: <a href="https://manage.tivents.app/partner/profile" target="_blank">https://manage.tivents.app/partner/profile</a></td>
                     </tr>
 
                     <tr valign="top">
@@ -38,13 +38,24 @@ class TivProFeed_Controller_Settings {
                         <td><input type="text" id="tivents_per_page" name="tivents_per_page" value="<?php echo get_option('tivents_per_page'); ?>"  placeholder="z.B. 5"/></td>
                         <td>Wie viele Produkte sollen angezeigt werden?</td>
                     </tr>
-                    <hr>
-                    <h3>Optional bei Veranstaltung in Kalendaransicht, wir nicht automatisch geändert.</h3>
+                </table>
+
+                <h3>Optional: API Key für Sponsoren Daten</h3>
+                <table>
                     <tr valign="top">
-                        <th scope="row"><label for="tivents_default_date">Anfangsdatum</label></th>
-                        <td><input type="text" id="tivents_default_date" name="tivents_default_date" value="<?php echo get_option('tivents_default_date'); ?>" /></td>
-                        <td>Bitte im Format YYYY-MM-DD eingeben. Z.B. 2020-01-28</td>
+                        <th scope="row"><label for="tivents_partner_api_key">API Key</label></th>
+                        <td><input type="text" id="tivents_partner_api_key" name="tivents_partner_api_key" value="<?php echo get_option('tivents_partner_api_key'); ?>" placeholder="z.B. asdasd-asdas-asdasdasd-asdasdasd-asd"/></td>
+                        <td>Bitte bei TIVENTS erfragen</td>
                     </tr>
+                </table>
+
+                <h3>Optional bei Veranstaltung in Kalendaransicht, wird nicht automatisch geändert.</h3>
+                <table>
+                <tr valign="top">
+                    <th scope="row"><label for="tivents_default_date">Anfangsdatum</label></th>
+                    <td><input type="date" id="tivents_default_date" name="tivents_default_date" value="<?php echo get_option('tivents_default_date'); ?>" /></td>
+                    <td>Bitte im Format YYYY-MM-DD eingeben. Z.B. 2020-01-28</td>
+                </tr>
                 </table>
                 <?php  submit_button(); ?>
             </form>
@@ -140,8 +151,8 @@ class TivProFeed_Controller_Settings {
                 </tr>
                 <tfoot>
                 <tr>
-                    <td>Beispiel: <a href="https://tivents.info/list-view/" target="_blank">https://tivents.info/list-view/</a>  </td>
-                    <td>Beispiel: <a href="https://tivents.info/grid-view/" target="_blank">https://tivents.info/grid-view/</a> </td>
+                    <td>Beispiel: <a href="https://tivents.info/list-view/" target="_blank">https://demo.tivents.info/wordpress/listenansicht/</a>  </td>
+                    <td>Beispiel: <a href="https://tivents.info/grid-view/" target="_blank">https://demo.tivents.info/wordpress/kachelansicht/</a> </td>
                 </tr>
                 </tfoot>
             </table>
