@@ -2,7 +2,7 @@
 /**
  * Plugin Name: tivents Products Feed
  * description: Crawl products form tivents
- * Version: 1.3.2
+ * Version: 1.3.4
  * Author: tivents
  * Author URI:        https://tivents.info/
  * License:           GPL-2.0+
@@ -38,7 +38,6 @@ wp_register_style('fullcalendar_core_style', plugins_url('plugins/fullcalendar/p
 
 
 switch (get_option('tivents_bootstrap_version')) {
-
     case '4':
         wp_register_script( 'bootstrap_script', plugins_url('js/bootstrap/4.5.3.min.js', __FILE__));
         wp_register_style('bootstrap_style', plugins_url('css/bootstrap/4.5.3.min.css', __FILE__));
@@ -127,141 +126,13 @@ function set_design_settings() {
 
 function tivents_products_feed_show($atts)
 {
-    $type = null;
-    extract(shortcode_atts(array(
-        "type" => 'all',
-        "style" => 'list',
-        'divid' => 'no-id'
-    ), $atts));
-
-    if (get_option( 'tivents_partner_id' ) == null) {
-        $div = '<div class="tiv-main">';
-        $div .= '<div class="tiv-container">';
-        $div .= '<h4>Hier ist was nicht richtig eingestellt.</h4>';
-        $div .= '<small>Die Partner ID fehlt.</small>';
-        $div .= '</div>';
-        $div .= '</div>';
-        return $div;
-    }
-
-    $apiURL = getApiUrl($atts);
-    $results = wp_remote_retrieve_body(wp_remote_get( $apiURL ,
-        array(
-            'headers' => array(
-                'X-Token' => '123',
-            ))));
-    $results = json_decode($results, TRUE);
-
-    if (count($results) == 0) {
-        $div = '<div class="tiv-main">';
-        $div .= '<div class="tiv-container">';
-        $div .= '<h4>Zur Zeit gibt es keine Produkte. Vielleicht später?</h4>';
-        $div .= '</div>';
-        $div .= '</div>';
-
-        return $div;
-
-    }
-
-    $div = '<div class="tiv-main">';
-    $div .= '<div class="tiv-container">';
-    $div .= '<style>:root {--tiv-prime-color: '.get_option('tivents_primary_color').';--tiv-scnd-color: '.get_option('tivents_secondary_color').';</style>';
-
-
-    switch ($style) {
-
-        case 'grid':
-            $div .= TivProFeed_View_Grid::setGridView($results);
-            break;
-        case 'calendar':
-            /**
-             * Enqueue the full calendar scripts and styles
-             */
-
-            wp_enqueue_style( 'fullcalendar_bootstrap_style');
-            wp_enqueue_script('fullcalendar_bootstrap_script');
-            wp_enqueue_style( 'fullcalendar_core_style');
-            wp_enqueue_style( 'fullcalendar_daygrid_style');
-            wp_enqueue_script('fullcalendar_popper_script');
-            wp_enqueue_script('fullcalendar_core_script');
-            wp_enqueue_script('fullcalendar_daygrid_script');
-            wp_enqueue_script('fullcalendar_interaction_script');
-            wp_enqueue_script('fullcalendar_languages_script');
-            if ($divid != 'no-id') {
-                $div .= '<div id="'.$divid.'">';
-            }
-            else {
-                $div .= '<div id="tiv-calendar">';
-            }
-            $div .= '<style>body: {background: #000000 !important;}</style>';
-            if (get_option('tivents_base_url') != null) {
-                $div .= TivProFeed_View_Calendar::setCalendarView($results, $divid, get_option('tivents_base_url'));
-            }
-            else {
-                $div .= TivProFeed_View_Calendar::setCalendarView($results, $divid, 'https://tivents.de');
-            }
-            $div .= '</div>';
-            break;
-        case 'list-no-image':
-        case'list':
-        default:
-            $div .= TivProFeed_View_Lists::setListWithImages($results);
-            break;
-
-    }
-    $div .=  '</div>';
-    $div .=  '</div>';
-    return $div;
+    return TivProFeed_Controller_Products::createDiv($atts);
 }
 
 
 function tivents_sponsorships_feed_show($atts)
 {
-    if (get_option( 'tivents_partner_id' ) == null) {
-        $div = '<div class="tiv-main">';
-        $div .= '<div class="tiv-container">';
-        $div .= '<h4>Hier ist was nicht richtig eingestellt.</h4>';
-        $div .= '<small>Die Partner ID fehlt.</small>';
-        $div .= '</div>';
-        $div .= '</div>';
-        return $div;
-    }
-    if (get_option( 'tivents_partner_api_key' ) == null) {
-        $div = '<div class="tiv-main">';
-        $div .= '<div class="tiv-container">';
-        $div .= '<h4>Hier ist was nicht richtig eingestellt.</h4>';
-        $div .= '<small>Api Key fehlt. <a href="https://docs.tivents.info/wordpress-plugin/api-key">Weitere Informationen</a> </small>';
-        $div .= '</div>';
-        $div .= '</div>';
-        return $div;
-    }
-
-    $apiURL = getSponsorshipApiUrl($atts);
-    $results = wp_remote_retrieve_body(wp_remote_get( $apiURL ,
-        array(
-            'headers' => array(
-                'X-Token' => '6b70cb75-1726-41a4-a569-081759992780',
-                'Vendor-Api-Key' => get_option( 'tivents_partner_api_key' ),
-            ))));
-    $results = json_decode($results, TRUE);
-
-    if (count($results) == 0) {
-        $div = '<div class="tiv-main">';
-        $div .= '<div class="tiv-container">';
-        $div .= '<h4>Zur Zeit gibt es keine Sponsoren. Vielleicht sind Sie der erste? Zur Buchung: <a href="https://zoo-goerlitz.tivents.app/" target="_blank">Shop</a></h4>';
-        $div .= '</div>';
-        $div .= '</div>';
-
-        return $div;
-
-    }
-    $div = '<div class="tiv-main-sponorships">';
-    $div .= '<div class="tiv-container">';
-    $div .= '<style>:root {--tiv-prime-color: '.get_option('tivents_primary_color').';--tiv-scnd-color: '.get_option('tivents_secondary_color').';</style>';
-    $div .= TivProFeed_View_Sponsorships::setList($results);
-    $div .=  '</div>';
-    $div .=  '</div>';
-    return $div;
+    return TivProFeed_View_Sponsorships::createSponsorshipView($atts);
 }
 
 

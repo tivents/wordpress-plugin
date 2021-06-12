@@ -3,7 +3,7 @@ Contributors: willihelwig, tivents
 Tags: events, tickets
 Requires at least: 3.0.1
 Tested up to: 5.7
-Stable tag: 1.3.3
+Stable tag: 1.3.4
 Requires PHP: 5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -45,6 +45,10 @@ Sie können entscheiden, ob Sie alle Produkte, Gutscheine oder Events anzeigen m
 == Changelog ==
 
 
+
+= 1.3.4 =
+ * add sponsorships views
+ * add webhook for plugin activation
 
 = 1.3.3 =
  * small changes in typo & wording, preparation for sponsorship presentation, update wordpress version
