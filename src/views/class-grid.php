@@ -20,7 +20,7 @@ class TivProFeed_View_Grid {
 			if ($result['type'] == 2) {
 				continue;
 			}
-			$product_url = TivProFeed_Controller_Products::getProductUrl($result['magento_instance'], $result['magento_url_key']);
+			$product_url = TivProFeed_Controller_Products::getProductUrl($result['magento_instance'], $result['magento_url_key'], $result['short_url']);
 			$date = TivProFeed_Controller_Products::setProductTime($result);
 			$div .=  '<div class="tiv-grid-l tiv-grid-m tiv-grid-s">';
 			$div .=  $product_url;

@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         eventClick(arg) {
             document.getElementById(elementId).innerHTML = '';
-            console.log(arg.event.extendedProps.warning_level);
             if ( arg.event.extendedProps.warning_level == 2) {
                 document.getElementById(elementId).append(arg.event.title + ' - AUSVERKAUFT');
             }
@@ -35,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById(elementId).innerHTML = '';
 
             if ( arg.event.extendedProps.warning_level != 2) {
-                document.getElementById(elementId).innerHTML = '<a class="btn btn-success float-right" href="'+shopUrl+'/'+arg.event.extendedProps.magento_url_key+'">Tickets buchen</a>';
                 document.getElementById(elementId).innerHTML = '<a class="btn btn-success float-right" href="'+shopUrl+'/'+arg.event.extendedProps.magento_url_key+'">Tickets buchen</a>';
             }
             else {
