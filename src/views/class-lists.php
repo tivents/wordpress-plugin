@@ -13,6 +13,21 @@
 
 class TivProFeed_View_Lists {
 
+    static function setFooter() {
+        $div = '<div class="tiv-main">';
+        $div .= '<div class="tiv-container">';
+        $div .= '<div class="row col-12">';
+        $div .= '<small class="text-right"><figcaption class="blockquote-footer">
+        build with <a href="https://tiv.li/GmOz" target="_blank">TIVENTS WP Plugin</a> v<cite title="Source Title">'.constant('TIVENTPRO_CURRENT_VERSION').'</cite>
+  </figcaption>
+</small>';
+
+        $div .= '</div>';
+        $div .= '</div>';
+        $div .= '</div>';
+        return $div;
+    }
+
 
 	static function setListWithImages($results) {
 
@@ -23,7 +38,7 @@ class TivProFeed_View_Lists {
 			if ($result['type'] == 2) {
 				continue;
 			}
-			$product_url = TivProFeed_Controller_Products::getProductUrl($result['magento_instance'], $result['magento_url_key']);
+			$product_url = TivProFeed_Controller_Products::getProductUrl($result['magento_instance'], $result['magento_url_key'], $result['short_url']);
 			$date = TivProFeed_Controller_Products::setProductTime($result);
 			$div .= '<div class="tiv-product-l tiv-product-m tiv-product-s">';
 			$div .= '<div class="tiv-sheet tiv-border">';
@@ -45,5 +60,6 @@ class TivProFeed_View_Lists {
 
 		return $div;
 	}
+
 
 }

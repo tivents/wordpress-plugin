@@ -1,10 +1,10 @@
-# tivents Products Feed 
+# TIVENTS Products Feed 
 Contributors: aldrahastur, tivents
 Tags: events, tickets
 Requires at least: 3.0.1
-Tested up to: 5.5.3
-Stable tag: 1.3.2
-Requires PHP: 5.2.4
+Tested up to: 5.8
+Stable tag: 1.4.0
+Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

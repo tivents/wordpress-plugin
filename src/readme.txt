@@ -2,9 +2,9 @@
 Contributors: willihelwig, tivents
 Tags: events, tickets
 Requires at least: 3.0.1
-Tested up to: 5.7
-Stable tag: 1.3.4
-Requires PHP: 5.3
+Tested up to: 5.8
+Stable tag: 1.4.0
+Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,6 +19,8 @@ Wenn Sie nur Ihre eigenen Gutscheine und/ oder Events anzeigen lassen möchten, 
 
 * [Website](https://docs.tivents.systems/books/wordpress-plugin)
 * [Support](https://wordpress.org/support/plugin/tivents-products-feed/)
+* [Github](https://github.com/tivents/tivents-products-feed)
+* [TIVENTS](https://tivents.info/)
 
 == Screenshots ==
 
@@ -44,7 +46,9 @@ Sie können entscheiden, ob Sie alle Produkte, Gutscheine oder Events anzeigen m
 
 == Changelog ==
 
-
+= 1.4.0 =
+ * add new wordpress version
+ * add plugin frontend footer
 
 = 1.3.4 =
  * add sponsorships views

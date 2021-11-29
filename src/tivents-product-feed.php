@@ -1,14 +1,14 @@
 <?php
 /**
- * Plugin Name: tivents Products Feed
- * description: Crawl products form tivents
- * Version: 1.3.4
- * Author: tivents
- * Author URI:        https://tivents.info/
- * License:           GPL-2.0+
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * License: GPLv2 or later
- * Text Domain: tivents_products_feed
+ * Plugin Name:         TIVENTS Products Feed
+ * description:         Crawl products form tivents
+ * Version:             1.3.4
+ * Author:              tivents
+ * Author URI:          https://tivents.info/
+ * License:             GPL-2.0+
+ * License URI:         http://www.gnu.org/licenses/gpl-2.0.txt
+ * License:             GPLv2 or later
+ * Text Domain:         tivents_products_feed
  */
 
 
@@ -28,6 +28,8 @@ require_once 'controllers/class-settings.php';
 
 wp_register_style('tivents_products_style', plugins_url('assets/css/tiv.css', __FILE__));
 wp_enqueue_style( 'tivents_products_style');
+
+define ( 'TIVENTPRO_CURRENT_VERSION', '1.4.0');
 
 /**
  * Register all full calendar styles
@@ -179,6 +181,7 @@ function getApiUrl($atts) {
             $apiURL .= '&_perPage='.get_option( 'tivents_per_page' );
         }
     }
+
     return $apiURL;
 }
 

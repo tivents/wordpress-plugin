@@ -12,32 +12,39 @@
 
 class TivProFeed_Controller_Products {
 
-	static function getProductUrl($instance, $url) {
-		if (get_option('tivents_base_url') != null) {
-			$product_url = '<a href="'.get_option('tivents_base_url').'/'.$url.'">';
-		}
-		else {
-			if ($instance == 10) {
-				$product_url = '<a href="https://tivents.pro/'.$url.'">';
-			}
-			else {
-				$product_url = '<a href="https://tivents.de/'.$url.'">';
-			}
-		}
-		return $product_url;
-	}
+    static function getProductUrl($instance, $url, $shortUrl = null) {
 
-	static function setProductTime($result) {
-		if ($result['date'] == null) {
-			$date = date('d.m.Y H:i', strtotime($result['start'])).' - '.date('d.m.Y H:i', strtotime($result['end']));
-		}
-		else {
-			$date = $result['date'];
-		}
-		return $date;
-	}
+        if($shortUrl != null) {
+            $product_url = '<a href="'.$shortUrl.'">';
+        }
+        else {
+            if (get_option('tivents_base_url') != null) {
+                $product_url = '<a href="'.get_option('tivents_base_url').'/'.$url.'">';
+            }
+            else {
+                if ($instance == 10) {
+                    $product_url = '<a href="https://tivents.pro/'.$url.'">';
+                }
+                else {
+                    $product_url = '<a href="https://tivents.de/'.$url.'">';
+                }
+            }
+        }
 
-	static function createDiv($atts)
+        return $product_url;
+    }
+
+    static function setProductTime($result) {
+        if ($result['date'] == null) {
+            $date = date('d.m.Y H:i', strtotime($result['start'])).' - '.date('d.m.Y H:i', strtotime($result['end']));
+        }
+        else {
+            $date = $result['date'];
+        }
+        return $date;
+    }
+
+    static function createDiv($atts)
     {
         $type = null;
         extract(shortcode_atts(array(
@@ -58,14 +65,16 @@ class TivProFeed_Controller_Products {
 
         $apiURL = getApiUrl($atts);
         $results = wp_remote_retrieve_body(wp_remote_get( $apiURL ,
-            array(
-                'headers' => array(
-                    'X-Token' => '123',
-                ))));
+                [
+                    'headers' => ['X-Token' => '123'],
+                ]
+            )
+        );
         $results = json_decode($results, TRUE);
 
         if (count($results) == 0) {
-            $div = '<div class="tiv-main">';
+            $div = '<div class="row">';
+            $div .= '<div class="tiv-main">';
             $div .= '<div class="tiv-container">';
             $div .= '<h4>Zur Zeit gibt es keine Produkte. Vielleicht später?</h4>';
             $div .= '</div>';
@@ -75,7 +84,8 @@ class TivProFeed_Controller_Products {
 
         }
 
-        $div = '<div class="tiv-main">';
+        $div = '<div class="row">';
+        $div .= '<div class="tiv-main">';
         $div .= '<div class="tiv-container">';
         $div .= '<style>:root {--tiv-prime-color: '.get_option('tivents_primary_color').';--tiv-scnd-color: '.get_option('tivents_secondary_color').';</style>';
 
@@ -115,14 +125,18 @@ class TivProFeed_Controller_Products {
                 $div .= '</div>';
                 break;
             case 'list-no-image':
-            case'list':
+            case 'list':
             default:
                 $div .= TivProFeed_View_Lists::setListWithImages($results);
                 break;
 
         }
+
         $div .=  '</div>';
         $div .=  '</div>';
+        $div .=  '</div>';
+
+        $div .= TivProFeed_View_Lists::setFooter();
 
         return $div;
     }
