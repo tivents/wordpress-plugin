@@ -38,9 +38,7 @@ class TivProFeed_View_Calendar {
                 </div>
             </div>
         </div>
-        <script>
 
-        </script>
 		<?php
         $elementId = 'tiv-calendar';
         if ($divId != 'no-id') {

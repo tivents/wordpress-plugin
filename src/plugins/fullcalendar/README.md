@@ -1,10 +1,8 @@
-# FullCalendar [![Build Status](https://travis-ci.com/fullcalendar/fullcalendar.svg?branch=master)](https://travis-ci.com/fullcalendar/fullcalendar)
 
-A full-sized drag & drop JavaScript event calendar
+# FullCalendar Core Package
 
-- [Project website and demos](http://fullcalendar.io/)
-- [Documentation](http://fullcalendar.io/docs)
-- [Support](http://fullcalendar.io/support)
-- [Contributing](CONTRIBUTING.md)
-- [Changelog](CHANGELOG.md)
-- [License](LICENSE.txt)
+Provides core functionality, including the Calendar class
+
+[View the docs &raquo;](https://fullcalendar.io/docs/initialize-es6)
+
+This package was created from the [FullCalendar monorepo &raquo;](https://github.com/fullcalendar/fullcalendar)

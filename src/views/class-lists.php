@@ -14,16 +14,12 @@
 class TivProFeed_View_Lists {
 
     static function setFooter() {
-        $div = '<div class="tiv-main">';
-        $div .= '<div class="tiv-container">';
-        $div .= '<div class="row col-12">';
-        $div .= '<small class="text-right"><figcaption class="blockquote-footer">
-        build with <a href="https://tiv.li/GmOz" target="_blank">TIVENTS WP Plugin</a> v<cite title="Source Title">'.constant('TIVENTPRO_CURRENT_VERSION').'</cite>
+        $div = '<div class="row col-12 float-right">';
+        $div .= '<p class="text-right"><small><figcaption class="blockquote-footer">
+        '.__('build with', 'tivents_products_feed').' <a href="https://tiv.li/GmOz" target="_blank">TIVENTS WP Plugin</a> v<cite title="Source Title">'.constant('TIVENTPRO_CURRENT_VERSION').'</cite>
   </figcaption>
-</small>';
+</small></p>';
 
-        $div .= '</div>';
-        $div .= '</div>';
         $div .= '</div>';
         return $div;
     }

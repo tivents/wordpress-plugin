@@ -76,7 +76,7 @@ class TivProFeed_Controller_Products {
             $div = '<div class="row">';
             $div .= '<div class="tiv-main">';
             $div .= '<div class="tiv-container">';
-            $div .= '<h4>Zur Zeit gibt es keine Produkte. Vielleicht später?</h4>';
+            $div .= '<h4>'._e('Zur Zeit gibt es keine Produkte. Vielleicht später?', 'tivents_products_feed').'</h4>';
             $div .= '</div>';
             $div .= '</div>';
 

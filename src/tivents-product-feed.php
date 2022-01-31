@@ -9,6 +9,7 @@
  * License URI:         http://www.gnu.org/licenses/gpl-2.0.txt
  * License:             GPLv2 or later
  * Text Domain:         tivents_products_feed
+ * Domain Path:         /languages
  */
 
 
@@ -40,21 +41,22 @@ wp_register_style('fullcalendar_core_style', plugins_url('plugins/fullcalendar/p
 
 
 switch (get_option('tivents_bootstrap_version')) {
-    case '4':
-        wp_register_script( 'bootstrap_script', plugins_url('js/bootstrap/4.5.3.min.js', __FILE__));
-        wp_register_style('bootstrap_style', plugins_url('css/bootstrap/4.5.3.min.css', __FILE__));
-        break;
-    default:
+    case '3':
         wp_register_script( 'bootstrap_script', plugins_url('assets/js/bootstrap/3.4.1.min.js', __FILE__));
         wp_register_style('bootstrap_style', plugins_url('assets/css/bootstrap/3.4.1.min.css', __FILE__));
         break;
+    case '4':
+        wp_register_script( 'bootstrap_script', plugins_url('assets/js/bootstrap/4.5.3.min.js', __FILE__));
+        wp_register_style('bootstrap_style', plugins_url('assets/css/bootstrap/4.5.3.min.css', __FILE__));
+        break;
+    default:
+        wp_register_script( 'bootstrap_script', plugins_url('assets/js/bootstrap/5.min.js', __FILE__));
+        wp_register_style('bootstrap_style', plugins_url('assets/css/bootstrap/5.min.css', __FILE__));
+        break;
 }
 
-wp_register_style('fullcalendar_daygrid_style', plugins_url('plugins/fullcalendar/packages/daygrid/main.css', __FILE__));
-wp_register_script('fullcalendar_core_script', plugins_url('plugins/fullcalendar/packages/core/main.js', __FILE__));
-wp_register_script('fullcalendar_daygrid_script', plugins_url('plugins/fullcalendar/packages/daygrid/main.js', __FILE__));
-wp_register_script('fullcalendar_interaction_script', plugins_url('plugins/fullcalendar/packages/interaction/main.js', __FILE__));
-wp_register_script('fullcalendar_languages_script', plugins_url('plugins/fullcalendar/packages/core/locales-all.min.js', __FILE__));
+wp_register_style('fullcalendar_daygrid_style', plugins_url('plugins/fullcalendar/main.css', __FILE__));
+wp_register_script('fullcalendar_core_script', plugins_url('plugins/fullcalendar/main.js', __FILE__));
 
 add_action('admin_menu', 'tivents_products_feed_setup_menu');
 add_action( 'admin_init', 'tivents_products_feed_register_settings' );
