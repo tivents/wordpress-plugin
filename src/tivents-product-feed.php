@@ -2,7 +2,7 @@
 /**
  * Plugin Name:         TIVENTS Products Feed
  * description:         Crawl products form tivents
- * Version:             1.4.3
+ * Version:             1.4.4
  * Author:              tivents
  * Author URI:          https://tivents.info/
  * License:             GPL-2.0+
@@ -30,7 +30,7 @@ require_once 'controllers/class-settings.php';
 wp_register_style('tivents_products_style', plugins_url('assets/css/tiv.css', __FILE__));
 wp_enqueue_style( 'tivents_products_style');
 
-define ( 'TIVENTPRO_CURRENT_VERSION', '1.4.3');
+define ( 'TIVENTPRO_CURRENT_VERSION', '1.4.4');
 
 switch (get_option('tivents_bootstrap_version')) {
     case '3':
