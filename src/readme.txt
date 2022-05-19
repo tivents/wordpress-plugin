@@ -3,7 +3,7 @@ Contributors: willihelwig, tivents
 Tags: events, tickets
 Requires at least: 3.0.1
 Tested up to: 5.9.3
-Stable tag: 1.4.2
+Stable tag: 1.4.3
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -45,6 +45,9 @@ Sie benötigen ein Partnerkonto auf TIVENTS und Ihre Partner-ID. Weitere Informa
 Sie können entscheiden, ob Sie alle Produkte, Gutscheine oder Events anzeigen möchten und die Primär- und Sekundärfarbe anpassen.
 
 == Changelog ==
+
+= 1.4.3 =
+ * added list without images
 
 = 1.4.2 =
  * change css for better settings, added id to footer for customizations

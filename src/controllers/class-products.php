@@ -81,7 +81,6 @@ class TivProFeed_Controller_Products {
             $div .= '</div>';
 
             return $div;
-
         }
 
         $div = '<div class="row">';
@@ -103,10 +102,6 @@ class TivProFeed_Controller_Products {
         }
 
         $div .= '};</style>';
-
-
-//        $div .= '<style>:root {--tiv-prime-color: '.get_option('tivents_primary_color').';--tiv-second-color: '.get_option('tivents_secondary_color').';</style>';
-
 
         switch ($style) {
 
@@ -143,7 +138,10 @@ class TivProFeed_Controller_Products {
                 $div .= '</div>';
                 break;
             case 'list-no-image':
+                $div .= TivProFeed_View_Lists::setListWithoutImages($results);
+                break;
             case 'list':
+                $div .= TivProFeed_View_Lists::setListWithImages($results);
             default:
                 $div .= TivProFeed_View_Lists::setListWithImages($results);
                 break;
@@ -153,9 +151,7 @@ class TivProFeed_Controller_Products {
         $div .=  '</div>';
         $div .=  '</div>';
         $div .=  '</div>';
-
         $div .= TivProFeed_View_Lists::setFooter();
-
         return $div;
     }
 
