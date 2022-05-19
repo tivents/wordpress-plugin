@@ -14,9 +14,9 @@
 class TivProFeed_View_Lists {
 
     static function setFooter() {
-        $div = '<div class="row col-12 float-right">';
+        $div = '<div id="tiv-footer" class="row text-right">';
         $div .= '<p class="text-right"><small><figcaption class="blockquote-footer">
-        '.__('build with', 'tivents_products_feed').' <a href="https://tiv.li/GmOz" target="_blank">TIVENTS WP Plugin</a> v<cite title="Source Title">'.constant('TIVENTPRO_CURRENT_VERSION').'</cite>
+        '.__('build with', 'tivents_products_feed').' <a href="https://tiv.li/GmOz" target="_blank" style="color: var(--tiv-prime-color)">TIVENTS WP Plugin</a> v<cite title="Source Title">'.constant('TIVENTPRO_CURRENT_VERSION').'</cite>
   </figcaption>
 </small></p>';
 
@@ -26,10 +26,7 @@ class TivProFeed_View_Lists {
 
 
 	static function setListWithImages($results) {
-
-// include file
-
-		$div = '';
+        $div = '';
 		foreach ($results as $result) {
 			if ($result['type'] == 2) {
 				continue;

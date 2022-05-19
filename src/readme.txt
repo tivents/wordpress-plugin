@@ -2,13 +2,13 @@
 Contributors: willihelwig, tivents
 Tags: events, tickets
 Requires at least: 3.0.1
-Tested up to: 5.8
-Stable tag: 1.4.1
-Requires PHP: 7.4
+Tested up to: 5.9.3
+Stable tag: 1.4.2
+Requires PHP: 8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Präsentieren Sie Ihre Produkte von tivents innerhalb Ihrer Website mit einem Shortcode via API.
+Präsentieren Sie Ihre Produkte von TIVENTS innerhalb Ihrer Website mit einem Shortcode via API.
 
 == Description ==
 
@@ -38,13 +38,16 @@ Wenn Sie nur Ihre eigenen Gutscheine und/ oder Events anzeigen lassen möchten, 
 
 = Was brauche ich um das Plugin zu nutzen? =
 
-Sie benötigen ein Partnerkonto auf tivents und Ihre Partner-ID. Weitere Informationen erhalten Sie unter https://tivents.info/faq
+Sie benötigen ein Partnerkonto auf TIVENTS und Ihre Partner-ID. Weitere Informationen erhalten Sie unter https://tivents.info/faq
 
 = Was kann ich anpassen? =
 
 Sie können entscheiden, ob Sie alle Produkte, Gutscheine oder Events anzeigen möchten und die Primär- und Sekundärfarbe anpassen.
 
 == Changelog ==
+
+= 1.4.2 =
+ * change css for better settings, added id to footer for customizations
 
 = 1.4.1 =
  * small fix for version

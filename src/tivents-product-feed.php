@@ -2,7 +2,7 @@
 /**
  * Plugin Name:         TIVENTS Products Feed
  * description:         Crawl products form tivents
- * Version:             1.4.1
+ * Version:             1.4.2
  * Author:              tivents
  * Author URI:          https://tivents.info/
  * License:             GPL-2.0+
@@ -30,15 +30,7 @@ require_once 'controllers/class-settings.php';
 wp_register_style('tivents_products_style', plugins_url('assets/css/tiv.css', __FILE__));
 wp_enqueue_style( 'tivents_products_style');
 
-define ( 'TIVENTPRO_CURRENT_VERSION', '1.4.1');
-
-/**
- * Register all full calendar styles
- *
- */
-wp_register_style('fullcalendar_core_style', plugins_url('plugins/fullcalendar/packages/core/main.css', __FILE__));
-
-
+define ( 'TIVENTPRO_CURRENT_VERSION', '1.4.2');
 
 switch (get_option('tivents_bootstrap_version')) {
     case '3':
@@ -66,23 +58,12 @@ add_shortcode('tivents_sponsorships', 'tivents_sponsorships_feed_show');
 
 function tivents_products_feed_setup_menu(){
 
-    add_menu_page( 'tivents Products Feed',
-        'tivents Products Feed',
+    add_menu_page( 'TIVENTS',
+        'TIVENTS',
         'manage_options',
-        'tivents_products_feed-settings', 'tivents_products_feed_init', 'dashicons-tickets-alt');
-    add_submenu_page( 'tivents_products_feed-settings',       // parent slug
-        'Kalendereinstellungen',    // page title
-        'Kalender',             // menu title
-        'manage_options',           // capability
-        'calendar',      // slug
-        'tivents_products_feed_init' // callback
-    );
-    add_submenu_page( 'tivents_products_feed-settings',       // parent slug
-        'Design',    // page title
-        'Design',             // menu title
-        'manage_options',           // capability
-        'design',      // slug
-        'set_design_settings' // callback
+        'tivents_products_feed-settings',
+        'tivents_products_feed_init',
+        'dashicons-tickets-alt'
     );
     add_submenu_page( 'tivents_products_feed-settings',       // parent slug
         'Info/Nutzung',    // page title
@@ -98,20 +79,24 @@ function tivents_products_feed_register_settings() {
     add_option( 'tivents_partner_id', null);
     add_option( 'tivents_primary_color', '#6eafdc');
     add_option( 'tivents_secondary_color', '#000000');
-    add_option( 'tivents_secondary_color', '#000000');
+    add_option( 'tivents_text_color', null);
     add_option( 'tivents_base_url', null);
     add_option( 'tivents_per_page', null);
-    add_option( 'tivents_bootstrap_version', '4.3.1');
+    add_option( 'tivents_bootstrap_version', '5.1.3');
     add_option( 'tivents_default_date', null);
     add_option( 'tivents_partner_api_key', null);
+
+
     register_setting( 'tivents_products_feed_options_group', 'tivents_partner_id', 'tivents_products_feed_callback' );
-    register_setting( 'tivents_products_feed_options_group', 'tivents_primary_color', 'tivents_products_feed_callback' );
-    register_setting( 'tivents_products_feed_options_group', 'tivents_secondary_color', 'tivents_products_feed_callback' );
     register_setting( 'tivents_products_feed_options_group', 'tivents_base_url', 'tivents_products_feed_callback' );
     register_setting( 'tivents_products_feed_options_group', 'tivents_per_page', 'tivents_products_feed_callback' );
-    register_setting( 'tivents_products_feed_options_group', 'tivents_bootstrap_version', 'tivents_products_feed_callback' );
-    register_setting( 'tivents_products_feed_options_group', 'tivents_default_date', 'tivents_products_feed_callback' );
     register_setting( 'tivents_products_feed_options_group', 'tivents_partner_api_key', 'tivents_products_feed_callback' );
+    register_setting( 'tivents_products_feed_options_group', 'tivents_default_date', 'tivents_products_feed_callback' );
+
+    register_setting( 'tivents_products_feed_options_group', 'tivents_bootstrap_version', 'tivents_products_feed_callback' );
+    register_setting( 'tivents_products_feed_options_group', 'tivents_primary_color', 'tivents_products_feed_callback' );
+    register_setting( 'tivents_products_feed_options_group', 'tivents_secondary_color', 'tivents_products_feed_callback' );
+    register_setting( 'tivents_products_feed_options_group', 'tivents_text_color', 'tivents_products_feed_callback' );
 }
 
 
@@ -121,10 +106,6 @@ function tivents_products_feed_init(){
 
 function show_plugin_infos() {
     TivProFeed_Controller_Settings::show_plugin_infos();
-}
-
-function set_design_settings() {
-    TivProFeed_Controller_Settings::set_design_settings();
 }
 
 

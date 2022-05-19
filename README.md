@@ -2,9 +2,9 @@
 Contributors: aldrahastur, tivents
 Tags: events, tickets
 Requires at least: 3.0.1
-Tested up to: 5.8
-Stable tag: 1.4.1
-Requires PHP: 7.4
+Tested up to: 5.9.3
+Stable tag: 1.4.2
+Requires PHP: 8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,12 +12,12 @@ Präsentieren Sie Ihre Produkte von TIVENTS innerhalb Ihrer Website mit einem Sh
 
 ## Description
 
-Mit diesem Plugin betten Sie ganz einfach die tivents-Gutscheine und Events auf Ihrer Website ein. Sie entscheiden, ob Sie Gutscheine und Events, oder nur Gutscheine bzw. nur Events präsentieren möchten.
-Sie benötigen Ihre Partner-ID. Diese finden Sie in Ihrem Partnerkonto (https://tivents.de/veranstalter).
+Mit diesem Plugin betten Sie ganz einfach die TIVENTS-Gutscheine und Events auf Ihrer Website ein. Sie entscheiden, ob Sie Gutscheine und Events, oder nur Gutscheine bzw. nur Events präsentieren möchten.
+Sie benötigen Ihre Partner-ID. Diese finden Sie in Ihrem Partnerkonto (https://manage.tivents.app).
 
 ## Related Links
 
-* [Website](https://tivents.systems/de/wordpress-plugin/)
+* [Website](https://docs.tivents.systems/books/wordpress-plugin)
 * [Support](https://wordpress.org/support/plugin/tivents-products-feed/)
 * [Github](https://github.com/tivents/tivents-products-feed/)
 
@@ -37,7 +37,7 @@ Sie benötigen Ihre Partner-ID. Diese finden Sie in Ihrem Partnerkonto (https://
 
 ### Was brauche ich um das Plugin zu nutzen?
 
-Sie benötigen ein Partnerkonto auf tivents und Ihre Partner-ID. Weitere Informationen erhalten Sie unter https://tivents.info/faq
+Sie benötigen ein Partnerkonto auf TIVENTS und Ihre Partner-ID. Weitere Informationen erhalten Sie unter https://tivents.info/faq
 
 ### Was kann ich anpassen?
 

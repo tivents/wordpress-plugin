@@ -87,7 +87,25 @@ class TivProFeed_Controller_Products {
         $div = '<div class="row">';
         $div .= '<div class="tiv-main">';
         $div .= '<div class="tiv-container">';
-        $div .= '<style>:root {--tiv-prime-color: '.get_option('tivents_primary_color').';--tiv-scnd-color: '.get_option('tivents_secondary_color').';</style>';
+
+        $div .= '<style>:root {';
+
+        if(get_option('tivents_primary_color') != null) {
+            $div .= '--tiv-prime-color: '.get_option('tivents_primary_color').';';
+        }
+
+        if(get_option('tivents_secondary_color') != null) {
+            $div .= '--tiv-second-color: '.get_option('tivents_secondary_color').';';
+        }
+
+        if(get_option('tivents_text_color') != null) {
+            $div .= '--tiv-text-color: '.get_option('tivents_text_color').';';
+        }
+
+        $div .= '};</style>';
+
+
+//        $div .= '<style>:root {--tiv-prime-color: '.get_option('tivents_primary_color').';--tiv-second-color: '.get_option('tivents_secondary_color').';</style>';
 
 
         switch ($style) {

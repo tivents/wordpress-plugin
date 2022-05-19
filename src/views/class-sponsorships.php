@@ -17,7 +17,7 @@ class TivProFeed_View_Sponsorships {
 	    $div = '';
         $div .= '<div class="row col-sm-12">';
 		foreach ($results as $key => $values) {
-            $div .= '<div class="col-sm-6 pb-3">';
+            $div .= '<div class="col-sm-4 pb-3">';
 			$div .= '<b>'.$key.'</b>';
 			$div .= '<ul>';
 			foreach ($values as $value) {

@@ -13,8 +13,6 @@
 class TivProFeed_View_Calendar {
 
 	static function setCalendarView($results, $divId = null, $shopUrl = null){
-        wp_enqueue_style( 'bootstrap_style');
-        wp_enqueue_script( 'bootstrap_script');
 		ob_start(); ?>
         <button type="button" id="button<?php if ($divId != 'no-id') {echo $divId;};?>" class="btn btn-primary" data-toggle="modal" data-target="#eventModal<?php if ($divId != 'no-id') {echo $divId;};?>" style="display: none">
         </button>
