@@ -47,6 +47,9 @@ Sie können entscheiden, ob Sie alle Produkte, Gutscheine oder Events anzeigen m
 
 == Changelog ==
 
+= 1.5.1 =
+ * fix error with js adding
+
 = 1.5 =
  * replace bootstrap modals with sweetalert2
  * small fix in api calls

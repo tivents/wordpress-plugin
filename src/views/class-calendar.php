@@ -47,7 +47,7 @@ class TivProFeed_View_Calendar {
         $variableString .= 'var products = '.json_encode($results).';';
         $variableString .= 'var elementId = "'.$elementId.'";';
 
-        wp_add_inline_script('tivents-fullcalender', $variableString, 'before' );
+        wp_add_inline_script('tiv-calender-js', $variableString, 'before' );
 
 		return ob_get_clean();
 	}
