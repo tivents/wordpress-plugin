@@ -33,6 +33,15 @@ class TivProFeed_View_Lists {
 			}
 			$product_url = TivProFeed_Controller_Products::getProductUrl($result['magento_instance'], $result['magento_url_key'], $result['short_url']);
 			$date = TivProFeed_Controller_Products::setProductTime($result);
+
+            if($result['cdn_image_key'] != null) {
+                $imageUrl = 'https://d1jakwcoew848r.cloudfront.net/filters:autojpg()/'.$result['cdn_image_key'];
+            }
+            else {
+                $imageUrl = $result['image_url'];
+            }
+
+
 			$div .= '<div class="tiv-product-l tiv-product-m tiv-product-s">';
 			$div .= '<div class="tiv-sheet tiv-border">';
 			$div .= $product_url;
@@ -43,7 +52,7 @@ class TivProFeed_View_Lists {
 			$div .= '<div class="tiv-product-veneu tiv-font">'.$result['place'].'</div>';
 			$div .= '</div>';
 			$div .=  '<div class="tiv-sheet-right">';
-			$div .=  '<img class="tiv-product-img" src="'.$result['image_url'].'" />';
+			$div .=  '<img class="tiv-product-img" src="'.$imageUrl.'" />';
 			$div .=  '</div>';
 			$div .=  '</div>';
 			$div .= '</a>';

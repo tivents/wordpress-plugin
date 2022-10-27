@@ -50,18 +50,6 @@ class TivProFeed_Controller_Settings {
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row">
-                            <label for="tivents_bootstrap_version">Bootstrap Version</label>
-                        </th>
-                        <td>
-                            <select type="select" id="tivents_bootstrap_version" name="tivents_bootstrap_version">
-                                <option value="5.1.3" <?php if  ( get_option('tivents_bootstrap_version') == '5.1.3') { echo 'selected';}; ?> >5.1.3</option>
-                                <option value="4.3.1" <?php if  ( get_option('tivents_bootstrap_version') == '4.3.1') { echo 'selected';}; ?> >4.3.1</option>
-                                <option value="3.3.7" <?php if  ( get_option('tivents_bootstrap_version') == '3.3.7') { echo 'selected';}; ?> >3.3.7</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
                         <th scope="row"><label for="tivents_primary_color">Primäre Farbe</label></th>
                         <td>
                             <input type="text" id="tivents_primary_color" name="tivents_primary_color" value="<?php echo get_option('tivents_primary_color'); ?>" />
@@ -85,27 +73,6 @@ class TivProFeed_Controller_Settings {
                 </table>
                 <?php  submit_button(); ?>
             </form>
-        </div>
-        <?php
-    }
-
-
-    static function set_design_settings(){
-
-
-
-        ?>
-        <div>
-            <?php screen_icon(); ?>
-            <h2><?php echo __( 'Design Settings', 'text-tivents_products_feed' );?></h2>
-            <form method="post" action="options.php">
-                <?php settings_fields( 'tivents_products_feed_options_group' ); ?>
-                <table>
-
-                </table>
-                <?php  submit_button(); ?>
-            </form>
-
         </div>
         <?php
     }
@@ -164,8 +131,9 @@ class TivProFeed_Controller_Settings {
                 </tr>
                 <tfoot>
                 <tr>
-                    <td>Beispiel: <a href="https://tivents.info/list-view/" target="_blank">https://demo.tivents.info/wordpress/listenansicht/</a>  </td>
-                    <td>Beispiel: <a href="https://tivents.info/grid-view/" target="_blank">https://demo.tivents.info/wordpress/kachelansicht/</a> </td>
+                    <td>Beispiel: <a href="https://demo.tivents.info/wordpress/listenansicht/" target="_blank">https://demo.tivents.info/wordpress/listenansicht/</a>  </td>
+                    <td>Beispiel: <a href="https://demo.tivents.info/wordpress/kachelansicht/" target="_blank">https://demo.tivents.info/wordpress/kachelansicht/</a> </td>
+                    <td>Beispiel: <a href="https://demo.tivents.info/wordpress/kalenderansicht/" target="_blank">https://demo.tivents.info/wordpress/kalenderansicht/</a> </td>
                 </tr>
                 </tfoot>
             </table>

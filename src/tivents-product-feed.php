@@ -2,7 +2,7 @@
 /**
  * Plugin Name:         TIVENTS Products Feed
  * description:         Crawl products form tivents
- * Version:             1.4.4
+ * Version:             1.5
  * Author:              tivents
  * Author URI:          https://tivents.info/
  * License:             GPL-2.0+
@@ -27,28 +27,19 @@ require_once 'views/class-sponsorships.php';
 require_once 'controllers/class-products.php';
 require_once 'controllers/class-settings.php';
 
-wp_register_style('tivents_products_style', plugins_url('assets/css/tiv.css', __FILE__));
+wp_register_style('tivents_products_style', plugins_url('plugins/tivents/tiv-calendar.css', __FILE__));
+wp_register_script('tivents-fullcalender', plugins_url('plugins/tivents/tiv-calendar.js', __FILE__) );
+
 wp_enqueue_style( 'tivents_products_style');
 
-define ( 'TIVENTPRO_CURRENT_VERSION', '1.4.4');
+define ( 'TIVENTPRO_CURRENT_VERSION', '1.5');
 
-switch (get_option('tivents_bootstrap_version')) {
-    case '3':
-        wp_register_script( 'bootstrap_script', plugins_url('assets/js/bootstrap/3.4.1.min.js', __FILE__));
-        wp_register_style('bootstrap_style', plugins_url('assets/css/bootstrap/3.4.1.min.css', __FILE__));
-        break;
-    case '4':
-        wp_register_script( 'bootstrap_script', plugins_url('assets/js/bootstrap/4.5.3.min.js', __FILE__));
-        wp_register_style('bootstrap_style', plugins_url('assets/css/bootstrap/4.5.3.min.css', __FILE__));
-        break;
-    default:
-        wp_register_script( 'bootstrap_script', plugins_url('assets/js/bootstrap/5.min.js', __FILE__));
-        wp_register_style('bootstrap_style', plugins_url('assets/css/bootstrap/5.min.css', __FILE__));
-        break;
-}
+wp_register_style('fullcalendar_daygrid_style', plugins_url('plugins/fullcalendar/main.min.css', __FILE__));
+wp_register_script('fullcalendar_core_script', plugins_url('plugins/fullcalendar/main.min.js', __FILE__));
+wp_register_script('fullcalendar_locale_script', plugins_url('plugins/fullcalendar/locales-all.min.js', __FILE__));
 
-wp_register_style('fullcalendar_daygrid_style', plugins_url('plugins/fullcalendar/main.css', __FILE__));
-wp_register_script('fullcalendar_core_script', plugins_url('plugins/fullcalendar/main.js', __FILE__));
+wp_register_style('sweetalert_style', plugins_url('plugins/sweetalert/sweetalert2.min.css', __FILE__));
+wp_register_script('sweetalert_script', plugins_url('plugins/sweetalert/sweetalert2.all.min.js', __FILE__));
 
 add_action('admin_menu', 'tivents_products_feed_setup_menu');
 add_action( 'admin_init', 'tivents_products_feed_register_settings' );
@@ -86,9 +77,7 @@ function tivents_products_feed_register_settings() {
     add_option( 'tivents_default_date', null);
     add_option( 'tivents_partner_api_key', null);
 
-
     register_setting( 'tivents_products_feed_options_group', 'tivents_partner_id', 'tivents_products_feed_callback' );
-    register_setting( 'tivents_products_feed_options_group', 'tivents_base_url', 'tivents_products_feed_callback' );
     register_setting( 'tivents_products_feed_options_group', 'tivents_per_page', 'tivents_products_feed_callback' );
     register_setting( 'tivents_products_feed_options_group', 'tivents_partner_api_key', 'tivents_products_feed_callback' );
     register_setting( 'tivents_products_feed_options_group', 'tivents_default_date', 'tivents_products_feed_callback' );
@@ -131,41 +120,69 @@ function getApiUrl($atts) {
     ), $atts));
 
 
-    $apiURL = 'https://public.tivents.systems/products/v1';
+    $apiURL = 'https://products.tivents.systems/public/v1';
 
-    if ($group != 'group') {
-        $apiURL .= '?id='.$group;
+
+    $urlSlug = '?_sortField=start&_sortDir=ASC';
+
+
+    $filter = [
+        'status' => 400
+    ];
+
+    if (get_option( 'tivents_partner_id' ) == null || get_option( 'tivents_partner_id' ) == 'all-area') {
+        if ( $type == 'events' ) {
+            $filter['product_type'] = 1;
+        }
+        if ( $type == 'coupons' ) {
+            $filter['product_type'] = 2;
+        }
+    }
+
+    elseif ( $style == 'calendar') {
+        $filter['product_type'] = 1;
+        $filter['hosts_globalid'] =  get_option( 'tivents_partner_id' );
     }
     else {
+        $filter['hosts_globalid'] =  get_option( 'tivents_partner_id' );
+        if ( $type == 'events' ) {
+            $filter['product_type'] = 1;
 
-        if (get_option( 'tivents_partner_id' ) == null || get_option( 'tivents_partner_id' ) == 'all-area') {
-            if ( $type == 'events' ) {
-                $apiURL .= '?_filters={"status":"400","product_type":"1"}&_sortField=start&_sortDir=ASC';
-            } else if ( $type == 'coupons' ) {
-                $apiURL .= '?_filters={"status":"400","product_type":"2"}&_sortField=start&_sortDir=ASC';
-            } else {
-                $apiURL .= '?_filters={"status":"400"}&_sortField=start&_sortDir=ASC';
-            }
-        }
-        else {
-            if ( $type == 'events' ) {
-                $apiURL .= '?_filters={"status":"400", "hosts_globalid":"' . get_option( 'tivents_partner_id' ) . '","product_type":"1"}&_sortField=start&_sortDir=ASC';
-            } else if ( $type == 'coupons' ) {
-                $apiURL .= '?_filters={"status":"400", "hosts_globalid":"' . get_option( 'tivents_partner_id' ) . '","product_type":"2"}&_sortField=start&_sortDir=ASC';
-            } else {
-                $apiURL .= '?_filters={"status":"400", "hosts_globalid":"' . get_option( 'tivents_partner_id' ) . '"}&_sortField=start&_sortDir=ASC';
-            }
-        }
-        if (is_int($qty)) {
-            $apiURL .= '&_perPage='.$qty;
-        }
-
-        if ($qty == 'qty' && get_option( 'tivents_per_page' ) != null) {
-            $apiURL .= '&_perPage='.get_option( 'tivents_per_page' );
+        } else if ( $type == 'coupons' ) {
+            $filter['product_type'] = 2;
         }
     }
 
+    if (is_int($qty)) {
+        $urlSlug .= '&_perPage='.$qty;
+    }
+
+    if ($qty == 'qty' && get_option( 'tivents_per_page' ) != null) {
+        $urlSlug .= '&_perPage='.get_option( 'tivents_per_page' );
+    }
+
+
+    if ($group != 'group') {
+        $filter['product_group_id'] = $group;
+    }
+
+
+    $urlSlug .= '&_filters='.json_encode($filter);
+    $apiURL .= $urlSlug;
+
     return $apiURL;
+}
+
+function callApi($apiUrl) {
+
+    return json_decode(wp_remote_retrieve_body(wp_remote_get( $apiUrl ,
+            [
+                'headers' => ['X-Token' => '123'],
+                'timeout'     => 60,
+            ]
+        )
+    ), true);
+
 }
 
 function getSponsorshipApiUrl() {

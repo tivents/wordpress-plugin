@@ -12,7 +12,7 @@
 
 class TivProFeed_View_Calendar {
 
-	static function setCalendarView($results, $divId = null, $shopUrl = null){
+	static function setCalendarView($results, $divId = null){
 		ob_start(); ?>
         <button type="button" id="button<?php if ($divId != 'no-id') {echo $divId;};?>" class="btn btn-primary" data-toggle="modal" data-target="#eventModal<?php if ($divId != 'no-id') {echo $divId;};?>" style="display: none">
         </button>
@@ -42,12 +42,12 @@ class TivProFeed_View_Calendar {
         if ($divId != 'no-id') {
             $elementId = $divId;
         }
-        $variabalString = 'var defaultDate = "'.date('Y-m-d H:i:s').'";';
-        $variabalString .= 'var products = '.json_encode($results).';';
-        $variabalString .= 'var elementId = "'.$elementId.'";';
 
-        wp_enqueue_script( 'tivent-fullcalender', plugins_url('../assets/js/tiv-calendar.js', __FILE__) );
-        wp_add_inline_script('tivent-fullcalender', $variabalString, 'before' );
+        $variableString = 'var defaultDate = "'.date('Y-m-d H:i:s').'";';
+        $variableString .= 'var products = '.json_encode($results).';';
+        $variableString .= 'var elementId = "'.$elementId.'";';
+
+        wp_add_inline_script('tivents-fullcalender', $variableString, 'before' );
 
 		return ob_get_clean();
 	}

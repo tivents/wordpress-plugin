@@ -2,8 +2,8 @@
 Contributors: willihelwig, tivents
 Tags: events, tickets
 Requires at least: 3.0.1
-Tested up to: 5.9
-Stable tag: 1.4.4
+Tested up to: 6.0.3
+Stable tag: 1.5
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -46,6 +46,11 @@ Sie benötigen ein Partnerkonto auf TIVENTS und Ihre Partner-ID. Weitere Informa
 Sie können entscheiden, ob Sie alle Produkte, Gutscheine oder Events anzeigen möchten und die Primär- und Sekundärfarbe anpassen.
 
 == Changelog ==
+
+= 1.5 =
+ * replace bootstrap modals with sweetalert2
+ * small fix in api calls
+ * added group id for filtering in shortcodes
 
 = 1.4.3 =
  * downgrade php requirements 1.4.4
