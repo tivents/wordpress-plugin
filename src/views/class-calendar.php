@@ -43,7 +43,14 @@ class TivProFeed_View_Calendar {
             $elementId = $divId;
         }
 
-        $variableString = 'var defaultDate = "'.date('Y-m-d H:i:s').'";';
+
+        if(get_option( 'tivents_default_date' ) != null) {
+            $variableString = 'let defaultDate = "'.date('Y-m-d', strtotime(get_option( 'tivents_default_date' ) )).'";';
+        }
+        else {
+            $variableString = 'let defaultDate = "'.date('Y-m-d').'";';
+        }
+
         $variableString .= 'var products = '.json_encode($results).';';
         $variableString .= 'var elementId = "'.$elementId.'";';
 

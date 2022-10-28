@@ -2,7 +2,7 @@
 /**
  * Plugin Name:         TIVENTS Products Feed
  * description:         Crawl products form tivents
- * Version:             1.5.1
+ * Version:             1.5.3
  * Author:              tivents
  * Author URI:          https://tivents.info/
  * License:             GPL-2.0+
@@ -28,11 +28,12 @@ require_once 'controllers/class-products.php';
 require_once 'controllers/class-settings.php';
 
 wp_register_style('tiv-plugin-style', plugins_url('plugins/tivents/tiv-plugin.css', __FILE__));
+wp_register_style('tiv-calender-style', plugins_url('plugins/tivents/tiv-calendar.css', __FILE__));
 wp_register_script('tiv-calender-js', plugins_url('plugins/tivents/tiv-calendar.js', __FILE__) );
 
 wp_enqueue_style( 'tiv-plugin-style');
 
-define ( 'TIVENTPRO_CURRENT_VERSION', '1.5');
+define ( 'TIVENTPRO_CURRENT_VERSION', '1.5.3');
 
 wp_register_style('fullcalendar_daygrid_style', plugins_url('plugins/fullcalendar/main.min.css', __FILE__));
 wp_register_script('fullcalendar_core_script', plugins_url('plugins/fullcalendar/main.min.js', __FILE__));
@@ -153,17 +154,16 @@ function getApiUrl($atts) {
         }
     }
 
+    if ($group != 'group') {
+        $filter['product_group_id'] = $group;
+    }
+
     if (is_int($qty)) {
         $urlSlug .= '&_perPage='.$qty;
     }
 
     if ($qty == 'qty' && get_option( 'tivents_per_page' ) != null) {
         $urlSlug .= '&_perPage='.get_option( 'tivents_per_page' );
-    }
-
-
-    if ($group != 'group') {
-        $filter['product_group_id'] = $group;
     }
 
 
@@ -177,7 +177,7 @@ function callApi($apiUrl) {
 
     return json_decode(wp_remote_retrieve_body(wp_remote_get( $apiUrl ,
             [
-                'headers' => ['X-Token' => '123'],
+                'headers' => ['Content-Type' => 'application/json'],
                 'timeout'     => 60,
             ]
         )

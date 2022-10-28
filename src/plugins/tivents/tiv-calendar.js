@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
         headerToolbar: {
             start: 'prev,next today',
             center: '',
-            end: 'dayGridMonth,timeGridWeek,timeGridDay'
+            end: ''
         },
         themeSystem: 'standard',
         height: 'auto',
@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
         selectable: true,
         initialDate: defaultDate,
         events: products,
+        eventDisplay: 'block',
         eventTimeFormat: { // like '14:30:00'
             hour: '2-digit',
             minute: '2-digit'
@@ -26,26 +27,31 @@ document.addEventListener('DOMContentLoaded', function() {
             const swalWithBootstrapButtons = Swal.mixin({
                 width: '48em',
                 customClass: {
-                    confirmButton: 'btn btn-success',
+                    confirmButton: 'btn btn-success mr-2',
                     cancelButton: 'btn btn-danger'
                 },
-                buttonsStyling: false
+
+                confirmButtonColor: '#28D29B',
+                cancelButtonColor: '#D6325B',
+                //buttonsStyling: false
             })
 
 
-            if ( arg.event.extendedProps.warning_level === 2) {
+            if ( arg.event.extendedProps.warning_level === 3) {
                 swalWithBootstrapButtons.fire({
                     icon: 'error',
                     showConfirmButton: false,
                     showCancelButton: true,
                     cancelButtonText: 'Abbrechen',
-                    title: arg.event.title + ' - AUSVERKAUFT',
+                    title: arg.event.extendedProps.name + ' - AUSVERKAUFT',
+                    text:'Das Event ist bereits ausverkauft.',
                 });
             }
             else {
+                console.log(arg.event);
                 swalWithBootstrapButtons.fire({
                     title: arg.event.extendedProps.name,
-                    text: arg.event.extendedProps.date,
+                    html: arg.event.extendedProps.printDate,
                     showCancelButton: true,
                     cancelButtonText: 'Abbrechen',
                     confirmButtonText: 'Tickets buchen',

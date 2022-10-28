@@ -1,0 +1,39 @@
+.fc .fc-daygrid-event {
+  cursor: pointer !important;
+}
+
+.fc .fc-daygrid-day-number {
+  cursor: default !important;
+}
+
+.fc .fc-col-header-cell-cushion {
+  cursor: default;
+}
+
+.fc table {
+  font-size: 0.9em !important;
+  line-height: 10px !important;
+}
+
+.ff-richtext table {
+  margin-bottom: 0px !important;
+}
+
+.fc-h-event .fc-event-title-container {
+  display: none;
+}
+
+.tiv-status-1 {
+  border: 1px solid #28D29B;
+  background-color: #28D29B;
+}
+
+.tiv-status-2 {
+  border: 1px solid #F5C800;
+  background-color: #F5C800;
+}
+
+.tiv-status-3 {
+  border: 1px solid #D6325B;
+  background-color: #D6325B;
+}

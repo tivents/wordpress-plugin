@@ -105,6 +105,7 @@ class TivProFeed_Controller_Products {
                 wp_enqueue_script('fullcalendar_locale_script');
                 wp_enqueue_style('sweetalert_style');
                 wp_enqueue_script('sweetalert_script');
+                wp_enqueue_style( 'tiv-calender-style');
                 wp_enqueue_script('tiv-calender-js');
 
                 if ($divid != 'no-id') {
