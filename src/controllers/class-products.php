@@ -117,6 +117,12 @@ class TivProFeed_Controller_Products {
                 $div .= '<style>body: {background: #000000 !important;}</style>';
                 $div .= TivProFeed_View_Calendar::setCalendarView($results, $divid);
                 $div .= '</div>';
+                $div .= '<div id="tiv-calendar-legend" class="mt-3"><h3>Legende:<br>';
+                $div .= '<span class="badge" style="background-color: #28D29B; margin:0 5px 0 5px">Frei</span>';
+                $div .= '<span class="badge" style="background-color: #F5C800; margin-right: 5px">Nur noch wenige Tickets verfügbar</span>';
+                $div .= '<span class="badge" style="background-color: #D6325B">Ausverkauft</span>';
+                $div .= '</h3></div>';
+
                 break;
             case 'list-no-image':
                 $div .= TivProFeed_View_Lists::setListWithoutImages($results);
