@@ -2,7 +2,7 @@
 /**
  * Plugin Name:         TIVENTS Products Feed
  * description:         Crawl products form tivents
- * Version:             1.5.3
+ * Version:             1.5.5K
  * Author:              tivents
  * Author URI:          https://tivents.info/
  * License:             GPL-2.0+
