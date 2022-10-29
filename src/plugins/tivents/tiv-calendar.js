@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let calendarEl = document.getElementById(elementId);
     let calendar = new FullCalendar.Calendar(calendarEl,  {
         headerToolbar: {
-            end : 'prev,next',
+            end : 'today prev,next',
             start: 'title'
         },
         titleFormat: {

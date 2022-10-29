@@ -38,6 +38,62 @@
   background-color: #D6325B;
 }
 
-#tiv-calendar-legend{
+#tivents-calendar-legend{
   padding-top: 10px;
+}
+
+#tivents-calendar-legend-success {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  display:inline-block;
+  vertical-align:middle;
+  text-align: center;
+  color: white;
+  background-color: #28D29B;
+  padding: 4px;
+  margin: 2px;
+  font-size: 0.7em;
+}
+
+#tivents-calendar-legend-warning {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  display:inline-block;
+  vertical-align:middle;
+  text-align: center;
+  color: white;
+  background-color: #F5C800;
+  padding: 4px;
+  margin: 2px;
+  font-size: 0.7em;
+}
+
+#tivents-calendar-legend-danger {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  display:inline-block;
+  vertical-align:middle;
+  text-align: center;
+  border-radius: 10px;
+  color: white;
+  background-color: #D6325B;
+  padding: 4px;
+  margin: 2px;
+  font-size: 0.7em;
+}
+
+.fc .fc-toolbar-title {
+  font-size: 1.2em;
+}
+.fc .fc-button {
+  font-size: .8em;
+  line-height: 1;
+}
+.fc .fc-button .fc-icon {
+  font-size: .8em;
+}
+.fc-button .fc-icon {
+  line-height: 1;
 }

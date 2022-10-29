@@ -3,7 +3,7 @@ Contributors: willihelwig, TIVENTS
 Tags: events, tickets, coupons, eventmanagement, ticket selling
 Requires at least: 3.0.1
 Tested up to: 6.0.3
-Stable tag: 1.5.4
+Stable tag: 1.5.5
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -46,6 +46,10 @@ Sie benötigen ein Partnerkonto auf TIVENTS und Ihre Partner-ID. Weitere Informa
 Sie können entscheiden, ob Sie alle Produkte, Gutscheine oder Events anzeigen möchten und die Primär- und Sekundärfarbe anpassen.
 
 == Changelog ==
+
+= 1.5.5 =
+ * fix legend presentation
+ * fix default date behavior for calendar
 
 = 1.5.4 =
  * added title to calendar

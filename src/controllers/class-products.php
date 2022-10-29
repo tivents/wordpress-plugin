@@ -54,9 +54,9 @@ class TivProFeed_Controller_Products {
         ), $atts));
 
         if (get_option( 'tivents_partner_id' ) == null) {
-            $div = '<div class="tiv-main">';
-            $div .= '<div class="tiv-container">';
-            $div .= '<h4>Hier ist was nicht richtig eingestellt.</h4>';
+            $div = '<div id="tivents-main" class="tiv-main">';
+            $div .= '<div id="tivents-container" class="tiv-container">';
+            $div .= '<h4 id="tivents-container-heading">Hier ist was nicht richtig eingestellt.</h4>';
             $div .= '<small>Die Partner ID fehlt.</small>';
             $div .= '</div>';
             $div .= '</div>';
@@ -83,10 +83,10 @@ class TivProFeed_Controller_Products {
 
         $div .= '};</style>';
 
-        $div .= '<div class="tiv-main">';
-        $div .= '<div class="tiv-container">';
+        $div .= '<div id="tivents-main" class="tiv-main">';
+        $div .= '<div id="tivents-container"class="tiv-container">';
         if(count($results) == 0) {
-            $div .= '<h4>'.__('Zur Zeit gibt es keine Produkte. Vielleicht später?', 'tivents_products_feed').'</h4>';
+            $div .= '<h4 id="tivents-container-heading">'.__('Zur Zeit gibt es keine Produkte. Vielleicht später?', 'tivents_products_feed').'</h4>';
             $div .= '</div>';
             $div .= '</div>';
             return $div;
@@ -117,10 +117,10 @@ class TivProFeed_Controller_Products {
                 $div .= '<style>body: {background: #000000 !important;}</style>';
                 $div .= TivProFeed_View_Calendar::setCalendarView($results, $divid);
                 $div .= '</div>';
-                $div .= '<div id="tiv-calendar-legend" class="mt-3"><h3>Legende:<br>';
-                $div .= '<span class="badge" style="background-color: #28D29B; margin:0 5px 0 5px">Frei</span>';
-                $div .= '<span class="badge" style="background-color: #F5C800; margin-right: 5px">Nur noch wenige Tickets verfügbar</span>';
-                $div .= '<span class="badge" style="background-color: #D6325B">Ausverkauft</span>';
+                $div .= '<div id="tivents-calendar-legend" class="mt-3"><h3>Legende:<br>';
+                $div .= '<div id="tivents-calendar-legend-success" >Frei</div>';
+                $div .= '<div id="tivents-calendar-legend-warning" >Geringe Verfügbarkeit</div>';
+                $div .= '<div id="tivents-calendar-legend-danger" >Ausverkauft</div>';
                 $div .= '</h3></div>';
 
                 break;

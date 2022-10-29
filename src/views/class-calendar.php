@@ -44,7 +44,7 @@ class TivProFeed_View_Calendar {
         }
 
 
-        if(get_option( 'tivents_default_date' ) != null) {
+        if(get_option( 'tivents_default_date' ) != null && get_option( 'tivents_default_date' ) > date('Y-m-d')) {
             $variableString = 'let defaultDate = "'.date('Y-m-d', strtotime(get_option( 'tivents_default_date' ) )).'";';
         }
         else {
