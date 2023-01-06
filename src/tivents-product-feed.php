@@ -122,7 +122,7 @@ function getApiUrl($atts) {
     ), $atts));
 
 
-    $apiURL = 'https://products.tivents.systems/public/v1';
+    $apiURL = 'https://products.tivents.net/public/v1';
 
 
     $urlSlug = '?_sortField=start&_sortDir=ASC';
