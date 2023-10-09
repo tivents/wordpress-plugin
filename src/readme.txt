@@ -2,8 +2,8 @@
 Contributors: willihelwig, TIVENTS
 Tags: events, tickets, coupons, eventmanagement, ticket selling
 Requires at least: 3.0.1
-Tested up to: 6.0.3
-Stable tag: 1.5.7
+Tested up to: 6.3.1
+Stable tag: 1.5.8
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -18,7 +18,7 @@ Wenn Sie nur Ihre eigenen Gutscheine und/ oder Events anzeigen lassen möchten, 
 = Related Links =
 
 * [TIVENTS](https://tivents.info/)
-* [Documentation](https://docs.tivents.systems/books/wordpress-plugin)
+* [Documentation](https://docs.tivents.info/books/wordpress-plugin)
 * [Support](https://wordpress.org/support/plugin/tivents-products-feed/)
 * [Github](https://github.com/tivents/tivents-products-feed)
 
@@ -47,8 +47,11 @@ Sie können entscheiden, ob Sie alle Produkte, Gutscheine oder Events anzeigen m
 
 == Changelog ==
 
+= 1.5.8 =
+ * documentation adjust
+
 = 1.5.7 =
- * fix base url
+ * small fixes, disable footer
 
 = 1.5.6 =
  * fix base url

@@ -35,7 +35,7 @@ wp_register_script('tiv-calender-js', plugins_url('plugins/tivents/tiv-calendar.
 
 wp_enqueue_style( 'tiv-plugin-style');
 
-define ( 'TIVENTPRO_CURRENT_VERSION', '1.5.7');
+define ( 'TIVENTPRO_CURRENT_VERSION', '1.5.8');
 
 wp_register_style('fullcalendar_daygrid_style', plugins_url('plugins/fullcalendar/main.min.css', __FILE__));
 wp_register_script('fullcalendar_core_script', plugins_url('plugins/fullcalendar/main.min.js', __FILE__));
