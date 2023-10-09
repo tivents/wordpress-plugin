@@ -1,4 +1,4 @@
-/*
+ /*
 tivents Stylesheet
 */
 /*Page Colors */
@@ -89,8 +89,8 @@ a {
 }
 .tiv-product-name {
   font-size: 110%;
-  line-height: 100%;
-  min-height: 38px;
+  line-height: 1.125;
+  min-height: 3.375em;
   color: var(--tiv-text-color);
 }
 .tiv-product-date {
@@ -102,6 +102,7 @@ a {
   font-size: 80%;
   line-height: 100%;
   margin-top: 1%;
+  margin-bottom: 2%;
   color: var(--tiv-second-color);
 }
 .tiv-product-img {
@@ -249,5 +250,3 @@ a:hover .tiv-grid-hover {
 .fc table {
   margin: 0 0 0;
 }
-
-/*Media Definitions End */

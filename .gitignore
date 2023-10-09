@@ -1,2 +1,4 @@
 .idea/*
 deployment/*
+
+composer.lock

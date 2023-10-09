@@ -12,24 +12,9 @@
 
 class TivProFeed_Controller_Products {
 
-    static function getProductUrl($instance, $url, $shortUrl = null) {
+    static function getProductUrl($shortUrl) {
 
-        if($shortUrl != null) {
-            $product_url = '<a href="'.$shortUrl.'">';
-        }
-        else {
-            if (get_option('tivents_base_url') != null) {
-                $product_url = '<a href="'.get_option('tivents_base_url').'/'.$url.'">';
-            }
-            else {
-                if ($instance == 10) {
-                    $product_url = '<a href="https://tivents.pro/'.$url.'">';
-                }
-                else {
-                    $product_url = '<a href="https://tivents.de/'.$url.'">';
-                }
-            }
-        }
+        $product_url = '<a href="'.$shortUrl.'?utm=tiv-plugin">';
 
         return $product_url;
     }
@@ -136,8 +121,9 @@ class TivProFeed_Controller_Products {
 
         $div .=  '</div>';
         $div .=  '</div>';
+//        $div .= TivProFeed_Views_Base::setFooter();
         $div .=  '</div>';
-        $div .= TivProFeed_View_Lists::setFooter();
+
         return $div;
     }
 

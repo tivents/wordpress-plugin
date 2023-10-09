@@ -10,7 +10,6 @@
  *
  */
 
-
 class TivProFeed_View_Sponsorships {
 
 	static function setList($results) {

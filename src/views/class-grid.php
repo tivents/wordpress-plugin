@@ -22,7 +22,7 @@ class TivProFeed_View_Grid {
 				continue;
 			}
 
-			$product_url = TivProFeed_Controller_Products::getProductUrl($result['magento_instance'], $result['magento_url_key'], $result['short_url']);
+			$product_url = TivProFeed_Controller_Products::getProductUrl($result['short_url']);
 			$date = TivProFeed_Controller_Products::setProductTime($result);
 
             if($result['cdn_image_key'] != null) {
