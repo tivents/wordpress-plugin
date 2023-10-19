@@ -1,252 +1,252 @@
- /*
+/*
 tivents Stylesheet
 */
 /*Page Colors */
 :root {
-  --tiv-prime-color: #F5C800;
-  --tiv-second-color: #000000;
-  --tiv-text-color: #000000;
+	--tiv-prime-color: #F5C800;
+	--tiv-second-color: #000000;
+	--tiv-text-color: #000000;
 }
 /*Page Colors End */
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 a {
-  text-decoration: none;
+	text-decoration: none;
 }
 .tiv-main {
-  margin-right: auto;
-  margin-left: auto;
-  width: 1280px;
-  max-width: 100%;
-  font-size: 17px;
-  line-height: 17px;
-  color: var(--tiv-second-color);
+	margin-right: auto;
+	margin-left: auto;
+	width: 1280px;
+	max-width: 100%;
+	font-size: 17px;
+	line-height: 17px;
+	color: var(--tiv-second-color);
 }
 .tiv-container {
-  margin-left: -1px;
-  margin-right: -1px;
-  max-width: 100%;
+	margin-left: -1px;
+	margin-right: -1px;
+	max-width: 100%;
 }
 .tiv-font {
-  font-family: 'Libre Franklin', sans-serif;
-  font-weight: normal;
+	font-family: 'Libre Franklin', sans-serif;
+	font-weight: normal;
 }
 .tiv-plugin-info {
-  width: 100%;
-  text-align: right;
-  float: left;
-  font-size: 80%;
-  line-height: 120%;
-  padding: 2px 6px;
-  color: var(--tiv-second-color);
-  background-color: #ffffff;
+	width: 100%;
+	text-align: right;
+	float: left;
+	font-size: 80%;
+	line-height: 120%;
+	padding: 2px 6px;
+	color: var(--tiv-second-color);
+	background-color: #ffffff;
 }
 
 /*tivents-list */
 .tiv-product-l {
-  width: 50%;
-  position: relative;
-  float: left;
-  min-height: 4px;
-  padding-left: 4px;
-  padding-right: 4px;
-  padding-bottom: 4px;
+	width: 50%;
+	position: relative;
+	float: left;
+	min-height: 4px;
+	padding-left: 4px;
+	padding-right: 4px;
+	padding-bottom: 4px;
 }
 .tiv-sheet {
-  width: 100%;
-  -webkit-box-shadow: 0px 5px 16px -3px rgba(0,0,0,0.1);
-  -moz-box-shadow: 0px 5px 16px -3px rgba(0,0,0,0.1);
-  box-shadow: 0px 5px 16px -3px rgba(0,0,0,0.1);
-  display: inline-block;
-  border-left: 6px solid var(--tiv-prime-color);
-  background-color: #fff;
+	width: 100%;
+	-webkit-box-shadow: 0px 5px 16px -3px rgba(0,0,0,0.1);
+	-moz-box-shadow: 0px 5px 16px -3px rgba(0,0,0,0.1);
+	box-shadow: 0px 5px 16px -3px rgba(0,0,0,0.1);
+	display: inline-block;
+	border-left: 6px solid var(--tiv-prime-color);
+	background-color: #fff;
 }
 .tiv-sheet:hover {
-  -webkit-box-shadow: 0px 5px 16px -3px var(--tiv-prime-color);
-  -moz-box-shadow: 0px 5px 16px -3px var(--tiv-prime-color);
-  box-shadow: 0px 5px 16px -3px var(--tiv-prime-color);
+	-webkit-box-shadow: 0px 5px 16px -3px var(--tiv-prime-color);
+	-moz-box-shadow: 0px 5px 16px -3px var(--tiv-prime-color);
+	box-shadow: 0px 5px 16px -3px var(--tiv-prime-color);
 }
 .tiv-sheet a {
-  text-decoration: none;
+	text-decoration: none;
 }
 .tiv-sheet-inner {
-  margin-left: -1px;
-  margin-right: -1px;
+	margin-left: -1px;
+	margin-right: -1px;
 }
 .tiv-sheet-left {
-  width: 72%;
-  float: left;
-  padding: 2px 6px;
-  position: relative;
+	width: 72%;
+	float: left;
+	padding: 2px 6px;
+	position: relative;
 }
 .tiv-sheet-right {
-  width: 28%;
-  float: left;
-  position: relative;
-  padding-top: 21%;
+	width: 28%;
+	float: left;
+	position: relative;
+	padding-top: 21%;
 }
 .tiv-product-name {
-  font-size: 110%;
-  line-height: 1.125;
-  min-height: 3.375em;
-  color: var(--tiv-text-color);
+	font-size: 110%;
+	line-height: 1.125;
+	min-height: 3.375em;
+	color: var(--tiv-text-color);
 }
 .tiv-product-date {
-  font-size: 100%;
-  margin-top: 2%;
-  color: var(--tiv-second-color);
+	font-size: 100%;
+	margin-top: 2%;
+	color: var(--tiv-second-color);
 }
 .tiv-product-veneu {
-  font-size: 80%;
-  line-height: 100%;
-  margin-top: 1%;
-  margin-bottom: 2%;
-  color: var(--tiv-second-color);
+	font-size: 80%;
+	line-height: 100%;
+	margin-top: 1%;
+	margin-bottom: 2%;
+	color: var(--tiv-second-color);
 }
 .tiv-product-img {
-  display: block;
-  max-width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  right: 0;
+	display: block;
+	max-width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	right: 0;
 }
 /*tivents-list end */
 
 /*tivents-grid */
 .tiv-grid-l {
-  width: 100%;
-  line-height: 0em;
+	width: 100%;
+	line-height: 0em;
 }
 .tiv-sheet-grid {
-  width: 25%;
-  padding-top: 18.9%;
-  float: left;
-  position: relative;
+	width: 25%;
+	padding-top: 18.9%;
+	float: left;
+	position: relative;
 }
 .tiv-grid-img {
-  opacity: 1;
-  display: block;
-  width: 100%;
-  height: auto;
-  height: 100%;
-  padding: 1px;
-  position: absolute;
-  top: 0;
-  right: 0;
+	opacity: 1;
+	display: block;
+	width: 100%;
+	height: auto;
+	height: 100%;
+	padding: 1px;
+	position: absolute;
+	top: 0;
+	right: 0;
 }
 .tiv-grid-text {
-  text-align: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%);
-  color: #ffffff;
-  margin: 0 1px 0 1px;
-  padding: 5px;
+	text-align: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%);
+	color: #ffffff;
+	margin: 0 1px 0 1px;
+	padding: 5px;
 }
 a:hover .tiv-grid-text {
-  background: none;
-  color: var(--tiv-prime-color);
+	background: none;
+	color: var(--tiv-prime-color);
 }
 a:hover .tiv-grid-img {
-  opacity: 0.1;
+	opacity: 0.1;
 }
 .tiv-grid-hover {
-  opacity: 0;
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  text-align: center;
-  width: 100%;
-  padding: 5px;
+	opacity: 0;
+	position: absolute;
+	top: 60%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	text-align: center;
+	width: 100%;
+	padding: 5px;
 }
 a:hover .tiv-grid-hover {
-  opacity: 1;
+	opacity: 1;
 }
 .tiv-grid-info {
-  padding: 1px 1px;
-  line-height: 1.2em;
+	padding: 1px 1px;
+	line-height: 1.2em;
 }
 /*tivents-grid end */
 
 /*tivents-no-image */
 .tiv-product-less {
-  width: 100%;
-  padding: 5px;
+	width: 100%;
+	padding: 5px;
 }
 .tiv-product-less:hover .tiv-font {
-  opacity: 0.8;
+	opacity: 0.8;
 }
 .tiv-product-less .tiv-product-name {
-  min-height: 0px;
-  line-height: 120%;
+	min-height: 0px;
+	line-height: 120%;
 }
 .tiv-product-less .tiv-product-date {
-  margin-top: 0%;
+	margin-top: 0%;
 }
 .tiv-product-less .tiv-product-veneu {
-  margin-top: 0%;
+	margin-top: 0%;
 }
 /*tivents-no-image end */
 
 /*Media Definitions */
 @media only screen and (max-width: 1080px) {
-  .tiv-main {
-    font-size: 20px;
-    line-height: 20px;
-  }
-  .tiv-product-m {
-    width: 100%;
-  }
-  .tiv-grid-m .tiv-sheet-grid {
-    width: 33%;
-    padding-top: 24.8%;
-  }
-  .tiv-grid-m .tiv-product-name {
-    font-size: 100%;
-  }
-  .tiv-grid-m .tiv-product-date {
-    font-size: 80%;
-  }
-  .tiv-grid-m .tiv-product-veneu {
-    font-size: 70%;
-  }
+	.tiv-main {
+	font-size: 20px;
+	line-height: 20px;
+	}
+	.tiv-product-m {
+	width: 100%;
+	}
+	.tiv-grid-m .tiv-sheet-grid {
+	width: 33%;
+	padding-top: 24.8%;
+	}
+	.tiv-grid-m .tiv-product-name {
+	font-size: 100%;
+	}
+	.tiv-grid-m .tiv-product-date {
+	font-size: 80%;
+	}
+	.tiv-grid-m .tiv-product-veneu {
+	font-size: 70%;
+	}
 }
 @media only screen and (max-width: 650px) {
-  .tiv-main {
-    font-size: 18px;
-    line-height: 18px;
-  }
-  .tiv-product-s {
-    width: 100%;
-  }
-  .tiv-grid-s .tiv-sheet-grid {
-    width: 100%;
-    padding-top: 75%;
-  }
-  .tiv-sheet-left {
-    width: 100%;
-  }
-  .tiv-sheet-right {
-    display: none;
-  }
-  .tiv-grid-m .tiv-product-name {
-    font-size: 120%;
-  }
-  .tiv-grid-m .tiv-product-date {
-    font-size: 85%;
-  }
-  .tiv-grid-m .tiv-product-veneu {
-    font-size: 85%;
-  }
+	.tiv-main {
+	font-size: 18px;
+	line-height: 18px;
+	}
+	.tiv-product-s {
+	width: 100%;
+	}
+	.tiv-grid-s .tiv-sheet-grid {
+	width: 100%;
+	padding-top: 75%;
+	}
+	.tiv-sheet-left {
+	width: 100%;
+	}
+	.tiv-sheet-right {
+	display: none;
+	}
+	.tiv-grid-m .tiv-product-name {
+	font-size: 120%;
+	}
+	.tiv-grid-m .tiv-product-date {
+	font-size: 85%;
+	}
+	.tiv-grid-m .tiv-product-veneu {
+	font-size: 85%;
+	}
 }
 
 .fc table {
-  margin: 0 0 0;
+	margin: 0 0 0;
 }

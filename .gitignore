@@ -1,4 +1,6 @@
 .idea/*
 deployment/*
 
+vendor/*
+
 composer.lock

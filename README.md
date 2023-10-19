@@ -3,23 +3,32 @@ Contributors: aldrahastur, tivents
 Tags: events, tickets
 Requires at least: 3.0.1
 Tested up to: 6.0.3
-Stable tag: 1.5.8
+Stable tag: 1.5.9
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Präsentieren Sie Ihre Produkte von TIVENTS innerhalb Ihrer Website mit einem Shortcode via API.
 
+Present your TIVENTS products within your website with a shortcode via API.
+
 ## Description
 
-Mit diesem Plugin betten Sie ganz einfach die TIVENTS-Gutscheine und Events auf Ihrer Website ein. Sie entscheiden, ob Sie Gutscheine und Events, oder nur Gutscheine bzw. nur Events präsentieren möchten.
+### DE
+Mit TIVENTS können Sie Ihre Veranstaltungen und Gutscheine einfach verkaufen. Über unsere Plattform https://tivents.de können Sie einfach Ihre Produkte anbieten. Kosten entstehen Ihnen nur, wenn auch ein Verkauf getätigt wird. Mit diesem Plugin betten Sie ganz einfach die TIVENTS-Gutscheine und Events auf Ihrer Website ein. Sie entscheiden, ob Sie Gutscheine und Events, oder nur Gutscheine bzw. nur Events präsentieren möchten.
 Sie benötigen Ihre Partner-ID. Diese finden Sie in Ihrem Partnerkonto (https://manage.tivents.app).
+
+### EN
+With TIVENTS you can easily sell your events and vouchers. You can easily offer your products via our platform https://tivents.de. You only incur costs if a sale is also made. With this plugin you can easily embed the TIVENTS vouchers and events on your website. You decide whether you want to present vouchers and events, or only vouchers or only events.
+You need your partner ID. You will find it in your partner account (https://manage.tivents.app).
 
 ## Related Links
 
 * [Website](https://docs.tivents.systems/books/wordpress-plugin)
 * [Support](https://wordpress.org/support/plugin/tivents-products-feed/)
 * [Github](https://github.com/tivents/tivents-products-feed/)
+* [Term and Conditions](https://docs.tivents.info/books/rechtliches/page/anbieter)
+* [Privacy](https://docs.tivents.info/books/wordpress-plugin/page/datenschutz)
 
 ## Screenshots
 
@@ -35,12 +44,26 @@ Sie benötigen Ihre Partner-ID. Diese finden Sie in Ihrem Partnerkonto (https://
 
 ## Frequently Asked Questions
 
-### Was brauche ich um das Plugin zu nutzen?
+### Was brauche ich um das Plugin zu nutzen? / What do I need to use the plugin?
 
+#### DE
 Sie benötigen ein Partnerkonto auf TIVENTS und Ihre Partner-ID. Weitere Informationen erhalten Sie unter https://tivents.info/faq
 
-### Was kann ich anpassen?
+#### EN
+You need a partner account on TIVENTS and your partner ID. For more information, please visit https://tivents.info/faq
 
+### Was kann ich anpassen? / What can I adjust? 
+
+#### DE
 Sie können entscheiden, ob Sie alle Produkte, Gutscheine oder Events anzeigen möchten und die Primär- und Sekundärfarbe anpassen.
 
+#### EN
+You can decide whether to show all products, vouchers or events and customise the primary and secondary colour.
 
+### Werden Daten von den Webseitenbesuchern übertragen? / Is data transferred from website visitors?
+
+#### DE
+Es werden keinerlei Daten von Besuchern an TIVENTS übertragen. Der Abruf der Produkte via API erfolgt nur in dem Moment, in der eine Seite mit einem der Shortcodes aufgerufen wird.
+
+#### EN
+No visitor data is transmitted to TIVENTS. The products via API are only retrieved at the moment a page with one of the shortcodes is called up.

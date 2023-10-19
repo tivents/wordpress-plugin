@@ -3,7 +3,7 @@
   "type": "plugin",
   "license": "MIT",
   "homepage": "https://github.com/tivents/tivents-products-feed",
-  "description": "demo repo",
+  "description": "Plugin for getting products from TIVENTS",
   "keywords": ["code coverage", "codecov", "coverage reports"],
 
   "require": {
@@ -12,11 +12,17 @@
     "ext-curl": "*"
   },
   "require-dev": {
-    "phpunit/phpunit": "^8"
+    "phpunit/phpunit": "^8",
+    "wp-coding-standards/wpcs": "^3"
   },
   "autoload": {
     "psr-0": {
-      "Example": "src/"
+      "TiventsShopConnector": "src/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
     }
   }
 }

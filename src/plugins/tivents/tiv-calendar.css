@@ -1,99 +1,99 @@
 .fc .fc-daygrid-event {
-  cursor: pointer !important;
+	cursor: pointer !important;
 }
 
 .fc .fc-daygrid-day-number {
-  cursor: default !important;
+	cursor: default !important;
 }
 
 .fc .fc-col-header-cell-cushion {
-  cursor: default;
+	cursor: default;
 }
 
 .fc table {
-  font-size: 0.9em !important;
-  line-height: 10px !important;
+	font-size: 0.9em !important;
+	line-height: 10px !important;
 }
 
 .ff-richtext table {
-  margin-bottom: 0px !important;
+	margin-bottom: 0px !important;
 }
 
 .fc-h-event .fc-event-title-container {
-  display: none;
+	display: none;
 }
 
 .tiv-status-1 {
-  border: 1px solid #28D29B;
-  background-color: #28D29B;
+	border: 1px solid #28D29B;
+	background-color: #28D29B;
 }
 
 .tiv-status-2 {
-  border: 1px solid #F5C800;
-  background-color: #F5C800;
+	border: 1px solid #F5C800;
+	background-color: #F5C800;
 }
 
 .tiv-status-3 {
-  border: 1px solid #D6325B;
-  background-color: #D6325B;
+	border: 1px solid #D6325B;
+	background-color: #D6325B;
 }
 
 #tivents-calendar-legend{
-  padding-top: 10px;
+	padding-top: 10px;
 }
 
 #tivents-calendar-legend-success {
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  display:inline-block;
-  vertical-align:middle;
-  text-align: center;
-  color: white;
-  background-color: #28D29B;
-  padding: 4px;
-  margin: 2px;
-  font-size: 0.7em;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	display:inline-block;
+	vertical-align:middle;
+	text-align: center;
+	color: white;
+	background-color: #28D29B;
+	padding: 4px;
+	margin: 2px;
+	font-size: 0.7em;
 }
 
 #tivents-calendar-legend-warning {
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  display:inline-block;
-  vertical-align:middle;
-  text-align: center;
-  color: white;
-  background-color: #F5C800;
-  padding: 4px;
-  margin: 2px;
-  font-size: 0.7em;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	display:inline-block;
+	vertical-align:middle;
+	text-align: center;
+	color: white;
+	background-color: #F5C800;
+	padding: 4px;
+	margin: 2px;
+	font-size: 0.7em;
 }
 
 #tivents-calendar-legend-danger {
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  display:inline-block;
-  vertical-align:middle;
-  text-align: center;
-  border-radius: 10px;
-  color: white;
-  background-color: #D6325B;
-  padding: 4px;
-  margin: 2px;
-  font-size: 0.7em;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	display:inline-block;
+	vertical-align:middle;
+	text-align: center;
+	border-radius: 10px;
+	color: white;
+	background-color: #D6325B;
+	padding: 4px;
+	margin: 2px;
+	font-size: 0.7em;
 }
 
 .fc .fc-toolbar-title {
-  font-size: 1.2em;
+	font-size: 1.2em;
 }
 .fc .fc-button {
-  font-size: .8em;
-  line-height: 1;
+	font-size: .8em;
+	line-height: 1;
 }
 .fc .fc-button .fc-icon {
-  font-size: .8em;
+	font-size: .8em;
 }
 .fc-button .fc-icon {
-  line-height: 1;
+	line-height: 1;
 }
