@@ -3,7 +3,7 @@ Contributors: aldrahastur, tivents
 Tags: events, tickets
 Requires at least: 3.0.1
 Tested up to: 6.0.3
-Stable tag: 1.5.9
+Stable tag: 1.5.10
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -24,7 +24,10 @@ You need your partner ID. You will find it in your partner account (https://mana
 
 ## Related Links
 
-* [Website](https://docs.tivents.systems/books/wordpress-plugin)
+* [TIVENTS Website](https://tivents.info/)
+* [TIVENTS Shop](https://tivents.de/)
+* [TIVENTS Documentation](https://docs.tivents.info/)
+* [Plugin Website](https://docs.tivents.info/books/wordpress-plugin)
 * [Support](https://wordpress.org/support/plugin/tivents-products-feed/)
 * [Github](https://github.com/tivents/tivents-products-feed/)
 * [Term and Conditions](https://docs.tivents.info/books/rechtliches/page/anbieter)
@@ -40,7 +43,7 @@ You need your partner ID. You will find it in your partner account (https://mana
 ## Installation
 
 1. Upload `tivents-products-feed` folder to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
+2. Activate the plugin through the 'Plugins' menu in WordPress
 
 ## Frequently Asked Questions
 
@@ -59,6 +62,15 @@ Sie können entscheiden, ob Sie alle Produkte, Gutscheine oder Events anzeigen m
 
 #### EN
 You can decide whether to show all products, vouchers or events and customise the primary and secondary colour.
+
+### Wie werden die Produkte eingebunden? / How are the products integrated?
+
+#### DE
+Die Produkte werden durch einen Shortcode auf der gewünschten Seite eingebunden. Dabei wird unsere API aufgerufen, die Produkte zu Ihre Partner ID geholt und dann in einem DIV-Container ausgegeben. Hierbei werden keine Daten der Nutzer oder Ihrer Wordpress Seite an uns übermittelt.
+
+#### EN
+The products are integrated on the desired page by means of a shortcode. Our API is called, the products are fetched to your partner ID and then displayed in a DIV container. No user data or data from your WordPress page is transmitted to us.
+
 
 ### Werden Daten von den Webseitenbesuchern übertragen? / Is data transferred from website visitors?
 
