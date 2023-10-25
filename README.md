@@ -2,15 +2,15 @@
 Contributors: aldrahastur, tivents
 Tags: events, tickets
 Requires at least: 3.0.1
-Tested up to: 6.0.3
-Stable tag: 1.5.10
+Tested up to: 6.3.1
+Stable tag: 1.5.11
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Präsentieren Sie Ihre Produkte von TIVENTS innerhalb Ihrer Website mit einem Shortcode via API.
+Präsentieren Sie Ihre Produkte von TIVENTS innerhalb Ihrer Website mit einem Shortcode via TIVENTS Public API.
 
-Present your TIVENTS products within your website with a shortcode via API.
+Present your TIVENTS products within your website with a shortcode via TIVENTS Public API.
 
 ## Description
 
