@@ -81,7 +81,7 @@ No visitor data is transmitted to TIVENTS. The products via API are only retriev
 
 == Changelog ==
 
-= 1.5.10 =
+= 1.5.11 =
  * fix and sync readme
 
 = 1.5.10 =
