@@ -7,7 +7,7 @@ document.addEventListener(
 			calendarEl,
 			{
 				headerToolbar: {
-					end : 'today prev,next',
+					end : 'dayGridWeek dayGridMonth today prev,next',
 					start: 'title'
 				},
 				titleFormat: {
@@ -15,14 +15,16 @@ document.addEventListener(
 					year: 'numeric'
 				},
 				themeSystem: 'standard',
-				height: 'auto',
+				// height: 'auto',
 				locale: 'de',
 				firstDay: 1,
 				selectable: true,
+				initialView: 'dayGridMonth',
 				initialDate: defaultDate,
 				events: products,
+				height: 'auto',
 				eventDisplay: 'block',
-				eventTimeFormat: { // like '14:30:00'
+				eventTimeFormat: {
 					hour: '2-digit',
 					minute: '2-digit'
 				},

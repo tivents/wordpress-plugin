@@ -2,7 +2,7 @@
 /**
  * Plugin Name:         TIVENTS Products Feed
  * description:         Crawl products form tivents
- * Version:             1.5.11
+ * Version:             1.5.12
  *
  * Author:              tivents
  * Author URI:          https://tivents.info/
@@ -40,7 +40,7 @@ wp_register_script( 'tiv-calender-js', plugins_url( 'plugins/tivents/tiv-calenda
 
 wp_enqueue_style( 'tiv-plugin-style' );
 
-define( 'TIVENTPRO_CURRENT_VERSION', '1.5.11' );
+define( 'TIVENTPRO_CURRENT_VERSION', '1.5.12' );
 
 wp_register_style( 'fullcalendar_daygrid_style', plugins_url( 'plugins/fullcalendar/main.min.css', __FILE__ ) );
 wp_register_script( 'fullcalendar_core_script', plugins_url( 'plugins/fullcalendar/main.min.js', __FILE__ ) );
@@ -99,7 +99,7 @@ function tivents_products_feed_register_settings() {
 
 
 function tivents_products_feed_init() {
-	Tiv::set_general_settings();
+	Tivents_Settings_Controller::tivents_set_general_settings();
 }
 
 function tivents_show_plugin_infos() {
@@ -176,6 +176,9 @@ function tivents_get_api_url( $atts ) {
 	if ( $qty == 'qty' && get_option( 'tivents_per_page' ) != null ) {
 		$urlSlug .= '&_perPage=' . get_option( 'tivents_per_page' );
 	}
+    else {
+        $urlSlug .= '&_perPage=400';
+    }
 
 	$urlSlug .= '&_filters=' . json_encode( $filter );
 	$apiURL  .= $urlSlug;
