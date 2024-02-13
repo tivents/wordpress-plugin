@@ -21,7 +21,14 @@ document.addEventListener(
 				selectable: true,
 				initialView: 'dayGridMonth',
 				initialDate: defaultDate,
-				events: products,
+				lazyFetching: true,
+				events: {
+					url: '/wp-json/tivents/calendar/v1/events/',
+					method: 'get',
+					failure: function () {
+						alert('there was an error while fetching events!');
+					},
+				},
 				height: 'auto',
 				eventDisplay: 'block',
 				eventTimeFormat: {
@@ -32,7 +39,6 @@ document.addEventListener(
 					info.el.className = info.el.className + ' tiv-status-' + info.event.extendedProps.warning_level;
 				},
 				eventClick( arg ) {
-
 					const swalWithBootstrapButtons = Swal.mixin(
 						{
 							width: '48em',

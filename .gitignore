@@ -4,3 +4,5 @@ deployment/*
 vendor/*
 
 composer.lock
+
+PATHS.md
