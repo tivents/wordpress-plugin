@@ -250,3 +250,7 @@ a:hover .tiv-grid-hover {
 .fc table {
 	margin: 0 0 0;
 }
+
+.tivents-product-details-row {
+	padding: 5px;
+}

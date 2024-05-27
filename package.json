@@ -1,0 +1,25 @@
+{
+	"name": "tivents-product-list",
+	"version": "0.1.0",
+	"description": "Show your TIVENTS Products on your page.",
+	"author": "TIVENTS",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"scripts": {
+		"build": "wp-scripts build --webpack-src-dir=src/block/ --output-path=src/build/",
+		"format": "/node_modules/.bin/wp-scripts format",
+		"lint:css": "/node_modules/.bin/wp-scripts lint-style",
+		"lint:js": "/node_modules/.bin/wp-scripts lint-js",
+		"packages-update": "/node_modules/.bin/wp-scripts packages-update",
+		"plugin-zip": "/node_modules/.bin/wp-scripts plugin-zip",
+		"start": "/node_modules/.bin/wp-scripts start",
+		"env": "/node_modules/.bin/wp-env"
+	},
+	"devDependencies": {
+		"@wordpress/env": "^9.10.0",
+		"@wordpress/scripts": "^27.9.0"
+	},
+	"dependencies": {
+		"@wordpress/api-fetch": "^6.55.0"
+	}
+}

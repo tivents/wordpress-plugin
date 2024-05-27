@@ -1,0 +1,48 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "tivents/product-list",
+	"version": "0.1.0",
+	"title": "TIVENTS Product",
+	"category": "integrations",
+	"description": "Display your product on your page.",
+	"example": {},
+	"attributes": {
+		"activated": {
+			"type": "boolean"
+		},
+		"showTitle": {
+			"type": "boolean"
+		},
+		"productId": {
+			"type": "string"
+		},
+		"showChildren": {
+			"type": "boolean"
+		},
+		"showImage": {
+			"type": "boolean"
+		},
+		"showDescription": {
+			"type": "boolean"
+		},
+		"displayType": {
+			"type": "string"
+		}
+	},
+	"supports": {
+		"color": {
+			"background": false,
+			"text": true
+		},
+		"html": false,
+		"typography": {
+			"fontSize": true
+		}
+	},
+	"textdomain": "copyright-date-block",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

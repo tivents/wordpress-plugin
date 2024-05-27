@@ -2,7 +2,7 @@
 /**
  * Plugin Name:         TIVENTS Products Feed
  * description:         Crawl products form tivents
- * Version:             1.5.14
+ * Version:             1.6.0
  *
  * Author:              tivents
  * Author URI:          https://tivents.info/
@@ -34,7 +34,10 @@ require_once 'controllers/class-tivents-product-controller.php';
 require_once 'controllers/class-tivents-settings-controller.php';
 require_once 'controllers/class-tivents-registration-controller.php';
 
+define( 'TIVENTPRO_CURRENT_VERSION', '1.6.0' );
+
 add_action('rest_api_init', 'register_custom_calendar_api');
+add_action('rest_api_init', 'register_tivents_product_api');
 
 wp_register_style( 'tiv-plugin-style', plugins_url( 'plugins/tivents/tiv-plugin.css', __FILE__ ) );
 wp_register_style( 'tiv-calender-style', plugins_url( 'plugins/tivents/tiv-calendar.css', __FILE__ ) );
@@ -42,7 +45,7 @@ wp_register_script( 'tiv-calender-js', plugins_url( 'plugins/tivents/tiv-calenda
 
 wp_enqueue_style( 'tiv-plugin-style' );
 
-define( 'TIVENTPRO_CURRENT_VERSION', '1.5.14' );
+
 
 wp_register_style( 'fullcalendar_daygrid_style', plugins_url( 'plugins/fullcalendar/main.min.css', __FILE__ ) );
 wp_register_script( 'fullcalendar_core_script', plugins_url( 'plugins/fullcalendar/main.min.js', __FILE__ ) );
@@ -99,6 +102,11 @@ function tivents_products_feed_register_settings() {
     register_setting( 'tivents_products_feed_options_group', 'tivents_text_color', 'tivents_products_feed_callback' );
 }
 
+function create_block_copyright_date_block_init() {
+    register_block_type( __DIR__ . '/build' );
+}
+add_action( 'init', 'create_block_copyright_date_block_init' );
+
 
 function tivents_products_feed_init() {
     Tivents_Settings_Controller::tivents_set_general_settings();
@@ -154,6 +162,9 @@ function tivents_get_api_url( $atts  ) {
         if ( $type == 'coupons' ) {
             $filter['product_type'] = 2;
         }
+        if ( $type == 'certificates' ) {
+            $filter['product_type'] = 6;
+        }
     } elseif ( $style == 'calendar' ) {
         $filter['product_type']   = 1;
         $filter['hosts_globalid'] = get_option( 'tivents_partner_id' );
@@ -196,7 +207,6 @@ function tivents_get_api_url( $atts  ) {
  * @return string
  */
 function tivents_call_api( $apiUrl ) {
-
     return json_decode(
         wp_remote_retrieve_body(
             wp_remote_get(
@@ -218,23 +228,23 @@ function register_custom_calendar_api() {
     ));
 }
 
-function get_custom_events() {
+function register_tivents_product_api() {
+    register_rest_route('tivents/api/v1', '/products', array(
+        'methods'  => 'GET',
+        'callback' => 'get_custom_events',
+    ));
+}
 
-    $apiURL = 'https://products.tivents.net/public/v1';
+function get_custom_events( WP_REST_Request $request )
+{
+    $parameters = $request->get_query_params();
+    $apiURL = 'https://products.tivents.net/public/v2/'.$parameters['id'];
 
-    $urlSlug = '?_sortField=start&_sortDir=ASC';
+    $product = tivents_call_api( $apiURL );
 
-    $filter['status'] = 400;
-    $filter['product_type'] = 1;
-    $filter['timeSlotProduct'] = 1;
-    $filter['hosts_globalid'] = get_option( 'tivents_partner_id' );
-
-
-    $filter['start'] = isset($_GET['start']) ? date('Y-m-d', strtotime($_GET['start'])) : date('Y-m-01');
-    $filter['end'] = isset($_GET['end']) ? date('Y-m-d',  strtotime($_GET['end'])) : date('Y-m-t');
-
-    $urlSlug .= '&_filters=' . json_encode( $filter );
-    $apiURL  .= $urlSlug;
-
-    return rest_ensure_response(tivents_call_api( $apiURL ));
+    if($product['id'] == null || $product['id'] == '') {
+        return rest_ensure_response(['status' => 'error', 'notice' => 'no product found']);
+    } else {
+        return rest_ensure_response($product);
+    }
 }

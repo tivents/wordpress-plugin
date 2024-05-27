@@ -6,3 +6,7 @@ vendor/*
 composer.lock
 
 PATHS.md
+
+node_modules/*
+
+src/build/*
