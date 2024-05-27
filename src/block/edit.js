@@ -55,12 +55,12 @@ export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( 'TIVENTS Product ID', 'copyright-date-block' ) }>
+				<PanelBody title={ __( 'TIVENTS Product ID', 'tivents_products_feed' ) }>
 					<ToggleControl
 						checked={ activated }
 						label={ __(
 							'Add product id',
-							'copyright-date-block'
+							'tivents_products_feed'
 						) }
 						onChange={ () =>
 							setAttributes( {
@@ -72,7 +72,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						<TextControl
 							label={ __(
 								'Product ID',
-								'copyright-date-block'
+								'tivents_products_feed'
 							) }
 							value={ productId }
 							onChange={function ( value ) {
@@ -99,7 +99,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							variant="secondary"
 							label={ __(
 								'Set title',
-								'copyright-date-block'
+								'tivents_products_feed'
 							) }
 							onClick={function () {
 								apiFetch( { path: 'tivents/api/v1/products?id='+productId } ).then( ( product ) => {
@@ -111,12 +111,12 @@ export default function Edit( { attributes, setAttributes } ) {
 					) }
 				</PanelBody>
 				{ activated && productId && (
-					<PanelBody title={ __( 'TIVENTS Design Settings', 'copyright-date-block' ) }>
+					<PanelBody title={ __( 'TIVENTS Design Settings', 'tivents_products_feed' ) }>
 						<ToggleControl
 							checked={ showTitle }
 							label={ __(
 								'Show Title',
-								'copyright-date-block'
+								'tivents_products_feed'
 							) }
 							value={ showTitle }
 							onChange={ ( value ) =>
@@ -127,7 +127,7 @@ export default function Edit( { attributes, setAttributes } ) {
 								checked={ showImage }
 								label={ __(
 									'Show image',
-									'copyright-date-block'
+									'tivents_products_feed'
 								) }
 								onChange={ () =>
 									setAttributes( {
@@ -139,7 +139,7 @@ export default function Edit( { attributes, setAttributes } ) {
 								checked={ showDescription }
 								label={ __(
 									'Show description',
-									'copyright-date-block'
+									'tivents_products_feed'
 								) }
 								onChange={ () =>
 									setAttributes( {
@@ -151,7 +151,7 @@ export default function Edit( { attributes, setAttributes } ) {
 								checked={ showChildren }
 								label={ __(
 									'Show children',
-									'copyright-date-block'
+									'tivents_products_feed'
 								) }
 								onChange={ () =>
 									setAttributes( {
@@ -163,7 +163,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							<SelectControl
 								label={ __(
 									'Display type',
-									'copyright-date-block'
+									'tivents_products_feed'
 								) }
 								value={ displayType }
 								options={ [
