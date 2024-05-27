@@ -6,7 +6,7 @@
  * @package  wordpress-plugin
  * @author   whelwig
  * @license  Restricted
- * @link     https://cocase.eu/
+ * @link     https://tivents.info/
  */
 class Tivents_Sponsorship_View {
 

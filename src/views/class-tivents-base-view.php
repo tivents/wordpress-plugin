@@ -2,7 +2,6 @@
 
 class Tivents_Base_View {
 
-
 	public static function tivents_set_footer() {
 		$div  = '<div class="col-12">';
 		$div .= '<div id="tiv-footer" class="row text-right">';
