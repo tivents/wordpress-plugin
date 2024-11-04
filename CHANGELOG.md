@@ -1,21 +1,25 @@
 ## Changelog
 
-### 1.6.0 =
+### 1.6.1
+* fix problems with debug mode
+* adjust style and scripts enqueuing
+
+### 1.6.0
 * add Gutenberg block for product single integration with child product presentation
 
-### 1.5.14 =
+### 1.5.14
 * load events for calendar by wordpress api to prevent caching problems
 
-### 1.5.13 =
+### 1.5.13
 * decrease php version requirements
 
-### 1.5.12 =
+### 1.5.12
 * small fix in settings controller
 
-### 1.5.11 =
+### 1.5.11
 * fix and sync readme
 
-### 1.5.10 =
+### 1.5.10
 * clarify the readme for the TIVENTS integration
 
 ### 1.5.9
