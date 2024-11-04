@@ -1,5 +1,11 @@
 ## Changelog
 
+### 1.6.4
+* update to new wordpress version 6.6.2
+
+### 1.6.3
+* rebuild calendar view and api calls
+
 ### 1.6.2 
 * correct the calendar view
 
