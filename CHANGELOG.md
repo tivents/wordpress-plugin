@@ -1,5 +1,8 @@
 ## Changelog
 
+### 1.6.2 
+* correct the calendar view
+
 ### 1.6.1
 * fix problems with debug mode
 * adjust style and scripts enqueuing

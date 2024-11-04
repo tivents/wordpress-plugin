@@ -84,16 +84,8 @@ class Tivents_Product_Controller {
 				$div .= Tivents_Grid_View::tivents_set_grid_view( $results );
 				break;
 			case 'calendar':
-				/**
-				 * Enqueue the full calendar scripts and styles
-				 */
-				wp_enqueue_style( 'fullcalendar_daygrid_style' );
-				wp_enqueue_script( 'fullcalendar_core_script' );
-				wp_enqueue_script( 'fullcalendar_locale_script' );
-				wp_enqueue_style( 'sweetalert_style' );
-				wp_enqueue_script( 'sweetalert_script' );
-				wp_enqueue_style( 'tiv-calender-style' );
-				wp_enqueue_script( 'tiv-calender-js' );
+				/*** Enqueue the full calendar scripts and styles */
+                add_action( 'wp_enqueue_scripts', 'register_fullcalendar' );
 
 				if ( $divid != 'no-id' ) {
 					$div .= '<div id="' . $divid . '">';

@@ -9,9 +9,31 @@
  * @link     https://tivents.info/
  */
 
+function initStyles($products, $divId = null) {
+    $elementId = 'tiv-calendar';
+    if ( $divId != 'no-id' ) {
+        $elementId = $divId;
+    }
+
+    if ( get_option( 'tivents_default_date' ) != null && get_option( 'tivents_default_date' ) > date( 'Y-m-d' ) ) {
+        $variableString = 'let defaultDate = "' . date( 'Y-m-d', strtotime( get_option( 'tivents_default_date' ) ) ) . '";';
+    } else {
+        $variableString = 'let defaultDate = "' . date( 'Y-m-d' ) . '";';
+    }
+
+    $variableString .= 'let products = ' . json_encode( $products ) . ';';
+    $variableString .= 'let elementId = "' . $elementId . '";';
+
+    if(!wp_script_is( 'tiv-calendar-js', 'enqueued' )) {
+        wp_enqueue_script( 'tiv-calendar-js' );
+        wp_add_inline_script( 'tiv-calendar-js', $variableString, 'before' );
+    }
+}
+
 class Tivents_Calendar_View {
 
 	static function tivents_set_calendar_view( $results, $divId = null ) {
+        initStyles( $results, $divId );
 		ob_start(); ?>
 		<button type="button" id="button
 		<?php
@@ -22,7 +44,7 @@ class Tivents_Calendar_View {
 		" class="btn btn-primary" data-toggle="modal" data-target="#eventModal
 		<?php
 		if ( $divId != 'no-id' ) {
-										echo esc_html( $divId );
+            echo esc_html( $divId );
 		}
 		?>
 " style="display: none">
@@ -72,23 +94,6 @@ class Tivents_Calendar_View {
 			</div>
 		</div>
 
-		<?php
-		$elementId = 'tiv-calendar';
-		if ( $divId != 'no-id' ) {
-			$elementId = $divId;
-		}
-
-		if ( get_option( 'tivents_default_date' ) != null && get_option( 'tivents_default_date' ) > date( 'Y-m-d' ) ) {
-			$variableString = 'let defaultDate = "' . date( 'Y-m-d', strtotime( get_option( 'tivents_default_date' ) ) ) . '";';
-		} else {
-			$variableString = 'let defaultDate = "' . date( 'Y-m-d' ) . '";';
-		}
-
-		$variableString .= 'var products = ' . json_encode( $results ) . ';';
-		$variableString .= 'var elementId = "' . $elementId . '";';
-
-		wp_add_inline_script( 'tiv-calender-js', $variableString, 'before' );
-
-		return ob_get_clean();
+		<?php return ob_get_clean();
 	}
 }
