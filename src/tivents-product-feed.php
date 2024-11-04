@@ -2,7 +2,7 @@
 /**
  * Plugin Name:         TIVENTS Products Feed
  * description:         Crawl products form tivents
- * Version:             1.6.2
+ * Version:             1.6.3
  *
  * Author:              tivents
  * Author URI:          https://tivents.info/
@@ -172,6 +172,8 @@ function tivents_get_api_url( $attributs  ) {
                 'style' => 'list',
                 'qty'   => 'qty',
                 'group' => 'group',
+                'start',
+                'end',
             ],
             $attributs
         )
@@ -190,6 +192,7 @@ function tivents_get_api_url( $attributs  ) {
         };
     } elseif ( $style == 'calendar' ) {
         $filter['product_type']   = 1;
+        $filter['is_group_product'] = 0;
         $filter['hosts_globalid'] = get_option( 'tivents_partner_id' );
     } else {
         $filter['hosts_globalid'] = get_option( 'tivents_partner_id' );
@@ -203,6 +206,14 @@ function tivents_get_api_url( $attributs  ) {
 
     if ( $group != 'group' ) {
         $filter['product_group_id'] = $group;
+    }
+
+    if (isset($attributs['start']) && $attributs['start'] != null ) {
+        $filter['start'] = date('Y-m-d', strtotime($attributs['start']));
+    }
+
+    if (isset($attributs['end']) && $attributs['end'] != null ) {
+        $filter['end'] = date('Y-m-d', strtotime($attributs['end']));
     }
 
     if ( is_int( $qty ) ) {
@@ -248,6 +259,13 @@ function register_custom_calendar_api() {
 function get_calendar_events( WP_REST_Request $request )
 {
     $attributes = $request->get_attributes();
+    $attributes['style'] = 'calendar';
     $attributes['type'] = 'events';
+    $attributes['start'] =  $request->get_param('start');
+    $attributes['end'] =  $request->get_param('end');
+    if( $request->has_param('groupId')) {
+        $attributes['group'] = $request->get_param( 'groupId' );
+    }
+
     return rest_ensure_response(tivents_call_api( tivents_get_api_url($attributes) ));
 }

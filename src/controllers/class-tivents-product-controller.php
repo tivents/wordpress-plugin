@@ -35,10 +35,12 @@ class Tivents_Product_Controller {
 					'type'  => 'all',
 					'style' => 'list',
 					'divid' => 'no-id',
+
 				),
 				$atts
 			)
 		);
+
 
 		if ( get_option( 'tivents_partner_id' ) == null ) {
 			$div  = '<div id="tivents-main" class="tiv-main">';
@@ -93,7 +95,7 @@ class Tivents_Product_Controller {
 					$div .= '<div id="tiv-calendar">';
 				}
 				$div .= '<style>body: {background: #000000 !important;}</style>';
-				$div .= Tivents_Calendar_View::tivents_set_calendar_view( $results, $divid );
+				$div .= Tivents_Calendar_View::tivents_set_calendar_view( $results, $divid, $atts['group'] ?? null );
 				$div .= '</div>';
 				$div .= '<div id="tivents-calendar-legend" class="mt-3"><h3>Legende:<br>';
 				$div .= '<div id="tivents-calendar-legend-success" >Frei</div>';

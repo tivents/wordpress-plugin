@@ -9,7 +9,7 @@
  * @link     https://tivents.info/
  */
 
-function initStyles($products, $divId = null) {
+function initStyles($products, $divId = null, $groupId = null) {
     $elementId = 'tiv-calendar';
     if ( $divId != 'no-id' ) {
         $elementId = $divId;
@@ -19,6 +19,12 @@ function initStyles($products, $divId = null) {
         $variableString = 'let defaultDate = "' . date( 'Y-m-d', strtotime( get_option( 'tivents_default_date' ) ) ) . '";';
     } else {
         $variableString = 'let defaultDate = "' . date( 'Y-m-d' ) . '";';
+    }
+
+    if($groupId) {
+        $variableString .= 'let groupId = "' . $groupId . '";';
+    } else {
+        $variableString .= 'let groupId = "group";';
     }
 
     $variableString .= 'let products = ' . json_encode( $products ) . ';';
@@ -32,8 +38,8 @@ function initStyles($products, $divId = null) {
 
 class Tivents_Calendar_View {
 
-	static function tivents_set_calendar_view( $results, $divId = null ) {
-        initStyles( $results, $divId );
+	static function tivents_set_calendar_view( $results, $divId = null, $groupId = null ) {
+        initStyles( $results, $divId, $groupId );
 		ob_start(); ?>
 		<button type="button" id="button
 		<?php

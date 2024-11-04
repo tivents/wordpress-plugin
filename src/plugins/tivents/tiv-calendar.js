@@ -1,7 +1,6 @@
 document.addEventListener(
 	'DOMContentLoaded',
 	function () {
-
 		let calendarEl = document.getElementById( elementId );
 		let calendar   = new FullCalendar.Calendar(
 			calendarEl,
@@ -25,6 +24,9 @@ document.addEventListener(
 				events: {
 					url: '/wp-json/tivents/calendar/v1/events/',
 					method: 'get',
+					extraParams: {
+						'groupId': groupId ?? null
+					},
 					failure: function () {
 						alert('there was an error while fetching events!');
 					},
