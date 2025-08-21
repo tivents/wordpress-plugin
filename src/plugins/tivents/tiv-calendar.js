@@ -28,7 +28,7 @@ document.addEventListener(
 						'groupId': groupId ?? null
 					},
 					failure: function () {
-						alert('there was an error while fetching events!');
+						return {};
 					},
 				},
 				height: 'auto',

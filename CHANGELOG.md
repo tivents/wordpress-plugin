@@ -1,5 +1,9 @@
 ## Changelog
 
+### 1.6.5
+* small class fix
+* improve json handling for missing events
+
 ### 1.6.4
 * update to new wordpress version 6.6.2
 
