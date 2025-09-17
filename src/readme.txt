@@ -3,7 +3,7 @@ Contributors: willihelwig, aldrahastur, TIVENTS
 Tags: events, tickets
 Requires at least: 3.0.1
 Tested up to: 6.6.2
-Stable tag: 1.6.5
+Stable tag: 1.6.6
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -68,6 +68,9 @@ You need your partner ID. You will find it in your [partner account](https://man
 * EN: No visitor data is transmitted to TIVENTS. The products via API are only retrieved at the moment a page with one of the shortcodes is called up.
 
 == Changelog ==
+
+= 1.6.6 =
+* fix for missing events in calendar view
 
 = 1.6.5 =
 * small class fix

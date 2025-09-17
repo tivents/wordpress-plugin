@@ -74,7 +74,8 @@ class Tivents_Product_Controller {
 
 		$div .= '<div id="tivents-main" class="tiv-main">';
 		$div .= '<div id="tivents-container" class="tiv-container">';
-		if ( count( $results ) == 0 ) {
+
+		if ($style !== 'calendar' && count( $results ) == 0 ) {
 			$div .= '<h4 id="tivents-container-heading">' . esc_html( __( 'Zur Zeit gibt es keine Produkte. Vielleicht später?', 'tivents_products_feed' ) ) . '</h4>';
 			$div .= '</div>';
 			$div .= '</div>';

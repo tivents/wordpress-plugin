@@ -2,7 +2,7 @@
 /**
  * Plugin Name:         TIVENTS Products Feed
  * description:         Crawl products form tivents
- * Version:             1.6.5
+ * Version:             1.6.6
  *
  * Author:              tivents
  * Author URI:          https://tivents.info/
@@ -29,7 +29,7 @@ require_once 'controllers/class-tivents-product-controller.php';
 require_once 'controllers/class-tivents-settings-controller.php';
 require_once 'controllers/class-tivents-registration-controller.php';
 
-define( 'TIVENTPRO_CURRENT_VERSION', '1.6.5' );
+define( 'TIVENTPRO_CURRENT_VERSION', '1.6.6' );
 
 
 function register_styles() {

@@ -1,5 +1,8 @@
 ## Changelog
 
+### 1.6.6
+* fix for missing events in calendar view
+
 ### 1.6.5
 * small class fix
 * improve json handling for missing events
