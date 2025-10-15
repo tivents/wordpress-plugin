@@ -2,7 +2,7 @@
 /**
  * Plugin Name:         TIVENTS Products Feed
  * description:         Crawl products form tivents
- * Version:             1.6.6
+ * Version:             1.6.7
  *
  * Author:              tivents
  * Author URI:          https://tivents.info/
@@ -29,7 +29,7 @@ require_once 'controllers/class-tivents-product-controller.php';
 require_once 'controllers/class-tivents-settings-controller.php';
 require_once 'controllers/class-tivents-registration-controller.php';
 
-define( 'TIVENTPRO_CURRENT_VERSION', '1.6.6' );
+define( 'TIVENTPRO_CURRENT_VERSION', '1.6.7' );
 
 
 function register_styles() {
@@ -161,10 +161,11 @@ function tivents_sponsorships_feed_show( $atts ) {
     return Tivents_Sponsorship_View::tivents_create_sponsorship_view( $atts );
 }
 
-/*** Build the TIVENTS API  in order to get the products of the vendor
+/*** Build the TIVENTS API to get the products of the vendor
  *
- * @param $atts
- * @return string */
+ * @param $attributs
+ * @return string
+ */
 function tivents_get_api_url( $attributs  ) {
 
     extract(shortcode_atts(

@@ -6,6 +6,7 @@ tivents Stylesheet
 	--tiv-prime-color: #F5C800;
 	--tiv-second-color: #000000;
 	--tiv-text-color: #000000;
+	--tivents-color-success: #28D29B;
 }
 /*Page Colors End */
 
@@ -253,4 +254,10 @@ a:hover .tiv-grid-hover {
 
 .tivents-product-details-row {
 	padding: 5px;
+}
+
+.tivents-button-success {
+    color: #fff !important;
+    background-color: var(--tivents-color-success) !important;
+    border-color: var(--tivents-color-success) !important;
 }

@@ -41,57 +41,21 @@ class Tivents_Calendar_View {
 	static function tivents_set_calendar_view( $results, $divId = null, $groupId = null ) {
         initStyles( $results, $divId, $groupId );
 		ob_start(); ?>
-		<button type="button" id="button
-		<?php
-		if ( $divId != 'no-id' ) {
-			echo esc_html( $divId );
-		}
-		?>
-		" class="btn btn-primary" data-toggle="modal" data-target="#eventModal
-		<?php
-		if ( $divId != 'no-id' ) {
-            echo esc_html( $divId );
-		}
-		?>
-" style="display: none">
+		<button type="button" id="button <?php if ( $divId != 'no-id' ) { echo esc_html( $divId );} ?>" class="btn btn-primary" data-toggle="modal" data-target="#eventModal<?php if ( $divId != 'no-id' ) { echo esc_html( $divId );} ?>" style="display: none">
 		</button>
 		<!-- Modal -->
-		<div class="modal fade" id="eventModal
-		<?php
-		if ( $divId != 'no-id' ) {
-			echo esc_html( $divId );
-		}
-		?>
-		" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true">
+		<div class="modal fade" id="eventModal<?php if ( $divId != 'no-id' ) {echo esc_html( $divId );} ?>" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" style="color: #000000" id="product-title
-						<?php
-						if ( $divId != 'no-id' ) {
-							echo esc_html( $divId );
-						}
-						?>
-						"></h5>
+						<h5 class="modal-title" style="color: #000000" id="product-title<?php if ( $divId != 'no-id' ) { echo esc_html( $divId );} ?>"></h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
 					<div class="modal-body">
-						<div class="tiv-product-info" id="product-info
-						<?php
-						if ( $divId != 'no-id' ) {
-							echo esc_html( $divId );
-						}
-						?>
-						"></div><br>
-						<div class="tiv-product-link" id="product-link
-						<?php
-						if ( $divId != 'no-id' ) {
-							echo esc_html( $divId );
-						}
-						?>
-						"></div>
+						<div class="tiv-product-info" id="product-info <?php if ( $divId != 'no-id' ) { echo esc_html( $divId ); } ?>"></div><br>
+						<div class="tiv-product-link" id="product-link <?php if ( $divId != 'no-id' ) { echo esc_html( $divId ); } ?>"></div>
 					</div>
 					<div class="modal-footer">
 						<button id="close-button" type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>

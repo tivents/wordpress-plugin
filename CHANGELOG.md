@@ -1,5 +1,8 @@
 ## Changelog
 
+### 1.6.7
+* change modal behavior for events in calendar
+
 ### 1.6.6
 * fix for missing events in calendar view
 
