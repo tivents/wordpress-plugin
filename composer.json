@@ -1,19 +1,20 @@
 {
-  "name": "tivents/tivents-products-feed",
+  "name": "tivents/wordpress-plugin",
   "type": "plugin",
   "license": "MIT",
   "homepage": "https://github.com/tivents/tivents-products-feed",
   "description": "Plugin for getting products from TIVENTS",
-  "keywords": ["code coverage", "codecov", "coverage reports"],
+  "keywords": ["TIVENTS", "integration", "events", "coupons"],
   "version": "1.6.0",
   "require": {
-    "php": ">=8",
+    "php": ">=8.1",
     "ext-json": "*",
     "ext-curl": "*"
   },
   "require-dev": {
-    "phpunit/phpunit": "^8",
-    "wp-coding-standards/wpcs": "^3"
+    "phpunit/phpunit": "^12",
+    "wp-coding-standards/wpcs": "3.0",
+    "fsylum/rector-wordpress": "^1.0"
   },
   "autoload": {
     "psr-0": {
