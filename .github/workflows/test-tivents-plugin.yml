@@ -1,0 +1,51 @@
+name: TIVENTS WordPress Plugin Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: wordpress
+          MYSQL_USER: wordpress
+          MYSQL_PASSWORD: wordpress
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+          extensions: mbstring, dom, xml, mysql
+
+      - name: Install WordPress
+        run: |
+          wp core download --path=wordpress
+          wp config create --dbname=wordpress --dbuser=wordpress --dbpass=wordpress --dbhost=127.0.0.1 --path=wordpress
+          wp db create --path=wordpress
+          wp core install --url=http://localhost --title="TIVENTS Test Site" --admin_user=admin --admin_password=admin --admin_email=admin@example.com --path=wordpress
+
+      - name: Install and activate TIVENTS plugin
+        run: |
+          cp -r ${{ github.workspace }} /tmp/tivents-plugin
+          wp plugin install /tmp/tivents-plugin --activate --path=wordpress
+
+      - name: Configure TIVENTS plugin
+        run: |
+          wp config set TIVENTS_PARTNER_ID "test1234" --path=wordpress
+          wp config set TIVENTS_API_URL "https://api.tivents.info/public" --path=wordpress
+
+      - name: Run PHPUnit tests
+        run: |
+          cd ${{ github.workspace }}
+          composer install
+          ./vendor/bin/phpunit
