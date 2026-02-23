@@ -127,9 +127,9 @@ class Tivents_Settings_Controller {
 				</tr>
 				<tfoot>
 				<tr>
-					<td>Beispiel: <a href="https://demo.tivents.info/wordpress/listenansicht/" target="_blank">https://demo.tivents.info/wordpress/listenansicht/</a>  </td>
-					<td>Beispiel: <a href="https://demo.tivents.info/wordpress/kachelansicht/" target="_blank">https://demo.tivents.info/wordpress/kachelansicht/</a> </td>
-					<td>Beispiel: <a href="https://demo.tivents.info/wordpress/kalenderansicht/" target="_blank">https://demo.tivents.info/wordpress/kalenderansicht/</a> </td>
+					<td>Beispiel: <a href="https://wordpress-demo.tivdev.de/listenansichten" target="_blank">Listenansicht</a>  </td>
+					<td>Beispiel: <a href="https://wordpress-demo.tivdev.de/kachelansicht" target="_blank">Kachelansicht</a> </td>
+					<td>Beispiel: <a href="https://wordpress-demo.tivdev.de/kalenderansicht" target="_blank">Kalenderansicht</a> </td>
 				</tr>
 				</tfoot>
 			</table>
