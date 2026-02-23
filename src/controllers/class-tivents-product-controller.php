@@ -110,7 +110,7 @@ class Tivents_Product_Controller {
                 break;
             case 'list':
             default:
-                if(!is_null($atts['columns'])) {
+                if(array_key_exists('columns', $atts) && !is_null($atts['columns'])) {
                     $div .= Tivents_List_View::setColumnList( $results, $atts['columns'] );
                 } else {
                     $div .= Tivents_List_View::setListWithImages( $results );

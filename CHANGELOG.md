@@ -1,5 +1,9 @@
 ## Changelog
 
+### 2.0.1
+* update tested version
+* fix missing columns
+
 ### 2.0.0
 * change backend behavior
 * add category slugs for filtering
