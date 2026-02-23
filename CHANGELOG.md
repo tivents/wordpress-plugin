@@ -1,5 +1,8 @@
 ## Changelog
 
+### 2.0.2
+* fix event sorting
+
 ### 2.0.1
 * update tested version
 * fix missing columns
@@ -11,10 +14,10 @@
 * update sweetalert2 to 11.26.3
 
 ### 1.6.7
-* change modal behavior for events in calendar
+* change modal behavior for events in the calendar
 
 ### 1.6.6
-* fix for missing events in calendar view
+* fix for missing events in the calendar view
 
 ### 1.6.5
 * small class fix

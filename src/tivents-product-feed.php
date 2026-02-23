@@ -2,7 +2,7 @@
 /**
  * Plugin Name: TIVENTS Products Feed
  * description: Crawl products form tivents
- * Version: 2.0.1
+ * Version: 2.0.2
  *
  * Author: tivents
  * Author URI: https://tivents.info/
@@ -29,7 +29,7 @@ require_once 'controllers/class-tivents-product-controller.php';
 require_once 'controllers/class-tivents-settings-controller.php';
 require_once 'controllers/class-tivents-registration-controller.php';
 
-define( 'TIVENTPRO_CURRENT_VERSION', '2.0.1' );
+define( 'TIVENTPRO_CURRENT_VERSION', '2.0.2' );
 
 function register_styles() {
     if(!wp_style_is('tiv-plugin-style', 'enqueued' )) {
@@ -202,6 +202,7 @@ function tivents_get_api_url( $attributs  ) {
         $apiURL .= '&filter[hosts_globalid]='.get_option('tivents_partner_id');
         if ( $type == 'events' ) {
             $apiURL .= '&filter[product_type]=1';
+            $apiURL .= '&sort=start';
 
         } elseif ( $type == 'coupons' ) {
             $apiURL .= '&filter[product_type]=2';
