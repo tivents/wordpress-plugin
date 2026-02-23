@@ -1,16 +1,16 @@
 <?php
 /**
- * Plugin Name:         TIVENTS Products Feed
- * description:         Crawl products form tivents
- * Version:             1.6.7
+ * Plugin Name: TIVENTS Products Feed
+ * description: Crawl products form tivents
+ * Version: 2.0.0
  *
- * Author:              tivents
- * Author URI:          https://tivents.info/
- * License:             GPL-2.0+
- * License URI:         http://www.gnu.org/licenses/gpl-2.0.txt
- * License:             GPLv2 or later
- * Text Domain:         tivents_products_feed
- * Domain Path:         /languages
+ * Author: tivents
+ * Author URI: https://tivents.info/
+ * License: GPL-2.0+
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
+ * License: GPLv2 or later
+ * Text Domain: tivents_products_feed
+ * Domain Path: /languages
  */
 
 
@@ -29,12 +29,11 @@ require_once 'controllers/class-tivents-product-controller.php';
 require_once 'controllers/class-tivents-settings-controller.php';
 require_once 'controllers/class-tivents-registration-controller.php';
 
-define( 'TIVENTPRO_CURRENT_VERSION', '1.6.7' );
-
+define( 'TIVENTPRO_CURRENT_VERSION', '2.0.0' );
 
 function register_styles() {
     if(!wp_style_is('tiv-plugin-style', 'enqueued' )) {
-        wp_register_style( 'tiv-plugin-style', plugins_url( 'plugins/tivents/tiv-plugin.css', __FILE__ ) );
+        wp_register_style( 'tiv-plugin-style', plugins_url( 'assets/tivents/tiv-plugin.css', __FILE__ ) );
         wp_enqueue_style('tiv-plugin-style');
     }
 }
@@ -42,45 +41,47 @@ function register_styles() {
 function register_fullcalendar()
 {
     if(!wp_style_is('fullcalendar_style', 'enqueued' )) {
-        wp_register_style( 'fullcalendar_style', plugins_url( 'plugins/fullcalendar/main.min.css', __FILE__ ) );
+        wp_register_style( 'fullcalendar_style', plugins_url( 'assets/fullcalendar/main.min.css', __FILE__ ) );
         wp_enqueue_style( 'fullcalendar_style' );
     }
     if(!wp_script_is( 'fullcalendar_core_script', 'enqueued' )) {
-        wp_register_script( 'fullcalendar_core_script', plugins_url( 'plugins/fullcalendar/main.min.js', __FILE__ ) );
+        wp_register_script( 'fullcalendar_core_script', plugins_url( 'assets/fullcalendar/main.min.js', __FILE__ ) );
         wp_enqueue_script('fullcalendar_core_script');
     }
 
     if(!wp_script_is( 'fullcalendar_locale_script', 'enqueued' )) {
-        wp_register_script( 'fullcalendar_locale_script', plugins_url( 'plugins/fullcalendar/locales-all.min.js', __FILE__ ) );
+        wp_register_script( 'fullcalendar_locale_script', plugins_url( 'assets/fullcalendar/locales-all.min.js', __FILE__ ) );
         wp_enqueue_script('fullcalendar_locale_script');
     }
 
     if(!wp_style_is('tiv-calender-style', 'enqueued' )) {
-        wp_register_style( 'tiv-calender-style', plugins_url( 'plugins/tivents/tiv-calendar.css', __FILE__ ) );
+        wp_register_style( 'tiv-calender-style', plugins_url( 'assets/tivents/tiv-calendar.css', __FILE__ ) );
         wp_enqueue_style('tiv-calender-style');
     }
 
-    if(!wp_script_is('tiv-calender-style', 'enqueued' )) {
-        wp_register_script( 'tiv-calendar-js', plugins_url( 'plugins/tivents/tiv-calendar.js', __FILE__ ) );
+    if(!wp_script_is('tiv-calendar-js', 'enqueued' )) {
+        wp_register_script( 'tiv-calendar-js', plugins_url( 'assets/tivents/tiv-calendar.js', __FILE__ ) );
+        wp_enqueue_script('tiv-calendar-js');
     }
 }
 
 function register_sweetalert()
 {
     if(!wp_style_is('sweetalert_style', 'enqueued' )) {
-        wp_register_style( 'sweetalert_style', plugins_url( 'plugins/sweetalert/sweetalert2.min.css', __FILE__ ) );
+        wp_register_style( 'sweetalert_style', plugins_url( 'assets/sweetalert/sweetalert2.min.css', __FILE__ ) );
         wp_enqueue_style('sweetalert_style');
     }
 
     if(!wp_script_is( 'sweetalert_script', 'enqueued' )) {
-        wp_register_script( 'sweetalert_script', plugins_url( 'plugins/sweetalert/sweetalert2.all.min.js', __FILE__ ) );
+        wp_register_script( 'sweetalert_script', plugins_url( 'assets/sweetalert/sweetalert2.all.min.js', __FILE__ ) );
         wp_enqueue_script( 'sweetalert_script' );
     }
 }
 
+
 add_action( 'wp_enqueue_scripts', 'register_styles' );
 add_action( 'wp_enqueue_scripts', 'register_sweetalert' );
-add_action( 'wp_enqueue_scripts', 'register_fullcalendar' );
+
 
 add_action('rest_api_init', 'register_custom_calendar_api');
 
@@ -90,10 +91,12 @@ add_action( 'admin_init', 'tivents_products_feed_register_settings' );
 add_shortcode( 'tivents_products', 'tivents_products_feed_show' );
 add_shortcode( 'tivents_sponsorships', 'tivents_sponsorships_feed_show' );
 
+
+/** ToDo Change the name of the plugin to TIVENTS Products Feed */
 function tivents_products_feed_setup_menu() {
     add_menu_page(
         'TIVENTS',
-        'Einstellungen',
+        'TIVENTS Einstellungen',
         'manage_options',
         'tivents_products_feed-settings',
         'tivents_products_feed_init',
@@ -108,7 +111,7 @@ function tivents_products_feed_setup_menu() {
         'tivents_show_plugin_infos'
     );
     add_submenu_page(
-        'tivents_products_feed_calendar',
+        'tivents_products_feed-settings',
         'Kalendareinstellungen',
         'Kalendareinstellungen',
         'manage_calendar',
@@ -169,10 +172,13 @@ function tivents_sponsorships_feed_show( $atts ) {
 function tivents_get_api_url( $attributs  ) {
 
     extract(shortcode_atts(
-            ['type'  => 'all',
+            [
+                'type'  => 'all',
                 'style' => 'list',
-                'qty'   => 'qty',
+                'limit'   => 'limit',
                 'group' => 'group',
+                'category' => 'category',
+                'sort' => 'start',
                 'start',
                 'end',
             ],
@@ -180,56 +186,52 @@ function tivents_get_api_url( $attributs  ) {
         )
     );
 
-    $apiURL = 'https://products.tivents.net/public/v1';
-    $urlSlug = '?_sortField=start&_sortDir=ASC';
-
-    $filter = ['status' => 400];
+    $apiURL = 'https://public.tivents.io/products/v1?filter[status]=400';
 
     if ( get_option( 'tivents_partner_id' ) == null || get_option( 'tivents_partner_id' ) == 'all-area' ) {
-        $filter['product_type'] = match($type) {
-            'events' => 1,
-            'coupons' => 2,
-            'certificates' => 6,
+        $apiURL .= match($type) {
+            'events' => '&filter[product_type]=1',
+            'coupons' => '&filter[product_type]=2',
+            'certificates' => '&filter[product_type]=6',
         };
     } elseif ( $style == 'calendar' ) {
-        $filter['product_type']   = 1;
-        $filter['is_group_product'] = 0;
-        $filter['hosts_globalid'] = get_option( 'tivents_partner_id' );
+        $apiURL .= '&filter[product_type]=1';
+        $apiURL .= '&filter[is_group_product]=0';
+        $apiURL .= '&filter[hosts_globalid]='.get_option('tivents_partner_id');
     } else {
-        $filter['hosts_globalid'] = get_option( 'tivents_partner_id' );
+        $apiURL .= '&filter[hosts_globalid]='.get_option('tivents_partner_id');
         if ( $type == 'events' ) {
-            $filter['product_type'] = 1;
+            $apiURL .= '&filter[product_type]=1';
 
         } elseif ( $type == 'coupons' ) {
-            $filter['product_type'] = 2;
+            $apiURL .= '&filter[product_type]=2';
         }
     }
 
     if ( $group != 'group' ) {
-        $filter['product_group_id'] = $group;
+        $apiURL .= '&filter[product_group_id]='.$group;
     }
 
     if (isset($attributs['start']) && $attributs['start'] != null ) {
-        $filter['start'] = date('Y-m-d', strtotime($attributs['start']));
+
+        if (isset($attributs['end']) && $attributs['end'] != null ) {
+            $apiURL .= '&filter[event_date]='.date('Y-m-d', strtotime($attributs['start'])).','.date('Y-m-d', strtotime($attributs['end']));
+        } else {
+            $apiURL .= '&filter[start]='.date('Y-m-d', strtotime($attributs['start']));
+        }
     }
 
-    if (isset($attributs['end']) && $attributs['end'] != null ) {
-        $filter['end'] = date('Y-m-d', strtotime($attributs['end']));
+    if ( is_int( $limit ) ) {
+        $apiURL .= '&limit='.$limit;
     }
 
-    if ( is_int( $qty ) ) {
-        $urlSlug .= '&_perPage=' . $qty;
+    if ( $category != 'category' ) {
+        $apiURL .= '&filter[category]='.$category;
+    } else if ( $limit == 'limit' && get_option( 'tivents_per_page' ) != null ) {
+        $apiURL .= '&limit='.get_option( 'tivents_per_page');
+    } else {
+        $apiURL .= '&limit=400';
     }
-
-    if ( $qty == 'qty' && get_option( 'tivents_per_page' ) != null ) {
-        $urlSlug .= '&_perPage=' . get_option( 'tivents_per_page' );
-    }
-    else {
-        $urlSlug .= '&_perPage=400';
-    }
-
-    $urlSlug .= '&_filters=' . json_encode( $filter );
-    $apiURL  .= $urlSlug;
 
     return $apiURL;
 }
@@ -242,11 +244,15 @@ function tivents_get_api_url( $attributs  ) {
  * @return string
  */
 function tivents_call_api( $apiUrl ) {
-    return json_decode(wp_remote_retrieve_body(wp_remote_get(
-        $apiUrl, ['headers' => ['Content-Type' => 'application/json'], 'timeout' => 60,]
-    )),
-        true
-    );
+
+    $apiResult = wp_remote_retrieve_body(wp_remote_get(
+        $apiUrl, [
+            'headers' => ['Content-Type' => 'application/json'],
+            'timeout' => 60,
+        ]
+    ));
+
+    return json_decode($apiResult, true);
 }
 
 function register_custom_calendar_api() {
@@ -268,5 +274,12 @@ function get_calendar_events( WP_REST_Request $request )
         $attributes['group'] = $request->get_param( 'groupId' );
     }
 
-    return rest_ensure_response(tivents_call_api( tivents_get_api_url($attributes) ));
+    $result = tivents_call_api( tivents_get_api_url($attributes) );
+
+    if(array_key_exists('data', $result)) {
+        return rest_ensure_response($result['data']);
+    } else {
+        return rest_ensure_response($result);
+    }
+
 }

@@ -1,5 +1,11 @@
 ## Changelog
 
+### 2.0.0
+* change backend behavior
+* add category slugs for filtering
+* add a new unstyled view
+* update sweetalert2 to 11.26.3
+
 ### 1.6.7
 * change modal behavior for events in calendar
 
