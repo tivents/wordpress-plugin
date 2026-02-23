@@ -133,7 +133,7 @@ class Tivents_Product_Controller {
         $date        = Tivents_Product_Controller::tivents_set_product_time( $product );
 
         if ( $product['cdn_image_key'] != null ) {
-            $imageUrl = 'https://images.tivents.io/filters:autojpg()/' . $product['cdn_image_key'];
+            $imageUrl = 'https://cdn.tivents.io/' . $product['cdn_image_key'];
         } else {
             $imageUrl = $product['image_url'];
         }
@@ -166,7 +166,7 @@ class Tivents_Product_Controller {
         $date        = Tivents_Product_Controller::tivents_set_product_time( $product );
 
         if ( $product['cdn_image_key'] != null ) {
-            $imageUrl = 'https://images.tivents.io/filters:autojpg()/' . $product['cdn_image_key'];
+            $imageUrl = 'https://cdn.tivents.io/' . $product['cdn_image_key'];
         } else {
             $imageUrl = $product['image_url'];
         }
