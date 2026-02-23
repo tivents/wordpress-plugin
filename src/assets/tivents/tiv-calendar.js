@@ -14,7 +14,6 @@ document.addEventListener(
                     year: 'numeric'
                 },
                 themeSystem: 'standard',
-                allDay: true,
 
                 dateClick: function(info) {
                     showEventsForDate(info.dateStr);
@@ -36,6 +35,12 @@ document.addEventListener(
                     failure: function () {
                         return {};
                     },
+                },
+                dayMaxEventRows: 5,
+                moreLinkClick: function( info ) {
+                    console.log(info.date);
+                    const clickedDate = info.date.getFullYear()+'-'+info.date.getMonth()+'-'+info.date.getDate();
+                    showEventsForDate(clickedDate);
                 },
                 height: 'auto',
                 eventDisplay: 'block',

@@ -261,3 +261,16 @@ a:hover .tiv-grid-hover {
     background-color: var(--tivents-color-success) !important;
     border-color: var(--tivents-color-success) !important;
 }
+
+.tivents-product-card {
+    border: 1px solid #ddd;
+    border-left: 3px solid var(--tiv-prime-color);
+    border-radius: 15px;
+    padding: 2px;
+    background-color: white;
+
+}
+.tivents-product-card-title {
+    line-height:1em;
+    min-height:3em;
+}
