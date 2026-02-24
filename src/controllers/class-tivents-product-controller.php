@@ -85,8 +85,6 @@ class Tivents_Product_Controller {
                 break;
             case 'calendar':
                 /*** Enqueue the full calendar scripts and styles */
-                add_action( 'wp_enqueue_scripts', 'register_fullcalendar' );
-
                 if ( $divid != 'no-id' ) {
                     $div .= '<div id="' . $divid . '">';
                 } else {

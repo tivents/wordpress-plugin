@@ -2,7 +2,7 @@
 /**
  * Plugin Name: TIVENTS Products Feed
  * description: Crawl products form tivents
- * Version: 2.0.2
+ * Version: 2.0.3
  *
  * Author: tivents
  * Author URI: https://tivents.info/
@@ -29,7 +29,7 @@ require_once 'controllers/class-tivents-product-controller.php';
 require_once 'controllers/class-tivents-settings-controller.php';
 require_once 'controllers/class-tivents-registration-controller.php';
 
-define( 'TIVENTPRO_CURRENT_VERSION', '2.0.2' );
+define( 'TIVENTPRO_CURRENT_VERSION', '2.0.3' );
 
 function register_styles() {
     if(!wp_style_is('tiv-plugin-style', 'enqueued' )) {
@@ -59,10 +59,10 @@ function register_fullcalendar()
         wp_enqueue_style('tiv-calender-style');
     }
 
-    if(!wp_script_is('tiv-calendar-js', 'enqueued' )) {
+    /*if(!wp_script_is('tiv-calendar-js', 'enqueued' )) {
         wp_register_script( 'tiv-calendar-js', plugins_url( 'assets/tivents/tiv-calendar.js', __FILE__ ) );
         wp_enqueue_script('tiv-calendar-js');
-    }
+    }*/
 }
 
 function register_sweetalert()
@@ -82,6 +82,9 @@ function register_sweetalert()
 add_action( 'wp_enqueue_scripts', 'register_styles' );
 add_action( 'wp_enqueue_scripts', 'register_sweetalert' );
 
+if(get_option( 'tivents_load_calendar' ) == '1' ){
+    add_action( 'wp_enqueue_scripts', 'register_fullcalendar' );
+}
 
 add_action('rest_api_init', 'register_custom_calendar_api');
 
@@ -124,10 +127,10 @@ function tivents_products_feed_register_settings() {
     add_option( 'tivents_partner_id', null );
     add_option( 'tivents_primary_color', '#289BEC' );
     add_option( 'tivents_secondary_color', '#000000' );
+    add_option( 'tivents_load_calendar', 0);
     add_option( 'tivents_text_color', null );
     add_option( 'tivents_base_url', null );
     add_option( 'tivents_per_page', null );
-    add_option( 'tivents_bootstrap_version', '5.1.3' );
     add_option( 'tivents_default_date', null );
     add_option( 'tivents_partner_api_key', null );
 
@@ -136,7 +139,7 @@ function tivents_products_feed_register_settings() {
     register_setting( 'tivents_products_feed_options_group', 'tivents_partner_api_key', 'tivents_products_feed_callback' );
     register_setting( 'tivents_products_feed_options_group', 'tivents_default_date', 'tivents_products_feed_callback' );
 
-    register_setting( 'tivents_products_feed_options_group', 'tivents_bootstrap_version', 'tivents_products_feed_callback' );
+    register_setting( 'tivents_products_feed_options_group', 'tivents_load_calendar', 'tivents_products_feed_callback' );
     register_setting( 'tivents_products_feed_options_group', 'tivents_primary_color', 'tivents_products_feed_callback' );
     register_setting( 'tivents_products_feed_options_group', 'tivents_secondary_color', 'tivents_products_feed_callback' );
     register_setting( 'tivents_products_feed_options_group', 'tivents_text_color', 'tivents_products_feed_callback' );

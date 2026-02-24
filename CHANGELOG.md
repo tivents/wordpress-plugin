@@ -1,5 +1,8 @@
 ## Changelog
 
+### 2.0.3
+* add calendar load setting to load the css and js every time
+
 ### 2.0.2
 * fix event sorting
 

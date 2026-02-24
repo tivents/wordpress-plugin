@@ -67,6 +67,17 @@ class Tivents_Settings_Controller {
 							<p class="description">Farbe für den Produktnamen. Standard: #000000</p>
 						</td>
 					</tr>
+
+                    <tr>
+                        <th scope="row"><label for="tivents_load_calendar">Kalender laden</label></th>
+                        <td>
+                            <select id="tivents_load_calendar" name="tivents_load_calendar">
+                                <option value="1" <?php selected( get_option( 'tivents_load_calendar' ), '1' ); ?>>Ja</option>
+                                <option value="0" <?php selected( get_option( 'tivents_load_calendar' ), '0' ); ?>>Nein</option>
+                            </select>
+                            <p class="description">Soll das Kalender dauerhaft geladen werden? Value: <?php echo get_option( 'tivents_load_calendar' ); ?></p>
+                        </td>
+                    </tr>
 				</table>
 				<?php submit_button(); ?>
 			</form>

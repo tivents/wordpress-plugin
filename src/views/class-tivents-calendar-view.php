@@ -30,11 +30,9 @@ function initStyles($products, $divId = null, $groupId = null) {
     $variableString .= 'let products = ' . json_encode( $products ) . ';';
     $variableString .= 'let elementId = "' . $elementId . '";';
 
-    if(!wp_script_is( 'tiv-calendar-js', 'enqueued' )) {
-        wp_register_script( 'tiv-calendar-js', plugins_url( '/../assets/tivents/tiv-calendar.js', __FILE__ ) );
-        wp_enqueue_script('tiv-calendar-js');
-        wp_add_inline_script( 'tiv-calendar-js', $variableString, 'before' );
-    }
+    wp_register_script( 'tiv-calendar-js', plugins_url( '/../assets/tivents/tiv-calendar.js', __FILE__ ) );
+    wp_enqueue_script('tiv-calendar-js');
+    wp_add_inline_script( 'tiv-calendar-js', $variableString, 'before' );
 }
 
 class Tivents_Calendar_View {
