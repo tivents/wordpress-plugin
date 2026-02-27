@@ -27,7 +27,7 @@ function initStyles($products, $divId = null, $groupId = null) {
         $variableString .= 'let groupId = "group";';
     }
 
-    $variableString .= 'let products = ' . json_encode( $products ) . ';';
+    $variableString .= 'let products = ' . json_encode( $products['data'] ) . ';';
     $variableString .= 'let elementId = "' . $elementId . '";';
 
     wp_register_script( 'tiv-calendar-js', plugins_url( '/../assets/tivents/tiv-calendar.js', __FILE__ ) );

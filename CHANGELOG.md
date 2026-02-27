@@ -1,5 +1,9 @@
 ## Changelog
 
+### 2.0.4
+* fix grid view
+* simplify variable generation
+
 ### 2.0.3
 * add calendar load setting to load the css and js every time
 

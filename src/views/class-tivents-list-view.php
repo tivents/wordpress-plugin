@@ -21,26 +21,17 @@ class Tivents_List_View {
 				continue;
 			}
 
-            $product_url = Tivents_Product_Controller::tivents_get_product_url( $result['short_url'] );
-            $date        = Tivents_Product_Controller::tivents_set_product_time( $result );
-
-			if ( $result['cdn_image_key'] != null ) {
-				$imageUrl = 'https://cdn.tivents.io/' . $result['cdn_image_key'];
-			} else {
-				$imageUrl = $result['image_url'];
-			}
-
 			$div .= '<div class="tiv-product-l tiv-product-m tiv-product-s">';
 			$div .= '<div class="tiv-sheet tiv-border">';
-			$div .= $product_url;
+			$div .= Tivents_Product_Controller::tivents_get_product_url( $result['short_url'] );
 			$div .= '<div class="tiv-sheet-inner">';
 			$div .= '<div class="tiv-sheet-left">';
 			$div .= '<div class="tiv-product-name tiv-font">' . $result['name'] . '</div>';
-			$div .= '<div class="tiv-product-date tiv-font">' . $date . '</div>';
+			$div .= '<div class="tiv-product-date tiv-font">' . Tivents_Product_Controller::tivents_set_product_time( $result ) . '</div>';
 			$div .= '<div class="tiv-product-veneu tiv-font">' . $result['place'] . '</div>';
 			$div .= '</div>';
 			$div .= '<div class="tiv-sheet-right">';
-			$div .= '<img class="tiv-product-img" src="' . $imageUrl . '" />';
+			$div .= '<img class="tiv-product-img" src="' . Tivents_Product_Controller::set_image_url( $result ) . '" />';
 			$div .= '</div>';
 			$div .= '</div>';
 			$div .= '</a>';
@@ -58,15 +49,14 @@ class Tivents_List_View {
 			if ( $result['type'] == 2 ) {
 				continue;
 			}
-			$product_url = Tivents_Product_Controller::tivents_get_product_url( $result['short_url'] );
-			$date        = Tivents_Product_Controller::tivents_set_product_time( $result );
+
 			$div        .= '<div class="tiv-product-l tiv-product-m tiv-product-s">';
 			$div        .= '<div class="tiv-sheet tiv-border">';
-			$div        .= $product_url;
+			$div        .= Tivents_Product_Controller::tivents_get_product_url( $result['short_url'] );
 			$div        .= '<div class="tiv-sheet-inner">';
 			$div        .= '<div class="tiv-sheet-left">';
 			$div        .= '<div class="tiv-product-name tiv-font">' . $result['name'] . '</div>';
-			$div        .= '<div class="tiv-product-date tiv-font">' . $date . '</div>';
+			$div        .= '<div class="tiv-product-date tiv-font">' . Tivents_Product_Controller::tivents_set_product_time( $result ) . '</div>';
 			$div        .= '<div class="tiv-product-veneu tiv-font">' . $result['place'] . '</div>';
 			$div        .= '</div>';
 			$div        .= '</div>';

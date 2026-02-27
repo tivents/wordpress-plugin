@@ -3,7 +3,7 @@ Contributors: TIVENTS, willihelwig, aldrahastur
 Tags: events, tickets
 Requires at least: 3.0.1
 Tested up to: 6.9.1
-Stable tag: 2.0.3
+Stable tag: 2.0.4
 Requires PHP: 8.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -19,7 +19,7 @@ Mit TIVENTS können Sie Ihre Veranstaltungen und Gutscheine einfach verkaufen. �
 Sie benötigen Ihre Partner-ID. Diese finden Sie in Ihrem [Partnerkonto](https://manage.tivents.app).
 
 ### EN
-With TIVENTS you can easily sell your events and vouchers. You can easily offer your products via our platform [TIVENTS](https://tivents.info/). You only incur costs if a sale is also made. With this plugin you can easily embed your vouchers and events on your website. You decide whether you want to present vouchers and events, or only vouchers or only events.
+With TIVENTS you can sell your events and vouchers. You can offer your products via our platform [TIVENTS](https://tivents.info/). You only incur costs if a sale is also made. With this plugin you can easily embed your vouchers and events on your website. You decide whether you want to present vouchers and events, or only vouchers or only events.
 You need your partner ID. You will find it in your [partner account](https://manage.tivents.app).
 
 == Related Links ==
@@ -68,6 +68,10 @@ You need your partner ID. You will find it in your [partner account](https://man
 * EN: No visitor data is transmitted to TIVENTS. The products via API are only retrieved at the moment a page with one of the shortcodes is called up.
 
 == Changelog ==
+
+= 2.0.4 =
+* fix grid view
+* simplify variable generation
 
 = 2.0.3 =
 * add calendar load setting to load the css and js every time

@@ -16,6 +16,17 @@ class Tivents_Product_Controller {
         return '<a id="tivents-product-link" href="' . $shortUrl . '?utm=tivents-wordpress-plugin">';
     }
 
+    public static function set_image_url( $result ): string
+    {
+        if ( $result['cdn_image_key'] != null ) {
+            $imageUrl = 'https://cdn.tivents.io/' . $result['cdn_image_key'];
+        } else {
+            $imageUrl = $result['image_url'];
+        }
+
+        return $imageUrl;
+    }
+
     public static function tivents_set_product_time( $result ) {
         if ( $result['date'] == null ) {
             $date = date( 'd.m.Y H:i', strtotime( $result['start'] ) ) . ' - ' . date( 'd.m.Y H:i', strtotime( $result['end'] ) );
@@ -129,12 +140,7 @@ class Tivents_Product_Controller {
 
         $product_url = Tivents_Product_Controller::tivents_get_product_url( $product['short_url'] );
         $date        = Tivents_Product_Controller::tivents_set_product_time( $product );
-
-        if ( $product['cdn_image_key'] != null ) {
-            $imageUrl = 'https://cdn.tivents.io/' . $product['cdn_image_key'];
-        } else {
-            $imageUrl = $product['image_url'];
-        }
+        $imageUrl    = Tivents_Product_Controller::set_image_url( $product );
 
         $div = $product_url;
 
@@ -162,12 +168,7 @@ class Tivents_Product_Controller {
 
         $product_url = Tivents_Product_Controller::tivents_get_product_url( $product['short_url'] );
         $date        = Tivents_Product_Controller::tivents_set_product_time( $product );
-
-        if ( $product['cdn_image_key'] != null ) {
-            $imageUrl = 'https://cdn.tivents.io/' . $product['cdn_image_key'];
-        } else {
-            $imageUrl = $product['image_url'];
-        }
+        $imageUrl    = Tivents_Product_Controller::set_image_url( $product );
 
         $div = $product_url;
         $div .= '<div id="tivents-product-card">';
