@@ -36,7 +36,7 @@ jobs:
 
     strategy:
       matrix:
-        wp: ['latest', '6.4']
+        wp: ['latest', '6.9']
 
     services:
       mysql:
