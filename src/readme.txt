@@ -3,7 +3,7 @@ Contributors: TIVENTS, willihelwig, aldrahastur
 Tags: events, tickets
 Requires at least: 3.0.1
 Tested up to: 6.9.1
-Stable tag: 2.0.4
+Stable tag: 2.0.5
 Requires PHP: 8.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -68,6 +68,9 @@ You need your partner ID. You will find it in your [partner account](https://man
 * EN: No visitor data is transmitted to TIVENTS. The products via API are only retrieved at the moment a page with one of the shortcodes is called up.
 
 == Changelog ==
+
+= 2.0.5 =
+* small styling adjustments
 
 = 2.0.4 =
 * fix grid view

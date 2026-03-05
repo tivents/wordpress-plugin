@@ -1,5 +1,8 @@
 ## Changelog
 
+### 2.0.5
+*  small styling adjustments
+
 ### 2.0.4
 * fix grid view
 * simplify variable generation
