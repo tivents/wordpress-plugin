@@ -129,7 +129,7 @@ class Tivents_Product_Controller {
 
         $div .= '</div>';
         $div .= '</div>';
-        // $div .= TivProFeed_Views_Base::setFooter();
+        //  $div .= TivProFeed_Views_Base::setFooter();
         $div .= '</div>';
 
         return $div;
