@@ -1,5 +1,9 @@
 ## Changelog
 
+### 2.0.6
+* fix limit handling
+* add card in grid view if there are no products
+
 ### 2.0.5
 *  small styling adjustments
 

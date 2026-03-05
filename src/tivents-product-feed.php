@@ -2,7 +2,7 @@
 /**
  * Plugin Name: TIVENTS Products Feed
  * description: Crawl products form tivents
- * Version: 2.0.5
+ * Version: 2.0.6
  *
  * Author: tivents
  * Author URI: https://tivents.info/
@@ -29,7 +29,7 @@ require_once 'controllers/class-tivents-product-controller.php';
 require_once 'controllers/class-tivents-settings-controller.php';
 require_once 'controllers/class-tivents-registration-controller.php';
 
-define( 'TIVENTPRO_CURRENT_VERSION', '2.0.5' );
+define( 'TIVENTPRO_CURRENT_VERSION', '2.0.6' );
 
 function register_styles() {
     if(!wp_style_is('tiv-plugin-style', 'enqueued' )) {
@@ -202,10 +202,16 @@ function tivents_get_api_url( $attributs  ) {
         $apiURL .= '&filter[hosts_globalid]='.get_option('tivents_partner_id');
         if ( $type == 'events' ) {
             $apiURL .= '&filter[product_type]=1';
+            $apiURL .= '&filter[type]=3';
             $apiURL .= '&sort=start';
 
         } elseif ( $type == 'coupons' ) {
             $apiURL .= '&filter[product_type]=2';
+            $apiURL .= '&filter[type]=3';
+        }
+        elseif ( $type == 'certificates' ) {
+            $apiURL .= '&filter[product_type]=6';
+            $apiURL .= '&filter[type]=3';
         }
     }
 
@@ -222,15 +228,15 @@ function tivents_get_api_url( $attributs  ) {
         }
     }
 
-    if ( is_int( $limit ) ) {
-        $apiURL .= '&limit='.$limit;
-    }
-
     if ( $category != 'category' ) {
         $apiURL .= '&filter[category]='.$category;
-    } else if ( $limit == 'limit' && get_option( 'tivents_per_page' ) != null ) {
+    }
+
+    if ( $limit != 'limit') {
+        $apiURL .= '&limit='.$limit;
+    } elseif (get_option( 'tivents_per_page' ) != null){
         $apiURL .= '&limit='.get_option( 'tivents_per_page');
-    } else {
+    }else {
         $apiURL .= '&limit=400';
     }
 

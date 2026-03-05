@@ -92,7 +92,7 @@ class Tivents_Settings_Controller {
 			<h2>Shortcode</h2>
 			<h2>Nutzung</h2>
 			<p>Kopieren Sie einfach einen der folgenden Shortcodes in die Seite auf der die Produkte angezeigt werden sollen.)</p>
-			<p>Als optionaler Parameter kann dabei: "qty" genutzt werden. Z.B: [tivents_products qty=6][/tivents_products] Hier werden dann 6 Produkte angezeigt.</p>
+			<p>Als optionaler Parameter kann dabei: "limit" genutzt werden. Z.B: [tivents_products limit=6][/tivents_products] Hier werden dann 6 Produkte angezeigt.</p>
 			<table>
 				<thead>
 				<td><h2>Listenansicht</h2></td>

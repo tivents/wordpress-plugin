@@ -15,6 +15,8 @@ class Tivents_Grid_View {
 	static function tivents_set_grid_view( $results ) {
 		$div = '';
 
+        $productCounter = 0;
+
         foreach ( $results['data'] as $result ) {
 
 			if ( $result['type'] == 2 ) {
@@ -33,8 +35,26 @@ class Tivents_Grid_View {
 			$div .= '</div>';
 			$div .= '</a>';
 			$div .= '</div>';
+
+            $productCounter++;
 		}
 
-		return $div;
+        if($productCounter == 0) {
+            $div .= '<div class="tiv-product-l tiv-product-m tiv-product-s">';
+            $div .= '<div class="tiv-sheet tiv-border">';
+            $div .= '<div class="tiv-sheet-inner">';
+            $div .= '<div class="tiv-sheet-left">';
+            $div .= '<div class="tiv-product-name tiv-font">Zur Zeit gibt es keine Produkte</div>';$div .= '</div>';
+            $div .= '<div class="tiv-sheet-right">';
+            $div .= '</div>';
+            $div .= '</div>';
+            $div .= '</a>';
+            $div .= '</div>';
+            $div .= '</div>';
+
+            return $div;
+        } else {
+            return $div;
+        }
 	}
 }
