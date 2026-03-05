@@ -234,6 +234,10 @@ function tivents_get_api_url( $attributs  ) {
         $apiURL .= '&limit=400';
     }
 
+    $apiURL .= '&scope=public';
+
+    var_dump($apiURL);
+
     return $apiURL;
 }
 
