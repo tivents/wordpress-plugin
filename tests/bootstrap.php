@@ -5,6 +5,7 @@
  */
 
 define('WP_TESTS_DIR', getenv('WP_TESTS_DIR') ?: '/tmp/wordpress-tests-lib');
+define('WP_TESTS_PHPUNIT_POLYFILLS_PATH', dirname(__DIR__) . '/vendor/yoast/phpunit-polyfills');
 
 require_once WP_TESTS_DIR . '/includes/functions.php';
 
