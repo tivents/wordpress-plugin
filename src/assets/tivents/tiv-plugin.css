@@ -91,7 +91,7 @@ a {
 .tiv-product-name {
 	font-size: 110%;
 	line-height: 1.125;
-	min-height: 3.375em;
+	min-height: 5em;
 	color: var(--tiv-text-color);
 }
 .tiv-product-date {
@@ -122,8 +122,8 @@ a {
 	line-height: 0em;
 }
 .tiv-sheet-grid {
-	width: 25%;
-	padding-top: 18.9%;
+	width: 50%;
+	padding-top: 35%;
 	float: left;
 	position: relative;
 }
@@ -273,4 +273,8 @@ a:hover .tiv-grid-hover {
 .tivents-product-card-title {
     line-height:1em;
     min-height:3em;
+}
+
+.tivents-list-element {
+	margin: 2px;
 }
