@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="tests/bootstrap.php">
+<phpunit bootstrap="tests/unit-bootstrap.php"
+         colors="true"
+         failOnWarning="true">
     <testsuites>
-        <testsuite name="TIVENTS Plugin Tests">
-            <directory prefix="test-" suffix=".php">./tests/</directory>
+        <testsuite name="Unit Tests">
+            <directory suffix="Test.php">./tests/controllers/</directory>
         </testsuite>
     </testsuites>
 </phpunit>

@@ -3,49 +3,74 @@ name: TIVENTS WordPress Plugin Tests
 on: [push, pull_request]
 
 jobs:
-  test:
+  # ── 1. Unit tests – no database, no WordPress ────────────────────────────
+  unit-tests:
+    name: Unit Tests (PHP ${{ matrix.php }})
     runs-on: ubuntu-latest
-    services:
-      mysql:
-        image: mysql:5.7
-        env:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: wordpress
-          MYSQL_USER: wordpress
-          MYSQL_PASSWORD: wordpress
-        ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    strategy:
+      matrix:
+        php: ['8.1', '8.2', '8.3']
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup PHP
+      - name: Setup PHP ${{ matrix.php }}
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.0'
-          extensions: mbstring, dom, xml, mysql
+          php-version: ${{ matrix.php }}
+          extensions: mbstring, dom, xml, json, curl
+          coverage: none
 
-      - name: Install WordPress
-        run: |
-          wp core download --path=wordpress
-          wp config create --dbname=wordpress --dbuser=wordpress --dbpass=wordpress --dbhost=127.0.0.1 --path=wordpress
-          wp db create --path=wordpress
-          wp core install --url=http://localhost --title="TIVENTS Test Site" --admin_user=admin --admin_password=admin --admin_email=admin@example.com --path=wordpress
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress --no-interaction
 
-      - name: Install and activate TIVENTS plugin
-        run: |
-          cp -r ${{ github.workspace }} /tmp/tivents-plugin
-          wp plugin install /tmp/tivents-plugin --activate --path=wordpress
+      - name: Run unit tests
+        run: ./vendor/bin/phpunit --configuration phpunit.xml
 
-      - name: Configure TIVENTS plugin
-        run: |
-          wp config set TIVENTS_PARTNER_ID "test1234" --path=wordpress
-          wp config set TIVENTS_API_URL "https://api.tivents.info/public" --path=wordpress
+  # ── 2. Integration tests – full WordPress environment ────────────────────
+  integration-tests:
+    name: Integration Tests (WordPress ${{ matrix.wp }})
+    runs-on: ubuntu-latest
 
-      - name: Run PHPUnit tests
-        run: |
-          cd ${{ github.workspace }}
-          composer install
-          ./vendor/bin/phpunit
+    strategy:
+      matrix:
+        wp: ['latest', '6.4']
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: wordpress_test
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP 8.1
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: mbstring, dom, xml, mysql, mysqli
+          coverage: none
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: Install Subversion (needed for WP test suite)
+        run: sudo apt-get install -y subversion
+
+      - name: Install WordPress test suite
+        run: bash bin/install-wp-tests.sh wordpress_test root root 127.0.0.1 ${{ matrix.wp }}
+
+      - name: Run integration tests
+        run: ./vendor/bin/phpunit --configuration phpunit.integration.xml
