@@ -16,17 +16,16 @@ if (get_option('tivents_partner_id')) {
     if (isset( $attributes['activated'] ) &&  $attributes['activated']) {
 
         if (!empty($attributes['productId'])) {
-            $apiURL = 'https://products.tivents.net/public/v2/'.$attributes['productId'];
+            $apiURL = 'https://public.tivents.io/products/v1/'.$attributes['productId'];
             $product = tivents_call_api($apiURL);
 
             if (is_null($product)) {
                 $block_content = '<p ' . get_block_wrapper_attributes() . '>Product not found</p>';
             } else {
                 if (isset( $attributes['showChildren'] ) &&  $attributes['showChildren'] && $product['product_group_id']) {
-                    $apiURL = 'https://products.tivents.net/public/v2?_sortField=start&_sortDir=ASC';
-                    $filter['product_group_id'] = $product['product_group_id'];
-                    $filter['hosts_globalid'] = get_option('tivents_partner_id');
-                    $apiURL .= '&_filters=' . json_encode( $filter );
+                    $apiURL = 'https://public.tivents.io/products/v1?sort=start';
+                    $apiURL .= '&filter[product_group_id]='.$product['product_group_id'];
+                    $apiURL .= '&filter[hosts_globalid]='.get_option('tivents_partner_id');
                     $children = tivents_call_api($apiURL);
                 }
                 $block_content = '<div class="tivents-product-details">';
