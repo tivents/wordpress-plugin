@@ -1,5 +1,8 @@
 ## Changelog
 
+### 2.1.4
+* adjust screenshots
+
 ### 2.1.3
 * fix plugin version numbers
 

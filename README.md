@@ -4,7 +4,7 @@ Contributors: aldrahastur, tivents
 Tags: events, tickets
 Requires at least: 3.0.1
 Tested up to: 7.1.3
-Stable tag: 2.1.3
+Stable tag: 2.1.4
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -38,9 +38,10 @@ You need your partner ID. You will find it in your partner account (https://mana
 
 ## Screenshots
 
-1. Admin Bereich
-2. Short Code Einbindung
-3. Ansicht auf der Seite
+1. Listenansicht
+2. Kachelansicht
+3. Admin Bereich
+4. Shortcode-Einbindung
 
 ## Installation
 
