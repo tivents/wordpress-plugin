@@ -1,5 +1,8 @@
 ## Changelog
 
+### 2.1.1
+* downgrade php requirements
+
 ### 2.1.0
 * add calendar load setting to load the css and js every time
 * update fullcalendar to 7.1.1
