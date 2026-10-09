@@ -69,6 +69,12 @@ You need your partner ID. You will find it in your [partner account](https://man
 
 == Changelog ==
 
+= 2.1.3 =
+* fix plugin version numbers
+
+= 2.1.2 =
+* add language support
+
 = 2.1.1 =
 * downgrade php requirement
 

@@ -1,5 +1,11 @@
 ## Changelog
 
+### 2.1.3
+* fix plugin version numbers
+
+### 2.1.2
+* add language support
+
 ### 2.1.1
 * downgrade php requirements
 
