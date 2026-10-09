@@ -2,7 +2,7 @@
 /**
  * Plugin Name: TIVENTS Products Feed
  * description: Crawl products form tivents
- * Version: 2.0.6
+ * Version: 2.1.0
  *
  * Author: tivents
  * Author URI: https://tivents.info/
@@ -29,7 +29,7 @@ require_once 'controllers/class-tivents-product-controller.php';
 require_once 'controllers/class-tivents-settings-controller.php';
 require_once 'controllers/class-tivents-registration-controller.php';
 
-define( 'TIVENTPRO_CURRENT_VERSION', '2.0.6' );
+define( 'TIVENTPRO_CURRENT_VERSION', '2.1.0' );
 
 function register_styles() {
     if(!wp_style_is('tiv-plugin-style', 'enqueued' )) {
@@ -40,29 +40,42 @@ function register_styles() {
 
 function register_fullcalendar()
 {
-    if(!wp_style_is('fullcalendar_style', 'enqueued' )) {
-        wp_register_style( 'fullcalendar_style', plugins_url( 'assets/fullcalendar/main.min.css', __FILE__ ) );
-        wp_enqueue_style( 'fullcalendar_style' );
-    }
     if(!wp_script_is( 'fullcalendar_core_script', 'enqueued' )) {
-        wp_register_script( 'fullcalendar_core_script', plugins_url( 'assets/fullcalendar/main.min.js', __FILE__ ) );
+        wp_register_script( 'fullcalendar_core_script', plugins_url( 'assets/fullcalendar/fullcalendar.global.js', __FILE__ ) );
         wp_enqueue_script('fullcalendar_core_script');
     }
 
     if(!wp_script_is( 'fullcalendar_locale_script', 'enqueued' )) {
-        wp_register_script( 'fullcalendar_locale_script', plugins_url( 'assets/fullcalendar/locales-all.min.js', __FILE__ ) );
+        wp_register_script( 'fullcalendar_locale_script', plugins_url( 'assets/fullcalendar/locales-all/global.js', __FILE__ ) );
         wp_enqueue_script('fullcalendar_locale_script');
     }
+
+
+    if(!wp_style_is('fullcalendar_style', 'enqueued' )) {
+        wp_register_style( 'fullcalendar_style', plugins_url( 'assets/fullcalendar/skeleton.css', __FILE__ ) );
+        wp_enqueue_style( 'fullcalendar_style' );
+    }
+
+    if(!wp_script_is( 'fullcalendar_theme_script', 'enqueued' )) {
+        wp_register_script( 'fullcalendar_theme_script', plugins_url( 'assets/fullcalendar/themes/pulse/global.js', __FILE__ ) );
+        wp_enqueue_script('fullcalendar_theme_script');
+    }
+
+    if(!wp_style_is( 'fullcalendar_theme_style', 'enqueued' )) {
+        wp_register_style( 'fullcalendar_theme_style', plugins_url( 'assets/fullcalendar/themes/pulse/theme.css', __FILE__ ) );
+        wp_enqueue_style('fullcalendar_theme_style');
+    }
+
+    if(!wp_style_is( 'fullcalendar_theme_palette', 'enqueued' )) {
+        wp_register_style( 'fullcalendar_theme_palette', plugins_url( 'assets/fullcalendar/themes/pulse/palettes/blue.css', __FILE__ ) );
+        wp_enqueue_style('fullcalendar_theme_palette');
+    }
+
 
     if(!wp_style_is('tiv-calender-style', 'enqueued' )) {
         wp_register_style( 'tiv-calender-style', plugins_url( 'assets/tivents/tiv-calendar.css', __FILE__ ) );
         wp_enqueue_style('tiv-calender-style');
     }
-
-    /*if(!wp_script_is('tiv-calendar-js', 'enqueued' )) {
-        wp_register_script( 'tiv-calendar-js', plugins_url( 'assets/tivents/tiv-calendar.js', __FILE__ ) );
-        wp_enqueue_script('tiv-calendar-js');
-    }*/
 }
 
 function register_sweetalert()
@@ -130,7 +143,9 @@ function tivents_products_feed_register_settings() {
     add_option( 'tivents_per_page', null );
     add_option( 'tivents_default_date', null );
     add_option( 'tivents_partner_api_key', null );
+    add_option( 'tivents_demo_environment', 0 );
 
+    register_setting( 'tivents_products_feed_options_group', 'tivents_demo_environment', 'tivents_products_feed_callback' );
     register_setting( 'tivents_products_feed_options_group', 'tivents_partner_id', 'tivents_products_feed_callback' );
     register_setting( 'tivents_products_feed_options_group', 'tivents_per_page', 'tivents_products_feed_callback' );
     register_setting( 'tivents_products_feed_options_group', 'tivents_partner_api_key', 'tivents_products_feed_callback' );
@@ -186,7 +201,11 @@ function tivents_get_api_url( $attributs  ) {
         )
     );
 
-    $apiURL = 'https://public.tivents.io/products/v1?filter[status]=400';
+    if(get_option( 'tivents_demo_environment' ) == 1) {
+        $apiURL = 'https://public.api.tivdev.de/products/v1?filter[status]=400';
+    } else {
+        $apiURL = 'https://public.tivents.io/products/v1?filter[status]=400';
+    }
 
     if ( get_option( 'tivents_partner_id' ) == null || get_option( 'tivents_partner_id' ) == 'all-area' ) {
         $apiURL .= match($type) {
@@ -195,6 +214,7 @@ function tivents_get_api_url( $attributs  ) {
             'certificates' => '&filter[product_type]=6',
         };
     } elseif ( $style == 'calendar' ) {
+        $apiURL .= '&sort=start';
         $apiURL .= '&filter[product_type]=1';
         $apiURL .= '&filter[is_group_product]=0';
         $apiURL .= '&filter[hosts_globalid]='.get_option('tivents_partner_id');

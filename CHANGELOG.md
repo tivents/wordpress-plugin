@@ -1,5 +1,10 @@
 ## Changelog
 
+### 2.1.0
+* add calendar load setting to load the css and js every time
+* update fullcalendar to 7.1.1
+* prepare demo environment
+
 ### 2.0.6
 * fix limit handling
 * add card in grid view if there are no products

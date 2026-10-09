@@ -118,6 +118,7 @@ class Tivents_List_View {
     }
 
     static function setUnstyledList( $results) {
+
         $div = '<div id="tivents-product-list">';
 
         foreach ( $results['data'] as $result ) {

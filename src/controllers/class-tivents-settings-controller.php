@@ -18,6 +18,17 @@ class Tivents_Settings_Controller {
 			<form method="post" action="options.php">
 				<?php settings_fields( 'tivents_products_feed_options_group' ); ?>
 				<table class="form-table">
+                    <tr>
+                        <th scope="row"><label for="tivents_demo_environment">Demo-Umgebung</label></th>
+                        <td>
+                            <select id="tivents_demo_environment" name="tivents_demo_environment">
+                                <option value="1" <?php selected( get_option( 'tivents_demo_environment' ), 1); ?>>Ja</option>
+                                <option value="0" <?php selected( get_option( 'tivents_demo_environment' ), 0 ); ?>>Nein</option>
+                            </select>
+                            <p class="description">Soll das Kalender dauerhaft geladen werden? Value: <?php echo get_option( 'tivents_demo_environment' ); ?></p>
+                        </td>
+                    </tr>
+
 					<tr>
 						<th scope="row"><label for="tivents_partner_id">Ihre Partner ID</label></th>
 						<td>

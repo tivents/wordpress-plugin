@@ -1,63 +1,61 @@
 document.addEventListener(
     'DOMContentLoaded',
     function () {
-        let calendarEl = document.getElementById( elementId );
-        let calendar   = new FullCalendar.Calendar(
-            calendarEl,
-            {
-                headerToolbar: {
-                    end : 'dayGridWeek dayGridMonth today prev,next',
-                    start: 'title'
-                },
-                titleFormat: {
-                    month: 'short',
-                    year: 'numeric'
-                },
-                themeSystem: 'standard',
+        const calendarEl = document.getElementById(elementId);
 
-                dateClick: function(info) {
-                    showEventsForDate(info.dateStr);
-                },
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+            headerToolbar: {
+                end : 'dayGridWeek dayGridMonth multiMonthYear today prev,next',
+                start: 'title'
+            },
 
-                // height: 'auto',
-                locale: 'de',
-                firstDay: 1,
-                selectable: true,
-                initialView: 'dayGridMonth',
-                initialDate: defaultDate,
-                lazyFetching: true,
-                events: {
-                    url: '/wp-json/tivents/calendar/v1/events/',
-                    method: 'get',
-                    extraParams: {
-                        'groupId': groupId ?? null
-                    },
-                    failure: function () {
-                        return {};
-                    },
-                },
-                dayMaxEventRows: 5,
-                moreLinkClick: function( info ) {
-                    console.log(info.date);
-                    const clickedDate = info.date.getFullYear()+'-'+info.date.getMonth()+'-'+info.date.getDate();
-                    showEventsForDate(clickedDate);
-                },
-                height: 'auto',
-                eventDisplay: 'block',
-                eventTimeFormat: {
-                    hour: '2-digit',
-                    minute: '2-digit'
-                },
-                eventDidMount: function (info) {
-                    info.el.className = info.el.className + ' tiv-status-' + info.event.extendedProps.warning_level;
-                },
-                eventClick( info ) {
-                    const clickedDate = info.event.startStr.split('T')[0];
-                    showEventsForDate(clickedDate);
-                },
-            }
-        );
+            locale: 'de',
 
+            titleFormat: {
+                month: 'short',
+                year: 'numeric'
+            },
+
+            initialView: "dayGridMonth",
+            initialDate: defaultDate,
+
+            dayMaxEventRows: 5,
+
+            eventDisplay: 'block',
+            eventTimeFormat: {
+                hour: '2-digit',
+                minute: '2-digit'
+            },
+
+            moreLinkClick: function( info ) {
+                console.log(info.date);
+                const clickedDate = info.date.getFullYear()+'-'+info.date.getMonth()+'-'+info.date.getDate();
+                showEventsForDate(clickedDate);
+            },
+
+            events: {
+                url: '/wp-json/tivents/calendar/v1/events/',
+                method: 'get',
+                extraParams: {
+                    'groupId': groupId ?? null
+                },
+                failure: function () {
+                    return {};
+                },
+            },
+            dateClick: function(info) {
+                showEventsForDate(info.dateStr);
+            },
+
+            eventDidMount: function (info) {
+                info.el.className = info.el.className + ' tiv-status-' + info.event.extendedProps.warning_level;
+            },
+
+            eventClick( info ) {
+                const clickedDate = info.event.startStr.split('T')[0];
+                showEventsForDate(clickedDate);
+            },
+        });
         calendar.render();
 
         function showEventsForDate(dateStr) {
@@ -78,9 +76,9 @@ document.addEventListener(
                     const time = event.start ? event.start.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}) : '';
 
                     if(event.extendedProps.warning_level === 3) {
-                        html += `<li class="btn btn-danger mr-2 swal2-styled">${time ? time : ''}</li>`;
+                        html += `<li class="tivents-calender-modal-list btn btn-danger m-2 swal2-styled">${time ? time : ''}</li>`;
                     } else {
-                        html += `<a href="${event.extendedProps.short_url}" ><li class="btn btn-success tivents-button-success mr-2 swal2-styled">${time ? time : ''}</li></a>`;
+                        html += `<a href="${event.extendedProps.short_url}" ><li class="tivents-calender-modal-list btn btn-success tivents-button-success m-2 swal2-styled">${time ? time : ''}</li></a>`;
                     }
 
                 });
@@ -93,7 +91,7 @@ document.addEventListener(
                 {
                     width: '48em',
                     customClass: {
-                        confirmButton: 'btn btn-success mr-2',
+                        confirmButton: 'btn btn-success m-2',
                         cancelButton: 'btn btn-danger'
                     },
 
