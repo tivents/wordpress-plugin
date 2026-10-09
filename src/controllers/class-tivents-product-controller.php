@@ -53,8 +53,8 @@ class Tivents_Product_Controller {
         if ( get_option( 'tivents_partner_id' ) == null ) {
             $div  = '<div id="tivents-main" class="tiv-main">';
             $div .= '<div id="tivents-container" class="tiv-container">';
-            $div .= '<h4 id="tivents-container-heading">Hier ist was nicht richtig eingestellt.</h4>';
-            $div .= '<small>Die Partner ID fehlt.</small>';
+            $div .= '<h4 id="tivents-container-heading">' . esc_html__( 'Hier ist was nicht richtig eingestellt.', 'tivents_products_feed' ) . '</h4>';
+            $div .= '<small>' . esc_html__( 'Die Partner ID fehlt.', 'tivents_products_feed' ) . '</small>';
             $div .= '</div>';
             $div .= '</div>';
             return $div;
@@ -104,10 +104,10 @@ class Tivents_Product_Controller {
                 $div .= '<style>body: {background: #000000 !important;}</style>';
                 $div .= Tivents_Calendar_View::tivents_set_calendar_view( $results, $divid, $atts['group'] ?? null );
                 $div .= '</div>';
-                $div .= '<div id="tivents-calendar-legend" class="mt-3"><h3>Legende:<br>';
-                $div .= '<div id="tivents-calendar-legend-success" >Frei</div>';
-                $div .= '<div id="tivents-calendar-legend-warning" >Geringe Verfügbarkeit</div>';
-                $div .= '<div id="tivents-calendar-legend-danger" >Ausverkauft</div>';
+                $div .= '<div id="tivents-calendar-legend" class="mt-3"><h3>' . esc_html__( 'Legende:', 'tivents_products_feed' ) . '<br>';
+                $div .= '<div id="tivents-calendar-legend-success" >' . esc_html__( 'Frei', 'tivents_products_feed' ) . '</div>';
+                $div .= '<div id="tivents-calendar-legend-warning" >' . esc_html__( 'Geringe Verfügbarkeit', 'tivents_products_feed' ) . '</div>';
+                $div .= '<div id="tivents-calendar-legend-danger" >' . esc_html__( 'Ausverkauft', 'tivents_products_feed' ) . '</div>';
                 $div .= '</h3></div>';
 
                 break;

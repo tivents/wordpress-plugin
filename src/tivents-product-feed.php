@@ -109,7 +109,7 @@ add_shortcode( 'tivents_sponsorships', 'tivents_sponsorships_feed_show' );
 function tivents_products_feed_setup_menu() {
     add_menu_page(
         'TIVENTS',
-        'TIVENTS Einstellungen',
+        __( 'TIVENTS Einstellungen', 'tivents_products_feed' ),
         'manage_options',
         'tivents_products_feed-settings',
         'tivents_products_feed_init',
@@ -117,16 +117,16 @@ function tivents_products_feed_setup_menu() {
     );
     add_submenu_page(
         'tivents_products_feed-settings',
-        'Info/Nutzung',
-        'Info/Nutzung',
+        __( 'Info/Nutzung', 'tivents_products_feed' ),
+        __( 'Info/Nutzung', 'tivents_products_feed' ),
         'manage_options',
         'infos',
         'tivents_show_plugin_infos'
     );
     add_submenu_page(
         'tivents_products_feed-settings',
-        'Kalendareinstellungen',
-        'Kalendareinstellungen',
+        __( 'Kalendareinstellungen', 'tivents_products_feed' ),
+        __( 'Kalendareinstellungen', 'tivents_products_feed' ),
         'manage_calendar',
         'calendar',
         'show_calendar_settings'
@@ -157,8 +157,18 @@ function tivents_products_feed_register_settings() {
     register_setting( 'tivents_products_feed_options_group', 'tivents_text_color', 'tivents_products_feed_callback' );
 }
 
+function tivents_products_feed_load_textdomain() {
+    load_plugin_textdomain(
+        'tivents_products_feed',
+        false,
+        dirname( plugin_basename( __FILE__ ) ) . '/languages'
+    );
+}
+add_action( 'init', 'tivents_products_feed_load_textdomain' );
+
 function create_block_copyright_date_block_init() {
     register_block_type( __DIR__ . '/build' );
+    wp_set_script_translations( 'tivents-product-list-editor-script', 'tivents_products_feed', plugin_dir_path( __FILE__ ) . '/languages' );
 }
 add_action( 'init', 'create_block_copyright_date_block_init' );
 

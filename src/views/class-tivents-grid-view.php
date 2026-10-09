@@ -44,7 +44,7 @@ class Tivents_Grid_View {
             $div .= '<div class="tiv-sheet tiv-border">';
             $div .= '<div class="tiv-sheet-inner">';
             $div .= '<div class="tiv-sheet-left">';
-            $div .= '<div class="tiv-product-name tiv-font">Zur Zeit gibt es keine Produkte</div>';$div .= '</div>';
+            $div .= '<div class="tiv-product-name tiv-font">' . esc_html__( 'Zur Zeit gibt es keine Produkte', 'tivents_products_feed' ) . '</div>';$div .= '</div>';
             $div .= '<div class="tiv-sheet-right">';
             $div .= '</div>';
             $div .= '</div>';

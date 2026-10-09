@@ -1,0 +1,296 @@
+# Copyright (C) 2026 TIVENTS
+# This file is distributed under the GPL-2.0-or-later license.
+msgid ""
+msgstr ""
+"Project-Id-Version: TIVENTS Products Feed 2.1.1\n"
+"Report-Msgid-Bugs-To: https://github.com/tivents/tivents-products-feed/issues\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-09T12:00:00+00:00\n"
+"X-Domain: tivents_products_feed\n"
+
+#: block/block.json
+msgctxt "block title"
+msgid "TIVENTS Product"
+msgstr ""
+
+#: block/block.json
+msgctxt "block description"
+msgid "Display your product on your page."
+msgstr ""
+
+#: tivents-product-feed.php:112
+msgid "TIVENTS Einstellungen"
+msgstr ""
+
+#: tivents-product-feed.php:120 tivents-product-feed.php:121
+msgid "Info/Nutzung"
+msgstr ""
+
+#: tivents-product-feed.php:128 tivents-product-feed.php:129
+msgid "Kalendareinstellungen"
+msgstr ""
+
+#: controllers/class-tivents-product-controller.php:56 views/class-tivents-sponsorship-view.php:33 views/class-tivents-sponsorship-view.php:42
+msgid "Hier ist was nicht richtig eingestellt."
+msgstr ""
+
+#: controllers/class-tivents-product-controller.php:57 views/class-tivents-sponsorship-view.php:34
+msgid "Die Partner ID fehlt."
+msgstr ""
+
+#: controllers/class-tivents-product-controller.php:87
+msgid "Zur Zeit gibt es keine Produkte. Vielleicht später?"
+msgstr ""
+
+#: controllers/class-tivents-product-controller.php:107
+msgid "Legende:"
+msgstr ""
+
+#: controllers/class-tivents-product-controller.php:108
+msgid "Frei"
+msgstr ""
+
+#: controllers/class-tivents-product-controller.php:109
+msgid "Geringe Verfügbarkeit"
+msgstr ""
+
+#: controllers/class-tivents-product-controller.php:110
+msgid "Ausverkauft"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:17
+msgid "TIVENTS Plugin Settings"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:22
+msgid "Demo-Umgebung"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:25 controllers/class-tivents-settings-controller.php:86
+msgid "Ja"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:26 controllers/class-tivents-settings-controller.php:87
+msgid "Nein"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:28 controllers/class-tivents-settings-controller.php:89
+msgid "Soll das Kalender dauerhaft geladen werden?"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:33
+msgid "Ihre Partner ID"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:36
+msgid "Ihre Partner ID finden Sie, wenn Sie dort eingeloggt sind, in Ihrem tivents-Partnerbereich unter folgendem Link:"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:40
+msgid "Anzahl der anzuzeigenden Produkte"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:42
+msgid "z.B. 5"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:43
+msgid "Wie viele Produkte sollen angezeigt werden?"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:47
+msgid "API Key"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:49
+msgid "z.B. asdasd-asdas-asdasdasd-asdasdasd-asd"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:50
+msgid "Bitte bei TIVENTS erfragen"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:54
+msgid "Anfangsdatum"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:57
+msgid "Bitte im Format YYYY-MM-DD eingeben. Z.B. 2020-01-28"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:61
+msgid "Primäre Farbe"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:64
+msgid "Farbe für den Streifen an der Seite und den Hoover Effekt. Standard: #F5C800"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:68
+msgid "Sekundäre Farbe"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:71
+msgid "Farbe für den Ort, Laufzeit oder Datum. Standard: #000000"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:75
+msgid "Text Farbe"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:78
+msgid "Farbe für den Produktnamen. Standard: #000000"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:83
+msgid "Kalender laden"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:102
+msgid "TIVENTS Plugin Usage"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:104
+msgid "Nutzung"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:105
+msgid "Kopieren Sie einfach einen der folgenden Shortcodes in die Seite auf der die Produkte angezeigt werden sollen.)"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:106
+msgid "Als optionaler Parameter kann dabei: \"limit\" genutzt werden. Z.B: [tivents_products limit=6][/tivents_products] Hier werden dann 6 Produkte angezeigt."
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:109
+msgid "Listenansicht"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:110
+msgid "Kachelansicht"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:111
+msgid "Kalendaransicht"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:115 controllers/class-tivents-settings-controller.php:119
+msgid "für alle Produkte"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:127 controllers/class-tivents-settings-controller.php:131
+msgid "nur für Gutscheine"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:138 controllers/class-tivents-settings-controller.php:142 controllers/class-tivents-settings-controller.php:146
+msgid "nur für Events"
+msgstr ""
+
+#: controllers/class-tivents-settings-controller.php:152 controllers/class-tivents-settings-controller.php:153 controllers/class-tivents-settings-controller.php:154
+msgid "Beispiel:"
+msgstr ""
+
+#: views/class-tivents-base-view.php:9
+msgid "build with"
+msgstr ""
+
+#: views/class-tivents-calendar-view.php:60
+msgid "Schließen"
+msgstr ""
+
+#: views/class-tivents-grid-view.php:47 views/class-tivents-list-view.php:53
+msgid "Zur Zeit gibt es keine Produkte"
+msgstr ""
+
+#: views/class-tivents-sponsorship-view.php:43
+msgid "Api Key fehlt."
+msgstr ""
+
+#: views/class-tivents-sponsorship-view.php:43
+msgid "Weitere Informationen"
+msgstr ""
+
+#: views/class-tivents-sponsorship-view.php:66
+msgid "Zur Zeit gibt es keine Sponsoren. Vielleicht sind Sie der erste?"
+msgstr ""
+
+#: views/class-tivents-sponsorship-view.php:66
+msgid "Zur Buchung"
+msgstr ""
+
+#: block/render.php:23 block/edit.js:53 block/edit.js:82 block/edit.js:89
+msgid "Product not found"
+msgstr ""
+
+#: block/render.php:50
+msgid "Weitere Termine"
+msgstr ""
+
+#: block/render.php:53 block/render.php:61
+msgid "Jetzt buchen"
+msgstr ""
+
+#: block/render.php:69
+msgid "No vendor provided"
+msgstr ""
+
+#: block/edit.js:58
+msgid "TIVENTS Product ID"
+msgstr ""
+
+#: block/edit.js:61
+msgid "Add product id"
+msgstr ""
+
+#: block/edit.js:73
+msgid "Product ID"
+msgstr ""
+
+#: block/edit.js:100
+msgid "Set title"
+msgstr ""
+
+#: block/edit.js:110
+msgid "Set Title"
+msgstr ""
+
+#: block/edit.js:114
+msgid "TIVENTS Design Settings"
+msgstr ""
+
+#: block/edit.js:117
+msgid "Show Title"
+msgstr ""
+
+#: block/edit.js:128
+msgid "Show image"
+msgstr ""
+
+#: block/edit.js:140
+msgid "Show description"
+msgstr ""
+
+#: block/edit.js:152
+msgid "Show children"
+msgstr ""
+
+#: block/edit.js:164
+msgid "Display type"
+msgstr ""
+
+#: block/edit.js:170
+msgid "List"
+msgstr ""
+
+#: block/edit.js:171
+msgid "Grid"
+msgstr ""
+
+#: block/edit.js:172
+msgid "Calendar"
+msgstr ""
+

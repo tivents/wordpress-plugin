@@ -30,8 +30,8 @@ class Tivents_Sponsorship_View {
 		if ( get_option( 'tivents_partner_id' ) === null ) {
 			$div  = '<div class="tiv-main">';
 			$div .= '<div class="tiv-container">';
-			$div .= '<h4>Hier ist was nicht richtig eingestellt.</h4>';
-			$div .= '<small>Die Partner ID fehlt.</small>';
+			$div .= '<h4>' . esc_html__( 'Hier ist was nicht richtig eingestellt.', 'tivents_products_feed' ) . '</h4>';
+			$div .= '<small>' . esc_html__( 'Die Partner ID fehlt.', 'tivents_products_feed' ) . '</small>';
 			$div .= '</div>';
 			$div .= '</div>';
 			return $div;
@@ -39,8 +39,8 @@ class Tivents_Sponsorship_View {
 		if ( get_option( 'tivents_partner_api_key' ) === null ) {
 			$div  = '<div class="tiv-main">';
 			$div .= '<div class="tiv-container">';
-			$div .= '<h4>Hier ist was nicht richtig eingestellt.</h4>';
-			$div .= '<small>Api Key fehlt. <a href="https://docs.tivents.info/wordpress-plugin/api-key">Weitere Informationen</a> </small>';
+			$div .= '<h4>' . esc_html__( 'Hier ist was nicht richtig eingestellt.', 'tivents_products_feed' ) . '</h4>';
+			$div .= '<small>' . esc_html__( 'Api Key fehlt.', 'tivents_products_feed' ) . ' <a href="https://docs.tivents.info/wordpress-plugin/api-key">' . esc_html__( 'Weitere Informationen', 'tivents_products_feed' ) . '</a> </small>';
 			$div .= '</div>';
 			$div .= '</div>';
 			return $div;
@@ -63,7 +63,7 @@ class Tivents_Sponsorship_View {
 		if ( count( $results ) === 0 ) {
 			$div  = '<div class="tiv-main">';
 			$div .= '<div class="tiv-container">';
-			$div .= '<h4>Zur Zeit gibt es keine Sponsoren. Vielleicht sind Sie der erste? Zur Buchung: <a href="https://zoo-goerlitz.tivents.app/" target="_blank">Shop</a></h4>';
+			$div .= '<h4>' . esc_html__( 'Zur Zeit gibt es keine Sponsoren. Vielleicht sind Sie der erste?', 'tivents_products_feed' ) . ' <a href="https://zoo-goerlitz.tivents.app/" target="_blank">' . esc_html__( 'Zur Buchung', 'tivents_products_feed' ) . '</a></h4>';
 			$div .= '</div>';
 			$div .= '</div>';
 

@@ -57,7 +57,7 @@ class Tivents_Calendar_View {
 						<div class="tiv-product-link" id="product-link <?php if ( $divId != 'no-id' ) { echo esc_html( $divId ); } ?>"></div>
 					</div>
 					<div class="modal-footer">
-						<button id="close-button" type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
+						<button id="close-button" type="button" class="btn btn-secondary" data-dismiss="modal"><?php esc_html_e( 'Schließen', 'tivents_products_feed' ); ?></button>
 					</div>
 				</div>
 			</div>

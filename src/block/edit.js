@@ -50,7 +50,7 @@ import apiFetch from "@wordpress/api-fetch";
  * @return {Element} Element to render.
  */
 export default function Edit( { attributes, setAttributes } ) {
-	const { activated, productId, showTitle, showChildren, displayType, showImage, showDescription, productName = 'Product not found' } = attributes;
+	const { activated, productId, showTitle, showChildren, displayType, showImage, showDescription, productName = __( 'Product not found', 'tivents_products_feed' ) } = attributes;
 
 	return (
 		<>
@@ -79,14 +79,14 @@ export default function Edit( { attributes, setAttributes } ) {
 								setAttributes( { productId: value } )
 
 								if(value === '')  {
-									setAttributes({productName: 'Product not found'})
+									setAttributes({productName: __( 'Product not found', 'tivents_products_feed' )})
 								} else {
 									apiFetch( { path: 'tivents/api/v1/products?id='+value } ).then( ( product ) => {
 										if (product.hasOwnProperty('id')) {
 											setAttributes({productName: product.name})
 										}
 										else {
-											setAttributes({productName: 'Product not found'})
+											setAttributes({productName: __( 'Product not found', 'tivents_products_feed' )})
 										}
 									});
 								}
@@ -107,7 +107,7 @@ export default function Edit( { attributes, setAttributes } ) {
 									setAttributes( { productName: product.name } )
 								} );
 							}}
-						>Set Title</Button>
+						>{ __( 'Set Title', 'tivents_products_feed' ) }</Button>
 					) }
 				</PanelBody>
 				{ activated && productId && (
@@ -167,9 +167,9 @@ export default function Edit( { attributes, setAttributes } ) {
 								) }
 								value={ displayType }
 								options={ [
-									{ label: 'List', value: 'list' },
-									{ label: 'Grid', value: 'grid' },
-									{ label: 'Calendar', value: 'calendar' },
+									{ label: __( 'List', 'tivents_products_feed' ), value: 'list' },
+									{ label: __( 'Grid', 'tivents_products_feed' ), value: 'grid' },
+									{ label: __( 'Calendar', 'tivents_products_feed' ), value: 'calendar' },
 								] }
 								onChange={ ( displayType ) =>setAttributes( { displayType: value } ) }
 								__nextHasNoMarginBottom

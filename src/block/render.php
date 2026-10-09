@@ -20,7 +20,7 @@ if (get_option('tivents_partner_id')) {
             $product = tivents_call_api($apiURL);
 
             if (is_null($product)) {
-                $block_content = '<p ' . get_block_wrapper_attributes() . '>Product not found</p>';
+                $block_content = '<p ' . get_block_wrapper_attributes() . '>' . esc_html__( 'Product not found', 'tivents_products_feed' ) . '</p>';
             } else {
                 if (isset( $attributes['showChildren'] ) &&  $attributes['showChildren'] && $product['product_group_id']) {
                     $apiURL = 'https://public.tivents.io/products/v1?sort=start';
@@ -47,10 +47,10 @@ if (get_option('tivents_partner_id')) {
                 if (isset( $attributes['showChildren'] ) &&  $attributes['showChildren']) {
                     if (isset($children) && $children['total'] > 0) {
                         $block_content .= '<div class="row tivents-product-details-row">';
-                        $block_content .= '<div class="tivents-product-details-row tivents-children-wrapper"><p>Weitere Termine</p>';
+                        $block_content .= '<div class="tivents-product-details-row tivents-children-wrapper"><p>' . esc_html__( 'Weitere Termine', 'tivents_products_feed' ) . '</p>';
                         foreach ($children['items'] as $child) {
                             if($child['status'] >= 400 && $child['status'] <= 499) {
-                                $block_content .= '<div class="tivents-children-item tivents-product-details-row"><div class="col-md-6">' . $child['date'] . '</div><div class="col-md-6 float-end"><a href="' . $child['short_url'] . '" class="btn btn-sm btn-success">Jetzt buchen</a></div></div>';
+                                $block_content .= '<div class="tivents-children-item tivents-product-details-row"><div class="col-md-6">' . $child['date'] . '</div><div class="col-md-6 float-end"><a href="' . $child['short_url'] . '" class="btn btn-sm btn-success">' . esc_html__( 'Jetzt buchen', 'tivents_products_feed' ) . '</a></div></div>';
                             }
                         }
                         $block_content .= '</div></div>';
@@ -58,7 +58,7 @@ if (get_option('tivents_partner_id')) {
                 }
                 else {
                     if($product['status'] >= 400 && $product['status'] <= 499) {
-                        $block_content .= '<a href="'.$product['short_url'].'" class="btn btn-sm btn-success">Jetzt buchen</a>';
+                        $block_content .= '<a href="'.$product['short_url'].'" class="btn btn-sm btn-success">' . esc_html__( 'Jetzt buchen', 'tivents_products_feed' ) . '</a>';
                     }
                 }
                 $block_content .= '</div>';
@@ -66,7 +66,7 @@ if (get_option('tivents_partner_id')) {
         }
     }
 } else {
-    $block_content = '<p ' . get_block_wrapper_attributes() . '>No vendor provided</p>';
+    $block_content = '<p ' . get_block_wrapper_attributes() . '>' . esc_html__( 'No vendor provided', 'tivents_products_feed' ) . '</p>';
 }
 
 
