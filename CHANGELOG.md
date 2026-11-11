@@ -1,5 +1,10 @@
 ## Changelog
 
+### 2.2.0
+* add table view (style="table", optional images="true")
+* show availability in table view: hint for few remaining tickets, disabled "Ausverkauft" button when sold out
+* add shortcode parameters hide_date="true" and hide_place="true" for list, grid and table views
+
 ### 2.1.4
 * adjust screenshots
 

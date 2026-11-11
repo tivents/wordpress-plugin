@@ -155,6 +155,12 @@ class Tivents_Settings_Controller {
 				</tr>
 				</tfoot>
 			</table>
+			<h2><?php esc_html_e( 'Tabellenansicht', 'tivents_products_feed' ); ?></h2>
+			<p><b>[tivents_products style="table"][/tivents_products]</b></p>
+			<p><?php esc_html_e( 'Mit Vorschaubildern:', 'tivents_products_feed' ); ?> <b>[tivents_products style="table" images="true"][/tivents_products]</b></p>
+			<p><?php esc_html_e( 'Die Parameter "type" und "limit" können wie bei den anderen Ansichten genutzt werden.', 'tivents_products_feed' ); ?></p>
+			<h2><?php esc_html_e( 'Datum und Ort ausblenden', 'tivents_products_feed' ); ?></h2>
+			<p><?php esc_html_e( 'In der Listen-, Kachel- und Tabellenansicht können Datum und Ort ausgeblendet werden:', 'tivents_products_feed' ); ?> <b>[tivents_products style="list" hide_date="true" hide_place="true"][/tivents_products]</b></p>
 		</div>
 		<?php
 	}

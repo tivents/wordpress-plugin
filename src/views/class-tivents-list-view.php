@@ -13,7 +13,7 @@
 class Tivents_List_View {
 
 
-	static function setListWithImages( $results ) {
+	static function setListWithImages( $results, $showDate = true, $showPlace = true ) {
 		$div = '';
 
         $productCounter = 0;
@@ -30,8 +30,12 @@ class Tivents_List_View {
 			$div .= '<div class="tiv-sheet-inner">';
 			$div .= '<div class="tiv-sheet-left">';
 			$div .= '<div class="tiv-product-name tiv-font">' . $result['name'] . '</div>';
-			$div .= '<div class="tiv-product-date tiv-font">' . Tivents_Product_Controller::tivents_set_product_time( $result ) . '</div>';
-			$div .= '<div class="tiv-product-veneu tiv-font">' . $result['place'] . '</div>';
+			if ( $showDate ) {
+				$div .= '<div class="tiv-product-date tiv-font">' . Tivents_Product_Controller::tivents_set_product_time( $result ) . '</div>';
+			}
+			if ( $showPlace ) {
+				$div .= '<div class="tiv-product-veneu tiv-font">' . $result['place'] . '</div>';
+			}
 			$div .= '</div>';
 			$div .= '<div class="tiv-sheet-right">';
 			$div .= '<img class="tiv-product-img" src="' . Tivents_Product_Controller::set_image_url( $result ) . '" />';
@@ -66,9 +70,9 @@ class Tivents_List_View {
 	}
 
 
-	static function setListWithoutImages( $results ) {
+	static function setListWithoutImages( $results, $showDate = true, $showPlace = true ) {
 		$div = '';
-		foreach ( $results as $result ) {
+		foreach ( $results['data'] ?? [] as $result ) {
 			if ( $result['type'] == 2 ) {
 				continue;
 			}
@@ -79,8 +83,12 @@ class Tivents_List_View {
 			$div        .= '<div class="tiv-sheet-inner">';
 			$div        .= '<div class="tiv-sheet-left">';
 			$div        .= '<div class="tiv-product-name tiv-font">' . $result['name'] . '</div>';
-			$div        .= '<div class="tiv-product-date tiv-font">' . Tivents_Product_Controller::tivents_set_product_time( $result ) . '</div>';
-			$div        .= '<div class="tiv-product-veneu tiv-font">' . $result['place'] . '</div>';
+			if ( $showDate ) {
+				$div        .= '<div class="tiv-product-date tiv-font">' . Tivents_Product_Controller::tivents_set_product_time( $result ) . '</div>';
+			}
+			if ( $showPlace ) {
+				$div        .= '<div class="tiv-product-veneu tiv-font">' . $result['place'] . '</div>';
+			}
 			$div        .= '</div>';
 			$div        .= '</div>';
 			$div        .= '</a>';
@@ -91,7 +99,7 @@ class Tivents_List_View {
 		return $div;
 	}
 
-    static function setColumnList( $results, $columnQuantity = 2) {
+    static function setColumnList( $results, $columnQuantity = 2, $showDate = true, $showPlace = true ) {
         $div = '<div class="tiv-row row">';
 
         foreach ( $results['data'] as $result ) {
@@ -107,7 +115,7 @@ class Tivents_List_View {
                 default => '<div class="col-sm-6 p-2">',
             };
 
-            $div .= Tivents_Product_Controller::create_product_card( $result );
+            $div .= Tivents_Product_Controller::create_product_card( $result, $showDate, $showPlace );
 
             $div .= '</div>';
         }
@@ -117,7 +125,7 @@ class Tivents_List_View {
         return $div;
     }
 
-    static function setUnstyledList( $results) {
+    static function setUnstyledList( $results, $showDate = true, $showPlace = true ) {
 
         $div = '<div id="tivents-product-list">';
 
@@ -128,7 +136,7 @@ class Tivents_List_View {
             }
 
             $div .= '<div id="tivents-product-list-item">';
-            $div .= Tivents_Product_Controller::create_product_unstyled_card( $result );
+            $div .= Tivents_Product_Controller::create_product_unstyled_card( $result, $showDate, $showPlace );
             $div .= '</div>';
         }
 

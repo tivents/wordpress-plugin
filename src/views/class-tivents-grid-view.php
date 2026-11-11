@@ -12,7 +12,7 @@
 
 class Tivents_Grid_View {
 
-	static function tivents_set_grid_view( $results ) {
+	static function tivents_set_grid_view( $results, $showDate = true, $showPlace = true ) {
 		$div = '';
 
         $productCounter = 0;
@@ -29,8 +29,12 @@ class Tivents_Grid_View {
 			$div .= '<img class="tiv-grid-img tiv-sizer" src="' . Tivents_Product_Controller::set_image_url( $result ) . '" />';
             $div .= '<div class="tiv-grid-text tiv-product-name tiv-font">' . $result['name'] . '</div>';
 			$div .= '<div class="tiv-grid-hover">';
-			$div .= '<div class="tiv-grid-info tiv-product-date tiv-font">' . Tivents_Product_Controller::tivents_set_product_time( $result ) . '</div>';
-			$div .= '<div class="tiv-grid-info tiv-product-veneu tiv-font">' . $result['place'] . '</div>';
+			if ( $showDate ) {
+				$div .= '<div class="tiv-grid-info tiv-product-date tiv-font">' . Tivents_Product_Controller::tivents_set_product_time( $result ) . '</div>';
+			}
+			if ( $showPlace ) {
+				$div .= '<div class="tiv-grid-info tiv-product-veneu tiv-font">' . $result['place'] . '</div>';
+			}
 			$div .= '</div>';
 			$div .= '</div>';
 			$div .= '</a>';

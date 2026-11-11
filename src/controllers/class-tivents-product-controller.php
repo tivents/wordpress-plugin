@@ -19,12 +19,12 @@ class Tivents_Product_Controller {
     public static function set_image_url( $result ): string
     {
         if ( $result['cdn_image_key'] != null ) {
-            $imageUrl = 'https://cdn.tivents.io/' . $result['cdn_image_key'];
+            return 'https://cdn.tivents.io/' . $result['cdn_image_key'];
+        } elseif ($result['image_url'] != null ) {
+            return $result['image_url'];
         } else {
-            $imageUrl = $result['image_url'];
+            return 'https://placehold.co/800x600';
         }
-
-        return $imageUrl;
     }
 
     public static function tivents_set_product_time( $result ) {
@@ -90,9 +90,12 @@ class Tivents_Product_Controller {
             return $div;
         }
 
+        $showDate  = ! filter_var( $atts['hide_date'] ?? false, FILTER_VALIDATE_BOOLEAN );
+        $showPlace = ! filter_var( $atts['hide_place'] ?? false, FILTER_VALIDATE_BOOLEAN );
+
         switch ( $style ) {
             case 'grid':
-                $div .= Tivents_Grid_View::tivents_set_grid_view( $results );
+                $div .= Tivents_Grid_View::tivents_set_grid_view( $results, $showDate, $showPlace );
                 break;
             case 'calendar':
                 /*** Enqueue the full calendar scripts and styles */
@@ -111,18 +114,26 @@ class Tivents_Product_Controller {
                 $div .= '</h3></div>';
 
                 break;
+            case 'table':
+                $div .= Tivents_Table_View::tivents_set_table_view(
+                    $results,
+                    filter_var( $atts['images'] ?? false, FILTER_VALIDATE_BOOLEAN ),
+                    $showDate,
+                    $showPlace
+                );
+                break;
             case 'list-no-image':
-                $div .= Tivents_List_View::setListWithoutImages( $results );
+                $div .= Tivents_List_View::setListWithoutImages( $results, $showDate, $showPlace );
                 break;
             case 'unstyled-list':
-                $div .= Tivents_List_View::setUnstyledList( $results );
+                $div .= Tivents_List_View::setUnstyledList( $results, $showDate, $showPlace );
                 break;
             case 'list':
             default:
                 if(array_key_exists('columns', $atts) && !is_null($atts['columns'])) {
-                    $div .= Tivents_List_View::setColumnList( $results, $atts['columns'] );
+                    $div .= Tivents_List_View::setColumnList( $results, $atts['columns'], $showDate, $showPlace );
                 } else {
-                    $div .= Tivents_List_View::setListWithImages( $results );
+                    $div .= Tivents_List_View::setListWithImages( $results, $showDate, $showPlace );
                 }
                 break;
         }
@@ -136,7 +147,7 @@ class Tivents_Product_Controller {
     }
 
 
-    public static function create_product_card($product) {
+    public static function create_product_card( $product, $showDate = true, $showPlace = true ) {
 
         $product_url = Tivents_Product_Controller::tivents_get_product_url( $product['short_url'] );
         $date        = Tivents_Product_Controller::tivents_set_product_time( $product );
@@ -152,8 +163,12 @@ class Tivents_Product_Controller {
         $div .= '<div class="col-sm-8">';
         $div .= '<div class="card-body">';
         $div .= '<h5 class="card-title tivents-product-card-title">'.$product['name'].'</h5>';
-        $div .= '<p class="card-text">'.$date.'</p>';
-        $div .= '<p class="card-text"><small class="text-muted">'.$product['place'].'</small></p>';
+        if ( $showDate ) {
+            $div .= '<p class="card-text">'.$date.'</p>';
+        }
+        if ( $showPlace ) {
+            $div .= '<p class="card-text"><small class="text-muted">'.$product['place'].'</small></p>';
+        }
         $div .= ' </div>';
         $div .= ' </div>';
         $div .= ' </div>';
@@ -164,7 +179,7 @@ class Tivents_Product_Controller {
     }
 
 
-    public static function create_product_unstyled_card($product) {
+    public static function create_product_unstyled_card( $product, $showDate = true, $showPlace = true ) {
 
         $product_url = Tivents_Product_Controller::tivents_get_product_url( $product['short_url'] );
         $date        = Tivents_Product_Controller::tivents_set_product_time( $product );
@@ -174,8 +189,12 @@ class Tivents_Product_Controller {
         $div .= '<div id="tivents-product-card">';
         $div .= '<div id="tivents-product-image"><img src="'.$imageUrl.'" alt="'.$product['name'].' - Image"></div>';
         $div .= '<div id="tivents-product-name">'.$product['name'].'</div>';
-        $div .= '<div id="tivents-product-date">'.$date.'</div>';
-        $div .= '<div id="tivents-product-location">'.$product['place'].'</div>';
+        if ( $showDate ) {
+            $div .= '<div id="tivents-product-date">'.$date.'</div>';
+        }
+        if ( $showPlace ) {
+            $div .= '<div id="tivents-product-location">'.$product['place'].'</div>';
+        }
         $div .= ' </div>';
         $div .= '</a>';
 

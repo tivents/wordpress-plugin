@@ -3,7 +3,7 @@ Contributors: TIVENTS, willihelwig, aldrahastur
 Tags: events, tickets
 Requires at least: 3.0.1
 Tested up to: 7.1.1
-Stable tag: 2.1.4
+Stable tag: 2.2.0
 Requires PHP: 8.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -68,6 +68,11 @@ You need your partner ID. You will find it in your [partner account](https://man
 * EN: No visitor data is transmitted to TIVENTS. The products via API are only retrieved at the moment a page with one of the shortcodes is called up.
 
 == Changelog ==
+
+= 2.2.0 =
+* add table view (style="table", optional images="true")
+* show availability in table view: hint for few remaining tickets, disabled "Ausverkauft" button when sold out
+* add shortcode parameters hide_date="true" and hide_place="true" for list, grid and table views
 
 = 2.1.4 =
 * adjust screenshots

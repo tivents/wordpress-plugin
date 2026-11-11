@@ -196,6 +196,105 @@ a:hover .tiv-grid-hover {
 }
 /*tivents-no-image end */
 
+/*tivents-table */
+.tiv-table-wrapper {
+	width: 100%;
+	overflow-x: auto;
+}
+.tiv-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 16px;
+	line-height: 1.4;
+}
+.tiv-table th {
+	text-align: left;
+	padding: 10px 12px;
+	border-bottom: 3px solid var(--tiv-prime-color);
+	color: var(--tiv-second-color);
+}
+.tiv-table td {
+	padding: 10px 12px;
+	border-bottom: 1px solid #e5e5e5;
+	vertical-align: middle;
+}
+.tiv-table .tiv-table-row:hover {
+	background: rgba(0, 0, 0, 0.03);
+}
+.tiv-table .tiv-table-name,
+.tiv-table .tiv-table-date,
+.tiv-table .tiv-table-place {
+	font-size: inherit;
+	margin: 0;
+}
+.tiv-table .tiv-table-name a {
+	color: var(--tiv-text-color);
+	font-weight: bold;
+	text-decoration: none;
+}
+.tiv-table .tiv-table-image {
+	width: 90px;
+}
+.tiv-table .tiv-table-image img {
+	width: 80px;
+	height: 60px;
+	object-fit: cover;
+	display: block;
+}
+.tiv-table .tiv-table-action {
+	text-align: right;
+	white-space: nowrap;
+}
+.tiv-table-button {
+	display: inline-block;
+	padding: 6px 14px;
+	background: var(--tiv-prime-color);
+	color: var(--tiv-second-color) !important;
+	text-decoration: none;
+	border-radius: 4px;
+	font-size: 14px;
+}
+.tiv-table-button:hover {
+	opacity: 0.85;
+}
+.tiv-table-button-disabled,
+.tiv-table-button-disabled:hover {
+	background: #d6d6d6;
+	color: #6b6b6b !important;
+	cursor: not-allowed;
+	opacity: 1;
+}
+.tiv-table-hint {
+	margin-top: 4px;
+	font-size: 12px;
+	color: #c26a00;
+}
+@media only screen and (max-width: 650px) {
+	.tiv-table {
+		font-size: 14px;
+	}
+	.tiv-table th,
+	.tiv-table td {
+		padding: 8px 6px;
+	}
+	.tiv-table .tiv-table-image {
+		width: 56px;
+	}
+	.tiv-table .tiv-table-image img {
+		width: 48px;
+		height: 36px;
+	}
+	.tiv-table-button {
+		padding: 4px 8px;
+		font-size: 12px;
+	}
+	.tiv-table-hint {
+		font-size: 11px;
+		white-space: normal;
+	}
+}
+/*tivents-table end */
+
 /*Media Definitions */
 @media only screen and (max-width: 1080px) {
 	.tiv-main {
